@@ -1,5 +1,5 @@
 # untitled_forums
-forum software dynamic template
+forum software dynamic web pages
 
 dynamic web pages (layout files: index_header, index_footer).
 
