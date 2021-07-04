@@ -22,6 +22,7 @@ dynamic web pages (layout files: index_header, index_footer).
 --Mobile phone layout is set with is_mobile() function (lib.php) in layouts and form elements.
 
 [ JavaScript: ]
+
 --for swapping between light and dark theme
 
 --for clicking on button to put input tags (a,b,i,s,...) in submit forms
