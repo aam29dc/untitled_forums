@@ -1,0 +1,135 @@
+﻿:root[data-theme="theme-light"], :root {	/* default if js is disabled */
+	--bodyc:#FAFAFF;
+	--wrapperc:#FAFAFA;
+	--heartc:white;
+	--headerc:#323232;
+	--asidec:#FAFAFA;
+	--footerc:#FAFAFA;
+
+	--alinkc:blue;
+	--avisitedc:blue;
+	--ahoverc:orange;
+	--aactivec:white;
+
+	--wrapperbc:black;
+
+	--bgimg:url(../img/bg32.png);
+
+	--textareac:white;
+	--textareafc:black;
+
+	--tcolor:black;
+	--headertc:white;
+	--asideh1tc:white;
+	--footertc:gray;
+
+	--vnavhoverc:#eeeeee;
+	--asideh1c:#323232;
+	--heartsectionh1c:#F5F5F5;
+	--heartsectionh6c:#FAFAFA;
+
+	--thtdc:#eeeeee;
+}
+
+:root[data-theme="theme-dark"] {
+	--bodyc:#222247;
+	--wrapperc:#0f0f0f;
+	--heartc:black;
+	--headerc:#e2e2e2;
+	--asidec:#0f0f0f;
+	--footerc:#0f0f0f;
+
+	--alinkc:orange;
+	--avisitedc:orange;
+	--ahoverc:blue;
+	--aactivec:white;
+
+	--wrapperbc:white;
+
+	--textareac:black;
+	--textareafc:white;
+
+	--bgimg:url(../img/bg32inv.png);
+
+	--tcolor:white;
+	--headertc:black;
+	--asideh1tc:black;
+	--footertc:gray;
+
+	--vnavhoverc:#202020;
+	--asideh1c:#e2e2e2;
+	--heartsectionh1c:#141414;
+	--heartsectionh6c:#0f0f0f;
+
+	--thtdc:#202020;
+}
+
+* { 
+	padding:0;
+	margin:0;
+	/* border:0; */
+}
+
+body {
+	background-color:var(--bodyc);
+	background-image:linear-gradient(rgba(255,250,250,0.1), rgba(255,250,250,0.1), rgba(255,250,250,0.1)), var(--bgimg);
+	background-repeat:repeat;
+	color:var(--tcolor);
+}
+
+.wrapper {
+	margin:5px auto 5px auto;
+	border:1px solid var(--wrapperbc);
+	background-color:var(--wrapperc);
+}
+
+.header {
+	background-color:var(--headerc);
+	color:var(--headertc);
+	height:25px;
+	width:100%;
+}
+
+.heart {
+	float:left;
+	min-height:100px;
+	background-color:var(--heartc);
+	margin:5px;
+}
+
+.aside {
+	background-color:var(--asidec);
+	height:100%;
+	width:120px;
+	float:left;
+	margin:5px;
+	border:0;
+}
+
+.footer {
+	height:20px;
+	width:100%;
+	clear:both;
+	display:block;
+	background-color:var(--footerc);
+	text-align:center;
+	color:var(--footertc);
+}
+
+.background-text {
+	position:absolute;
+	top:2px;
+	bottom:0;
+	left:2px;
+	right:0;
+	z-index:-1;
+	overflow:hidden;
+	-webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+	cursor:default;
+	opacity:0.1;
+}
