@@ -3,8 +3,6 @@ forum software dynamic web pages
 
 dynamic web pages (layout files: index_header, index_footer).
 
-
-
 PHP(PDO) & SQL(mysql):
 -signup/login to create a thread or post in thread.
 
@@ -18,11 +16,14 @@ PHP(PDO) & SQL(mysql):
 
 HTML & CSS:
 -saved variable css template, click the logo in the upper left corner to swap between dark and light themes
+
 -Mobile phone layout is set with is_mobile() function (lib.php) in layouts and form elements.
 
 JavaScript:
 -for swapping between light and dark theme
+
 -for clicking on button to put input tags (a,b,i,s,...) in submit forms
+
 -for redirecting page
 
 (0.1) (First Release) Work In Progress
