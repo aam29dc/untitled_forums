@@ -1,5 +1,5 @@
 # untitled_forums
-forum software dynamic web pages (0.1) (First Release) Work In Progress
+forum software with dynamic web pages
 
 dynamic web pages (layout files: index_header, index_footer).
 
