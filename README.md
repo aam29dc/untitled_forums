@@ -29,11 +29,11 @@ dynamic web pages (layout files: index_header, index_footer).
 
 --for redirecting page
 
-(main page)
+[main page]
 ![first](https://user-images.githubusercontent.com/73267302/125153744-e52d7a80-e123-11eb-87ec-1bd58ad1ac09.png)
-(switch between dark and light mode, with (saved) cookies)
+[switch between dark and light mode, with (saved) cookies]
 ![second](https://user-images.githubusercontent.com/73267302/125153748-eb235b80-e123-11eb-80b5-a046ab489796.png)
-(click in a thread and write a post)
+[click in a thread and write a post]
 ![third](https://user-images.githubusercontent.com/73267302/125153756-f6768700-e123-11eb-893e-64f890797937.png)
-(mobile phone version of the site)
+[mobile phone version of the site]
 ![mobile](https://user-images.githubusercontent.com/73267302/125153834-7270cf00-e124-11eb-857b-084b47a0c2b8.png)
