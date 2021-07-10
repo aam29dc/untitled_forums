@@ -28,3 +28,7 @@ dynamic web pages (layout files: index_header, index_footer).
 --for clicking on button to put input tags (a,b,i,s,...) in submit forms
 
 --for redirecting page
+
+![first](https://user-images.githubusercontent.com/73267302/125153744-e52d7a80-e123-11eb-87ec-1bd58ad1ac09.png)
+![second](https://user-images.githubusercontent.com/73267302/125153748-eb235b80-e123-11eb-80b5-a046ab489796.png)
+![third](https://user-images.githubusercontent.com/73267302/125153756-f6768700-e123-11eb-893e-64f890797937.png)
