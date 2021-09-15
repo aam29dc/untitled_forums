@@ -14,7 +14,7 @@ $stmt = $pdo->prepare("SELECT lift FROM bans WHERE userid = ?;");
 $stmt->bindValue(1, $_SESSION['userid']);
 $stmt->execute();
 
-if((time() > strtotime($stmt->fetchColumn().' + 4 hours')) && $_SESSION['priviledge'] >= 2){
+if(/*(time() > strtotime($stmt->fetchColumn().' + 4 hours')) &&*/ $_SESSION['priviledge'] >= 2){
     $stmt = $pdo->prepare("SELECT userid, username, priviledge, email FROM users limit ?, ".UMAX.";");
     $stmt->bindValue(1, (int)($pages-1)*UMAX, PDO::PARAM_INT);
     if($stmt->execute()){
@@ -48,12 +48,12 @@ if((time() > strtotime($stmt->fetchColumn().' + 4 hours')) && $_SESSION['privile
 
         // BUTTON: PREV
         if($pages>1){
-            echo '<a href="?page=cp_users&pages='.($pages-1).'"><button>Prev</button></a>';
+            echo '<a class="nsyn" href="?page=cp_users&pages='.($pages-1).'"><button>Prev</button></a>';
         }
 
         // BUTTON: NEXT
         if($stmt->rowCount() == UMAX){
-            echo '<a href="?page=cp_users&pages='.($pages+1).'"><button>Next</button></a>';
+            echo '<a class="nsyn" href="?page=cp_users&pages='.($pages+1).'"><button>Next</button></a>';
         }
     }
     else{

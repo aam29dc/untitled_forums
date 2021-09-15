@@ -8,13 +8,11 @@ if(isset($_SESSION['threadid'])){
   $report = "<h3>Redirecting back to thread...</h3>";
 }
 else{
-  header("Refresh:2; url='../index.php'");
-  $report = "<h3>Redirecting to home page...</h3>";
+  header("Refresh:2; url='../index.php?page=login'");
+  $report = "<h3>Redirecting back to login...</h3>";
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-  
     $error = false;
   
     if(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['username']) != $_POST['username']){
