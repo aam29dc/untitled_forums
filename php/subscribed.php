@@ -62,8 +62,8 @@ if(basename($_SERVER['PHP_SELF'], ".php")=="subscribe") {
     $x = 1;
 }
 
-echo "<h3>Redirecting to home page...</h3>";
+echo "<h3>Redirecting back to subscribe...</h3>";
 echo "</div>";
-echo '<script src="'.abs_php_include($x).'js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php");</script>';
-echo '<noscript><a href="'.abs_php_include($x).'index.php">Click to redirect to home page.</a></noscript>';
+echo '<script src="'.abs_php_include($x).'js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php?page=sub");</script>';
+echo '<noscript><a href="'.abs_php_include($x).'index.php?page=sub">Click to redirect back to subscribe.</a></noscript>';
 ?>

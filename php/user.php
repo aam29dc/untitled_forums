@@ -1,5 +1,6 @@
 <?php
 session_start();
+$page = str_replace("page=", "", $_SERVER['QUERY_STRING']);
 if(!isset($x)) require_once('lib.php');
 
 if(!isset($_SESSION['loggedin'])){
@@ -25,9 +26,16 @@ else {
     $stmt->execute();
     $unseen = $stmt->fetchColumn();
 
-    echo '<li class="hnav"><a href="'.abs_php_include($x).'index.php?page=inbox">Inbox';
-    if($unseen > 0) echo '('.$unseen.')</a></li>';
-    echo '<li class="hnav"><a href="'.abs_php_include($x).'index.php?page=profile">'.substr($_SESSION['username'], 0, 10).'</a></li>
-            <li class="hnav"><a href="'.abs_php_include($x).'logout.php">Logout</a></li>'. "\n";
+    if($page == 'inbox') echo '<li class="hnav">Inbox';
+    else echo '<li class="hnav"><a href="'.abs_php_include($x).'index.php?page=inbox">Inbox';
+    if($unseen > 0) echo '('.$unseen.')';
+
+    if($page != 'inbox') echo '</a>';
+    echo '</li>';
+
+    if($page == 'profile') echo '<li class="hnav">'.substr($_SESSION['username'], 0, 10).'</li>';
+    else echo '<li class="hnav"><a href="'.abs_php_include($x).'index.php?page=profile">'.substr($_SESSION['username'], 0, 10).'</a></li>';
+    
+    echo '<li class="hnav"><a href="'.abs_php_include($x).'logout.php">Logout</a></li>'. "\n";
 }
 ?>
