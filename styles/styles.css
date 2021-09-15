@@ -1,12 +1,12 @@
 ﻿@import url("layout.css");
 
-/* thread.php L:42 */
-#threadtitle{
+/* thread.php L:57 */
+div#threadtitle{		/* not registering */
 	background-color:var(--heartsectionh1c);
 }
 
 /* ELEMENTS START */
-.searcht, .textfield {
+input[type="search"], .textfield {
     background-color:var(--textareac);
     color:var(--textareafc);
 }
@@ -15,7 +15,7 @@
 	margin-top:5px;
 }
 
-.searchb {
+input#searchb {
 	width:20px;
 }
 	/* COLLAPSIBLE START */
@@ -78,6 +78,13 @@ a:visited {	color:var(--avistedc); }
 a:hover {	color:var(--ahoverc); }
 a:active {	color:var(--aactivec); }
 
+a:not(.nsyn) {
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
 .f1 {	font-size:16px;}
 .f2 {	font-size:14px;}
 .f3 {	font-size:12px;}
@@ -89,22 +96,22 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight:normal;
 }
 
-.heart nav ul li {
+div#heart nav ul li {
 	list-style:none;
 }
 
-.heart div {
+div#heart div {
 	margin-bottom:10px;
 	background-color:var(--heartc);
 	word-wrap:break-word;
 }
 
-.heart :is(h1, h2, h3, h4){
+div#heart :is(h1, h2, h3, h4){
 	background-color:var(--heartsectionh1c);
 	text-indent:10px;
 }
 
-.heart :is(h5, h6) {
+div#heart :is(h5, h6) {
 	background-color:var(--heartsectionh6c);
 	text-indent:10px;
 }
@@ -113,53 +120,70 @@ nav,ul,li {
 	clear:none;
 }
 
-.header img {
+div#header img {
 	margin-left:10px;
 	margin-top:8px;
 	cursor:pointer;
 }
 
-.header nav {
+div#header nav {
 	float:right;
 }
 
-.header nav ul li {
+div#header nav ul li {
 	margin-right:5px;
 	float:left;
 }
 
-.header nav ul li a {
+div#header nav ul li a {
 	display:inline;
 	color:var(--headertc);
 }
 
-.hnav {
+li.hnav {
 	list-style:square inside url('../img/hlist3.png');
 }
 
-.hnav:hover {
+li.hnav:hover {
 	background-color:gray;
 }
 
-.vnavh {
+li.vnavh {
 	list-style:none;
+	text-shadow: 0 1px var(--vnavshadow);
 }
 
-.vnav img {
+li.vnav img {
 	margin:7px 0 0 5px;
 	float:left;
 }
-
-.vnav:hover {
-	background-color:var(--vnavhoverc);
+/* transitions start */
+li.vnav a {
+	position:relative;
+	left:0px;
+	transition:left 1s;
 }
 
-.aside nav ul {
+li.vnav a:hover {
+	font-weight:900;
+	left:-10px;
+}
+
+li.vnav {
+	transition: box-shadow 1s;
+}
+
+li.vnav:hover {
+	background-color:var(--vnavhoverc);
+	box-shadow: 2px 2px 5px;
+} /* transitions end */
+
+div#aside nav ul {
 	text-align:center;
 	list-style:none;
 }
 
-.aside nav ul li h1 {
+div#aside nav ul li h1 {
 	font-size:14px;
 	font-weight:bold;
 	color:var(--asideh1tc);
@@ -168,16 +192,16 @@ nav,ul,li {
 	border-radius:5px 5px 0 0;
 }
 
-.aside nav ul li a {
+div#aside nav ul li a {
 	display:block;
 }
 
-.article {
+.article {		/* UNUSED */
 	clear:both;
 	width:100%;
 }
 
-.fixindent{
+div.fixindent{
 	margin-top:-18px;
 }
 
@@ -208,7 +232,7 @@ span {
 	word-break:break-all;
 }
 
-.tduser {
+td.tduser {
 	width:15%;
 	text-align:center;
 	vertical-align:top;
@@ -218,8 +242,99 @@ textarea {
 	resize:none;
 }
 
-.b1 { /* html tag text buttons */
+button.b1 { /* html tag text buttons */
 	margin-left:2px;
 	margin-right:2px;
 }
+
+div#line {
+	position:fixed;
+    height:1px;
+    width:100%;
+	top:0;
+    padding:0;
+    margin:0;
+    border:0;
+    background-color:rgb(255,0,0);
+	z-index:-1;
+}
+
+div#vline {
+	position:fixed;
+	height:100vh;
+	width:2px;
+	top:0;
+	left:0;
+	padding:0;
+	margin:0;
+	border:0;
+	background-image:linear-gradient(180deg, red,yellow,rgb(0,255,0),cyan,blue,magenta,red);
+	z-index:-2;
+}
+
+::selection {
+	background-color:var(--textareafc);
+	color:var(--textareac);
+}
 /* STYLES END */
+
+/* CUBE START */
+:root {
+	--cubel:50px;
+	--cubet:calc(var(--cubel)/2);
+}
+
+#cubeicle {
+	margin-top:25px;
+	margin-bottom:15px;
+	height:var(--cubel);
+	width:var(--cubel);
+	transform-style:preserve-3d;
+	transform:rotate3d(1,1,1,30deg);
+	margin-left:auto;
+	margin-right:auto;
+}
+  
+.face {
+	height:100%;
+	width:100%;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	position:absolute;
+	backface-visibility: inherit;
+	opacity: 0.5;
+	font-size:60px;
+	color:white;
+}
+  
+.front {
+	background-color: red;
+	transform: translateZ(var(--cubet));
+}
+  
+.right {
+	background-color: yellow;
+	transform: rotateY(90deg) translateZ(var(--cubet));
+}
+  
+.back {
+	background-color: rgb(0,255,0);
+	transform: rotateY(180deg) translateZ(var(--cubet));
+}
+  
+.left {
+	background-color: cyan;
+	transform: rotateY(-90deg) translateZ(var(--cubet));
+}
+  
+.top {
+	background-color: blue;
+	transform: rotateX(90deg) translateZ(var(--cubet));
+}
+  
+.bottom {
+	background-color: magenta;
+	transform: rotateX(-90deg) translateZ(var(--cubet));
+}
+/* CUBE END */

@@ -28,11 +28,13 @@
 	--heartsectionh1c:#F5F5F5;
 	--heartsectionh6c:#FAFAFA;
 
+	--vnavshadow:#0000aa;
+
 	--thtdc:#eeeeee;
 }
 
 :root[data-theme="theme-dark"] {
-	--bodyc:#222247;
+	--bodyc:black;
 	--wrapperc:#0f0f0f;
 	--heartc:black;
 	--headerc:#e2e2e2;
@@ -61,6 +63,8 @@
 	--heartsectionh1c:#141414;
 	--heartsectionh6c:#0f0f0f;
 
+	--vnavshadow:#FFA500;
+
 	--thtdc:#202020;
 }
 
@@ -70,34 +74,51 @@
 	/* border:0; */
 }
 
+html {
+	min-height:100%;
+}
+
 body {
+	min-height:100%;
 	background-color:var(--bodyc);
-	background-image:linear-gradient(rgba(255,250,250,0.1), rgba(255,250,250,0.1), rgba(255,250,250,0.1)), var(--bgimg);
+	background-image:linear-gradient(rgba(255,0,0,0.1), rgba(255, 255, 0, 0.1), rgba(0,255,0,0.1), rgba(0,255,255,0.1), rgba(0,0,255,0.1), rgba(255,0,255,0.1), rgba(255,0,0,0.1)), var(--bgimg);
 	background-repeat:repeat;
+	background-attachment:fixed;
 	color:var(--tcolor);
 }
 
-.wrapper {
+@keyframes wrappercolor {
+	0% {border-color:red;}
+	16.66% {border-color:yellow;}
+	33.32% {border-color:rgb(0,255,0);}
+	49.98% {border-color:cyan;}
+	66.64% {border-color:blue;}
+	83.3% {border-color:magenta;}
+	100% {border-color:red;}
+}
+
+div#wrapper {
 	margin:5px auto 5px auto;
 	border:1px solid var(--wrapperbc);
 	background-color:var(--wrapperc);
+	animation:wrappercolor 60s linear 0s infinite;
 }
 
-.header {
+div#header {
 	background-color:var(--headerc);
 	color:var(--headertc);
 	height:25px;
 	width:100%;
 }
 
-.heart {
+div#heart {
 	float:left;
 	min-height:100px;
 	background-color:var(--heartc);
 	margin:5px;
 }
 
-.aside {
+div#aside {
 	background-color:var(--asidec);
 	height:100%;
 	width:120px;
@@ -106,7 +127,7 @@ body {
 	border:0;
 }
 
-.footer {
+div#footer {
 	height:20px;
 	width:100%;
 	clear:both;
@@ -116,7 +137,7 @@ body {
 	color:var(--footertc);
 }
 
-.background-text {
+div#background-text {
 	position:absolute;
 	top:2px;
 	bottom:0;
