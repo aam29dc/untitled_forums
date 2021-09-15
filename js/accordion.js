@@ -1,3 +1,4 @@
+"use strict";
 var acc = document.getElementsByClassName("accordion");
 
 for (var i = 0; i < acc.length; i++) {
