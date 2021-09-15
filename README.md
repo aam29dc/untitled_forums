@@ -1,4 +1,9 @@
 # untitled_forums
+(10/14/21) [2nd UPDATE]
+![2_1](https://user-images.githubusercontent.com/73267302/133365684-c3b2924e-9767-4096-acaa-1b4efb716969.png)
+
+![2_2](https://user-images.githubusercontent.com/73267302/133365707-e93ed468-87b3-42f6-9878-8135a2d93adf.png)
+
 (9/3/21, no changes, uploaded missing files, github didnt upload them :/ )
 
 forum software with dynamic web pages
