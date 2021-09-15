@@ -35,9 +35,8 @@ if(tableExists($pdo,'threads')){
             $stmt2 = $pdo->prepare("SELECT COUNT(threadid) FROM posts WHERE threadid = ?;");
             $stmt2->bindValue(1, $row['threadid']);
             $stmt2->execute();
-            echo '<span style="float:right;">'.$stmt2->fetchColumn().' replies</span></a></h3><p>';
+            echo '<span style="float:right;">'.$stmt2->fetchColumn().' replies</span></a></h3><p style="text-indent:5px;">';
             
-
             if($blocked) echo "Blocked message.";
             else echo htmlchars_minus($row['msg'], "a", "b", "i", "u", "s", "sub", "sup").'</p>';
             //get username
@@ -45,18 +44,18 @@ if(tableExists($pdo,'threads')){
             $stmt2->bindValue(1, $row['authorid']);
             $stmt2->execute();
             $author = $stmt2->fetchColumn();
-            echo '<h5><a href="index.php?page=member&user='.$author.'">- '.$author.'</a><span style="float:right;">'.htmlspecialchars($row['date']).'</span></h5>';
-            echo "<hr>"."\n";
+            echo '<h5><a href="index.php?page=member&user='.$author.'">- '.$author.'</a><span style="float:right;">'.$row['date'].'</span></h5>';
+            echo "<hr><br/>"."\n";
         }
         echo "<br>";
         //BUTTON: PREV
-        if($page!=1) echo '<a href="?page='.($page-1).'"><button>Previous</button></a> ';
+        if($page!=1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a> ';
         //BUTTON: NEXT
-        if($stmt->rowCount() >= TMAX) echo '<a href="?page='.($page+1).'"><button>Next</button></a>';
+        if($stmt->rowCount() >= TMAX) echo '<a class="nsyn" href="?page='.($page+1).'"><button>Next</button></a>';
     }
     else{
         echo "<p>No threads on this page.</p>";
-        if($page!=1) echo '<a href="?page='.($page-1).'"><button>Previous</button></a>';
+        if($page!=1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a>';
     }
 }
 else{

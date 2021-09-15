@@ -42,7 +42,7 @@ if($stmt->execute()){
         echo "<p>This user cannot edit this post.</p>";
         goto end;
     }
-    echo '<noscript><style>.b1{display:none;}</style></noscript>';
+    echo '<noscript><style>button.b1{display:none;}</style></noscript>';
 
     echo '<form action="php/edited.php?posts='.$postsid.'" method="post">
     <label for="edit_title">Edit title:</label><br/>

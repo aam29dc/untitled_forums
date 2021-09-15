@@ -59,7 +59,7 @@ if(isset($_SESSION['loggedin'])){
         echo "</table>";
         //BUTTON: PREV
         if($pages > 1){
-            echo '<a href="index.php?page=inbox&pages='.($pages-1).'"><button>Prev</button></a>';
+            echo '<a class="nsyn" href="index.php?page=inbox&pages='.($pages-1).'"><button>Prev</button></a>';
         }
         //BUTTON: NEXT
         // one off ?
@@ -67,7 +67,7 @@ if(isset($_SESSION['loggedin'])){
         $stmt2->bindValue(":userid", $_SESSION['userid']);
         $stmt2->execute();
         if($count > 0 && $pages < ceil($stmt2->fetchColumn()/IMAX)){
-            echo '<a href="index.php?page=inbox&pages='.($pages+1).'"> <button>Next</button></a>';
+            echo '<a class="nsyn" href="index.php?page=inbox&pages='.($pages+1).'"> <button>Next</button></a>';
         }
 
     }

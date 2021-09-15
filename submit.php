@@ -14,7 +14,7 @@ if(isset($_SESSION['loggedin'])){
   $unban = $stmt->fetchColumn();
   
   if(!(time() > strtotime($unban.' + 4 hours'))){
-    echo '<noscript><style>.b1{display:none;}</style></noscript>';
+    echo '<noscript><style>button.b1{display:none;}</style></noscript>';
 
     echo '<form action="php/submitted.php" method="post" name="submitform">
           <label for="submit_title">Enter a title:</label><br>

@@ -1,0 +1,7 @@
+/* TEAM */
+author: Michael A Arrotta
+email: aam29dc@gmail.com
+
+/* SITE */
+Standards: HTML4, CSS, 
+Software: PHP(PDO), mySQL, Javascript

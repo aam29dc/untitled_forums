@@ -53,8 +53,8 @@ if(tableExists($pdo,'threads')){
     //print thread title, msg, 
     if($stmt->rowCount() > 0){
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        echo '<div id="threadtitle"><a href="?thread='.$row['threadid'].'"><h1 style="display:inline;">';
+        // <a href="?thread='.$row['threadid'].'">
+        echo '<div id="threadtitle" style="background-color:var(--heartsectionh1c);"><h1 style="display:inline;">';
         
         //check if user is blocked
         $stmt = $pdo->prepare("SELECT blocked FROM blocks WHERE userid = :userid AND blockid = :blockid;");
@@ -63,13 +63,13 @@ if(tableExists($pdo,'threads')){
         $stmt->execute();
         $blocked = $stmt->fetchColumn();
         
-        if($blocked) echo 'Blocked title.</h1></a>';
-        else echo htmlspecialchars($row['title'])."</h1></a>";
+        if($blocked) echo 'Blocked title.</h1>';    //</a>
+        else echo htmlspecialchars($row['title'])."</h1>";  //</a>
         // BUTTONS (thread) EDIT
         if(isset($_SESSION['loggedin']) && (($_SESSION['userid'] == $row['authorid']) || $_SESSION['priviledge'] >= 2) && !$banned){
             echo '<a href="edit_thread.php?thread='.$thread.'"><img src="img/edit16.png" style="float:right;"></a>';
         }
-        echo '</div><p>';
+        echo '</div><p style="text-indent:5px;">';
 
         if($blocked) echo "Blocked message.";
         else echo htmlchars_minus($row['msg'], "a", "b", "i", "u", "s", "sub", "sup")."</p>";
@@ -79,7 +79,7 @@ if(tableExists($pdo,'threads')){
         $stmt->bindValue(":userid", $row['authorid']);
         $stmt->execute();
         $author = $stmt->fetchColumn();
-        echo '<h5><a href="index.php?page=member&user='.$author.'">- '.$author.'</a><span style="float:right;">'.htmlspecialchars($row['date'])."</span></h5>";
+        echo '<h5><a href="index.php?page=member&user='.$author.'">- '.$author.'</a><span style="float:right;">'.$row['date']."</span></h5>";
         echo "<hr>"."\n";
 
         //print posts from posts table
@@ -124,7 +124,6 @@ if(tableExists($pdo,'threads')){
                 echo "</h4>";
                 echo "<p>";
 
-
                 if($blocked) echo "Blocked message."."</p><h5>".$row['date']."</h5></td></tr>";
                 else echo htmlspecialchars($row['msg'])."</p><h5>".$row['date']."</h5></td></tr>";
 
@@ -136,14 +135,14 @@ if(tableExists($pdo,'threads')){
         }
         
         // BUTTON: BACK
-        echo '</table><br><div style="float:left;"><a href="?page=';
+        echo '</table><br><div style="float:left;"><a class="nsyn" href="?page=';
             if(isset($_SESSION['pagesid'])) echo $_SESSION['pagesid'];
             else echo '1';
         echo '"><button>&laquo; Back</button></a><br/>';
 
         // BUTTON: PREV
         if($pages > 1){
-            echo '<br/><a href="?thread='.$thread.'&pages='.($pages-1).'"><button>Prev</button></a>';
+            echo '<br/><a class="nsyn" href="?thread='.$thread.'&pages='.($pages-1).'"><button>Prev</button></a>';
         }
 
         // BUTTON: NEXT
@@ -158,7 +157,7 @@ if(tableExists($pdo,'threads')){
 
         if($numOfPages > 0){      
             createpages($numOfPages, $pages, "?thread=".$thread."&pages=");
-            if($pages < $numOfPages) echo '<a href="?thread='.$thread.'&pages='.($pages+1).'"><button>Next</button></a>';
+            if($pages < $numOfPages) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.($pages+1).'"><button>Next</button></a>';
         }
 
         echo '</div>';
