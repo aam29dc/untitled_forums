@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
                         $author = $stmt->fetchColumn();
 
                     echo '`"><td><a>'.limitstr($author, 20)
-                    .'</a></td><td><a>'.htmlspecialchars(limitstr($row['date'], 20))
+                    .'</a></td><td><a>'.limitstr($row['date'], 20)
                     .'</a></td><td><a>'.htmlspecialchars(limitstr($row['title'], 20))
                     .'</a></td><td><a>'.htmlchars_minus(limitstr($row['msg'], 200), "a", "b", "i", "u", "s", "sub", "sup")
                     .'</a></td></tr>';
@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
                         $author = $stmt->fetchColumn();
 
                     echo '`"><td><a>'.limitstr($author, 20)
-                    .'</a></td><td><a>'.htmlspecialchars(limitstr($row['date'], 20))
+                    .'</a></td><td><a>'.limitstr($row['date'], 20)
                     .'</a></td><td><a>'.htmlspecialchars(limitstr($row['title'], 20))
                     .'</a></td><td><a>'.htmlchars_minus(limitstr($row['msg'], 200), "a", "b", "i", "u", "s", "sub", "sup")
                     .'</a></td></tr>';

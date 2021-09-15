@@ -82,8 +82,8 @@ include_once('../index_header.php');
 
 echo $report;
 
-echo "<h3>Redirecting to home page...</h3>";
-echo '<script src="../js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php");</script>';
-echo '<noscript><a href="'.abs_php_include($x).'index.php">Click to redirect to home page.</a></noscript>';
+echo "<h3>Redirecting back to sign-up...</h3>";
+echo '<script src="../js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php?page=signup");</script>';
+echo '<noscript><a href="'.abs_php_include($x).'index.php?page=signup">Click to redirect to sign-up.</a></noscript>';
 include_once('../index_footer.php');
 ?>
