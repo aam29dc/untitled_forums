@@ -6,6 +6,7 @@
 
 (9/3/21, no changes, uploaded missing files, github didnt upload them :/ )
 
+[1st RELEASE]
 forum software with dynamic web pages
 
 dynamic web pages (layout files: index_header, index_footer).
