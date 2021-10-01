@@ -1,6 +1,6 @@
 # untitled_forums
 _______________________________________________________________________________________________
-(10/14/21) __[2nd UPDATE]__ (note the page has been filled with blank space just to show effects)
+(10/14/21) __[2nd RELEASE]__ (note the page has been filled with blank space just to show effects)
 _______________________________________________________________________________________________
 ![2_1](https://user-images.githubusercontent.com/73267302/133365684-c3b2924e-9767-4096-acaa-1b4efb716969.png)
 
@@ -11,14 +11,13 @@ __[1st RELEASE]__
 _______________________________________________________________________________________________
 
 forum software with dynamic web pages
-
 dynamic web pages (layout files: index_header, index_footer).
 
 [ PHP(PDO) & SQL(mysql): ]
 
 --signup/login to create a thread or post in thread.
 
--guest, member, moderator, admin priviledges.
+--guest, member, moderator, admin priviledges.
 
 --control panel for mods to ban, and rank up users.
 
