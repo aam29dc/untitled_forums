@@ -1,4 +1,5 @@
 # untitled_forums
+Requires jQuery for AJAX (to update page without redirect/refresh). This is also fully functional with JS disabled.
 _______________________________________________________________________________________________
 (11/01/21) __[3nd RELEASE]__ [jQuery required for AJAX]
 _______________________________________________________________________________________________
