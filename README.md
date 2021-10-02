@@ -1,5 +1,9 @@
 # untitled_forums
 _______________________________________________________________________________________________
+(10/14/21) __[3nd RELEASE]__ [jQuery required for AJAX]
+_______________________________________________________________________________________________
+Updates with JavaScript, and AJAX: Now you can post/edit/delete a reply or thread, without redirecting you to another page. Conversations or PM's also don't require a page redirect, making it feel like a modern message app. The login button now is a pop out without redirecting you to the login page. This all makes the site feel like a modern Single Page Application. The site is also fully functional if the user has JS disabled.
+_______________________________________________________________________________________________
 (10/14/21) __[2nd RELEASE]__ (note the page has been filled with blank space just to show effects)
 _______________________________________________________________________________________________
 ![2_1](https://user-images.githubusercontent.com/73267302/133365684-c3b2924e-9767-4096-acaa-1b4efb716969.png)
