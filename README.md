@@ -3,7 +3,7 @@ Requires jQuery for AJAX (to update page without redirect/refresh). This site is
 _______________________________________________________________________________________________
 (11/01/21) __[3nd RELEASE]__
 _______________________________________________________________________________________________
-Updates with JavaScript, and AJAX: Now you can post/edit/delete a reply or thread, without redirecting you to another page. Conversations or PM's also don't require a page redirect, making it feel like a modern message app. The login button now is a pop out without redirecting you to the login page. This all makes the site feel like a modern Single Page Application. The site is also fully functional if the user has JS disabled. See TODO.txt for other changes/fixes (are indented and prefixed with a \*). Changes/fixes to come are not indented.
+Updates with JavaScript, and AJAX: Now you can post/edit/delete a reply or thread, without redirecting you to another page. Conversations or PM's also don't require a page redirect, making it feel like a modern message app. The login button now is a pop out without redirecting you to the login page. This all makes the site feel like a modern Single Page Application. See TODO.txt for other changes/fixes (are indented and prefixed with a \*). Changes/fixes to come are not indented.
 _______________________________________________________________________________________________
 (10/14/21) __[2nd RELEASE]__ (note the page has been filled with blank space just to show effects)
 _______________________________________________________________________________________________
