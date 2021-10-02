@@ -19,13 +19,9 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
 
     if($stmt->execute()){
         $result = "<p>Succesfully deleted profile: ".$_SESSION['username']."</p>";
-    }
-    else{
-        $result = "<p>Failed to delete profile.</p>";
-    }
-}else{
-    $result = "<p>No profile selected.<p>";
-}
+    } else $result = "<p>Failed to delete profile.</p>";
+} else $result = "<p>No profile selected.<p>";
+
 $pdo = null;
 $stmt = null;
 
@@ -48,8 +44,8 @@ include_once('../index_header.php');
 echo $result;
 
 echo "<h3>Redirecting to home page...</h3>";
-echo '<script src="../js/waitdirect.js"></script><script>waitdirect(2000, "../index.php");</script>';
 echo '<noscript><a href="../index.php">Click to redirect to home page.</a></noscript>';
-
 include_once('../index_footer.php');
+echo '<script src="../js/waitdirect.js"></script><script>waitdirect(2000, "../index.php");</script>';
 ?>
+</body></html>

@@ -3,28 +3,32 @@ require_once('lib.php');
 
 echo "Userx.edu | ";
 
-if($_SERVER['QUERY_STRING'] === 'page=home')
+if($_SERVER['QUERY_STRING'] == 'page=home' || (basename($_SERVER['PHP_SELF'], ".php") == "index" && empty($_SERVER['QUERY_STRING'])))
 	echo "Home";
-else if($_SERVER['QUERY_STRING'] === 'page=submit')
+else if($_SERVER['QUERY_STRING'] == 'page=submit')
 	echo "Submit";
-else if($_SERVER['QUERY_STRING'] === 'page=about')
+else if($_SERVER['QUERY_STRING'] == 'page=about')
 	echo "About us";
-else if($_SERVER['QUERY_STRING'] === 'page=sub' || contains("&subscribe=Subscribe", $_SERVER['QUERY_STRING']))
+else if($_SERVER['QUERY_STRING'] == 'page=sub')
 	echo "Subscribe";
-else if(contains("&unsub=Unsub", $_SERVER['QUERY_STRING']))
+else if($_SERVER['QUERY_STRING'] == 'page=unsub')
 	echo "Unsubscribe";
-else if($_SERVER['QUERY_STRING'] === 'page=signup')
+else if($_SERVER['QUERY_STRING'] == 'page=signup')
 	echo "Signup";
-else if($_SERVER['QUERY_STRING'] === 'page=login')
+else if($_SERVER['QUERY_STRING'] == 'page=login')
 	echo "Login";
-else if(basename($_SERVER['PHP_SELF'], ".php")=="logout")
+else if(basename($_SERVER['PHP_SELF'], ".php") == "logout")
 	echo "Logout";
-else if(contains("page=member", $_SERVER['QUERY_STRING'])){
+else if(basename($_SERVER['PHP_SELF'], ".php") == "logged")
+	echo "Logging in";
+else if(contains("page=member", $_SERVER['QUERY_STRING']))
 	echo "Member | ".str_replace("&user=", "", str_replace("page=member", "", $_SERVER['QUERY_STRING']));
-}
-else if(basename($_SERVER['PHP_SELF'], ".php")=="edited_thread")
+else if(basename($_SERVER['PHP_SELF'], ".php") == "edit")
+	echo "Edit Post | ".str_replace("posts=", "", $_SERVER['QUERY_STRING']);
+else if(basename($_SERVER['PHP_SELF'], ".php") == "edited_thread")
 	echo "Edited thread";
 else if(contains("thread=", $_SERVER['QUERY_STRING'])){
+	if(basename($_SERVER['PHP_SELF'], ".php") == "edit_thread") echo "Edit ";
 	echo "Thread | ";
 	$thread = str_replace("thread=", "", $_SERVER['QUERY_STRING']);
 
@@ -45,35 +49,33 @@ else if(contains("thread=", $_SERVER['QUERY_STRING'])){
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 			echo $row['title'];
 		}
-		else{
-			echo "404";
-		}
+		else echo "404";
 	}
-	else{
-		echo "404";
-	}
+	else echo "404";
 }
 else if(contains("&submit=x", $_SERVER['QUERY_STRING'])){
 	echo "Search | ";
 	if(isset($_GET['search'])) echo $_GET['search'];
 }
-else if(basename($_SERVER['PHP_SELF'], ".php")=="submitted")
+else if(basename($_SERVER['PHP_SELF'], ".php") == "submitted")
 	echo "Submitting article";
-else if(basename($_SERVER['PHP_SELF'], ".php")=="signedup")
+else if(basename($_SERVER['PHP_SELF'], ".php") == "signedup")
 	echo "Registering user";
-else if(basename($_SERVER['PHP_SELF'], ".php")=="subscibed")
+else if(basename($_SERVER['PHP_SELF'], ".php") == "subscribed")
 	echo "Registering subscription";
-else if(basename($_SERVER['PHP_SELF'], ".php")=="unsubscribed")
+else if(basename($_SERVER['PHP_SELF'], ".php") == "unsubscribed")
 	echo "Removing subscription";
-else if(basename($_SERVER['PHP_SELF'], ".php")=="posted")
+else if(basename($_SERVER['PHP_SELF'], ".php") == "posted")
 	echo "Submitting post";
-else if(basename($_SERVER['PHP_SELF'], ".php")=="profile_msg")
+else if(contains("page=profile", $_SERVER['QUERY_STRING']))
+	echo "My Profile";
+else if(basename($_SERVER['PHP_SELF'], ".php") == "profile_msg")
 	echo "Edit tag";
-else if(basename($_SERVER['PHP_SELF'], ".php")=="profile_password")
+else if(basename($_SERVER['PHP_SELF'], ".php") == "profile_password")
 	echo "Edit password";
-else if(basename($_SERVER['PHP_SELF'], ".php")=="profile_username")
+else if(basename($_SERVER['PHP_SELF'], ".php") == "profile_username")
 	echo "Edit username";
-else if($_SERVER['QUERY_STRING'] === 'page=cp_users')
+else if($_SERVER['QUERY_STRING'] == 'page=cp_users')
 	echo "Control Panel | Users";
 else if(contains("page=inbox", $_SERVER['QUERY_STRING']))
 	echo "Inbox";
@@ -84,5 +86,5 @@ else if(contains("page=convo", $_SERVER['QUERY_STRING']))
 else if(contains("page=block", $_SERVER['QUERY_STRING']))
 	echo "Block user";
 else
-	echo "Index";
+	echo "Untitled";	// Home
 ?>

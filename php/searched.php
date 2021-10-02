@@ -6,7 +6,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
         require_once('lib.php');
 
         echo "<h1>Search results:</h1><hr/>";
-
         
         if(tableExists($pdo,'threads')){
             $stmt = $pdo->prepare("SELECT * FROM threads WHERE msg LIKE CONCAT('%', :search, '%') OR title LIKE CONCAT('%', :search, '%');");
@@ -17,8 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
                 echo '<table><caption>Threads search: '.htmlspecialchars($_GET['search'])."</caption><tr><th>Author</th><th>Date</th><th>Title</th><th>Message</th></tr>";
         
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                    echo '<tr style="cursor:pointer;text-align:center;" onclick="window.location.href=`';
-        
+                    echo '<tr class="link" style="text-align:center;" onclick="window.location.href=`';
                     echo 'index.php?thread='.$row['threadid'];
 
                         //get username
@@ -30,18 +28,12 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
                     echo '`"><td><a>'.limitstr($author, 20)
                     .'</a></td><td><a>'.limitstr($row['date'], 20)
                     .'</a></td><td><a>'.htmlspecialchars(limitstr($row['title'], 20))
-                    .'</a></td><td><a>'.htmlchars_minus(limitstr($row['msg'], 200), "a", "b", "i", "u", "s", "sub", "sup")
+                    .'</a></td><td><a href="index.php?thread='.$row['threadid'].'">'.htmlchars_minus(limitstr($row['msg'], 200), ...$htmltags)
                     .'</a></td></tr>';
                 }
                 echo "</table>";
-            }
-            else{
-                echo "<p>".htmlspecialchars($_GET['search']).": No results found in threads."."</p>";
-            }
-        }
-        else{
-            echo "<p>Search failed. Table: threads does not exist.</p>";
-        }
+            } else echo "<p>".htmlspecialchars($_GET['search']).": No results found in threads."."</p>";
+        } else echo "<p>Search failed. Table: threads does not exist.</p>";
 
         if(tableExists($pdo, 'posts')){
             $stmt = $pdo->prepare("SELECT * FROM posts WHERE msg LIKE CONCAT('%', :search, '%') OR title LIKE CONCAT('%', :search, '%');");
@@ -53,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
                 echo '<table><caption>Posts search: '.htmlspecialchars($_GET['search'])."</caption><tr><th>Author</th><th>Date</th><th>Title</th><th>Message</th></tr>";
         
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                    echo '<tr style="cursor:pointer;text-align:center;" onclick="window.location.href=`';
+                    echo '<tr class="link" style="text-align:center;" onclick="window.location.href=`';
         
                     echo 'index.php?thread='.$row['threadid'];
 
@@ -66,26 +58,15 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
                     echo '`"><td><a>'.limitstr($author, 20)
                     .'</a></td><td><a>'.limitstr($row['date'], 20)
                     .'</a></td><td><a>'.htmlspecialchars(limitstr($row['title'], 20))
-                    .'</a></td><td><a>'.htmlchars_minus(limitstr($row['msg'], 200), "a", "b", "i", "u", "s", "sub", "sup")
+                    .'</a></td><td><a href="index.php?thread='.$row['threadid'].'">'.htmlchars_minus(limitstr($row['msg'], 200), ...$htmltags)
                     .'</a></td></tr>';
                 }
                 echo "</table>";
-            }
-            else{
-                echo "<p>".htmlspecialchars($_GET['search']).": No results found in posts."."</p>";
-            }
-        }
-        else {
-            echo "<p>Search failed. Table: posts does not exist.</p>";
-        }
+            } else echo "<p>".htmlspecialchars($_GET['search']).": No results found in posts."."</p>";
+        } else echo "<p>Search failed. Table: posts does not exist.</p>";
 
         $pdo = null;
         $stmt = null;
-    }
-    else{
-        echo "<p>No results: empty search.</p>";
-    }
-}else{
-    header("Location: ../index.php");
-}
+    } else echo "<p>No results: empty search.</p>";
+} else header("Location: ../index.php");
 ?>

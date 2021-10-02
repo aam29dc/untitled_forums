@@ -1,23 +1,22 @@
 <?php
 session_start();
 
-$x = 1;
-include_once('../index_header.php');
-
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     require_once('conn.php');
     require_once('lib.php');
+
     $error = false;
+    
     if(empty($_POST['recipient'])){
-        echo "<p>Error: message sent to no one.</p>";
+        echo '1';
         $error = true;
     }
     if(empty($_POST['pmsg'])){
-        echo "<p>Error: empty message.</p>";
+        echo '2';
         $error = true;
     }
     if($_SESSION['userid'] == $_POST['recipient']){
-        echo "<p>Error: can't message yourself.</p>";
+        echo '3';
         $error = true;
     }
 
@@ -28,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $stmt->bindValue(1, $_POST['recipient']);
     $stmt->execute();
     if($stmt->fetchColumn() == 0){
-        echo "<p>Error: That user doesn't exist.</p>";
+        echo '4';
         goto end;    //end before querying... ^
     }
     
@@ -38,18 +37,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $stmt->bindValue(":toid", $_POST['recipient']);
         $stmt->bindValue(":msg", $_POST['pmsg']);
         if($stmt->execute()){
-            echo "<p>Personal message sent.</p>";
+            echo '0';
         }
-        else echo "<p>Failed to send pm.</p>";
-    } else echo "<p>Sorry pms table doesn't exist yet.</p>";
+        else echo '5';
+    } else echo '6';
 }
 end:
 $pdo = null;
 $stmt = null;
-
-echo '<noscript><a href="'.abs_php_include($x).'index.php?page=convo&id='.$_POST['recipient'].'">Click to redirect back to conversation.</a></noscript>';
-
-include_once('../index_footer.php');
-echo '<script src="../js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php?page=convo&id='.$_POST['recipient'].'");</script>'
 ?>
-</body></html>

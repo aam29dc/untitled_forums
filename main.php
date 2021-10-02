@@ -5,8 +5,6 @@ $page = str_replace("page=", "", $_SERVER['QUERY_STRING']);
 
 if(!is_numeric($page) || empty($page) || $page < 1) $page = 1;   // if query string is not numeric, then page=1;
 
-echo "<div>";
-
 //save page for when user hits, back, inside a thread
 $_SESSION['pagesid'] = $page;
 
@@ -30,7 +28,7 @@ if(tableExists($pdo,'threads')){
             $blocked = $stmt2->fetchColumn();
 
             if($blocked) echo "Blocked title.";
-            else echo htmlspecialchars($row['title']);
+            else echo htmlspecialchars(stripslashes($row['title']));
             //get count of replies
             $stmt2 = $pdo->prepare("SELECT COUNT(threadid) FROM posts WHERE threadid = ?;");
             $stmt2->bindValue(1, $row['threadid']);
@@ -38,7 +36,7 @@ if(tableExists($pdo,'threads')){
             echo '<span style="float:right;">'.$stmt2->fetchColumn().' replies</span></a></h3><p style="text-indent:5px;">';
             
             if($blocked) echo "Blocked message.";
-            else echo htmlchars_minus($row['msg'], "a", "b", "i", "u", "s", "sub", "sup").'</p>';
+            else echo htmlchars_minus(stripslashes($row['msg']), ...$htmltags).'</p>';
             //get username
             $stmt2 = $pdo->prepare("SELECT username FROM users WHERE userid = ?;");
             $stmt2->bindValue(1, $row['authorid']);
@@ -53,17 +51,12 @@ if(tableExists($pdo,'threads')){
         //BUTTON: NEXT
         if($stmt->rowCount() >= TMAX) echo '<a class="nsyn" href="?page='.($page+1).'"><button>Next</button></a>';
     }
-    else{
+    else {
         echo "<p>No threads on this page.</p>";
         if($page!=1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a>';
     }
-}
-else{
-    echo "<p>Sorry threads table doesn't exist yet.</p>";
-}
+} else echo "<p>Sorry threads table doesn't exist yet.</p>";
 $pdo = null;
 $stmt = null;
 $stmt2 = null;
-
-echo "</div>";
 ?>

@@ -1,6 +1,6 @@
-      <h1>Subscribe to receive our news articles.</h1><hr/><br/>
+<h1>Subscribe to receive our news articles.</h1><hr/><br/>
       <p>You will receive our news articles in your email shortly after they have been posted.</p>
-      <form method="get"<?php if(basename($_SERVER['PHP_SELF'], ".php")=="subscribe") echo ' action="php/subscribed.php"';?> id="f_sub">
+      <form method="get" action="php/subscribed.php" id="f_sub">
         <label for="firstname">First name:</label><br>
         <input type="text" id="firstname" name="firstname" class="textfield" value="<?php if(isset($_SESSION['firstname'])) echo $_SESSION['firstname']; ?>"><br>
         <label for="lastname">Last name:</label><br>

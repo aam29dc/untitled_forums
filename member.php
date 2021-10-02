@@ -33,19 +33,20 @@ if($stmt->rowCount() > 0){
     $stmt = $pdo->prepare("SELECT lift FROM bans WHERE userid = ?;");
     $stmt->bindValue(1, $row['userid']);
     $stmt->execute();
-    
-    if(time() > strtotime($stmt->fetchColumn().' + 4 hours')){
-        $banned = ($stmt->fetchColumn() == 0) ? false : true;
+    $unban = $stmt->fetchColumn();
+
+    if((time() < strtotime($unban) + 14400) && !empty($unban)){
+        $banned = true;
+        echo ' [BANNED]';
     }
 
-    if($banned) echo ' [BANNED]';
     echo '</span></h1><hr/>';
 
     if(!empty($row['tag'])) echo '<p>- &ldquo;'.htmlspecialchars($row['tag']).'&rdquo;</p>';
 
     if($_SESSION['loggedin']){
         //BUTTON: SEND MSG
-        echo '<br/><a class="nsyn" href="index.php?page=pm&to='.$row['userid'].'"><button style="display:block;">Send Message</button></a><br/>';
+        echo '<br/><a class="nsyn" href="index.php?page=convo&id='.$row['userid'].'"><button style="display:block;">Send Message</button></a><br/>';
         //BUTTON: BLOCK USER
         //get if blocked or not
         $stmt = $pdo->prepare("SELECT blocked FROM blocks WHERE userid = :userid AND blockid = :blockid;");
@@ -73,10 +74,7 @@ if($stmt->rowCount() > 0){
     else if($row['priviledge'] == 3) echo " (admin)";
 
     echo '</li></ul></nav>';
-}
-else{
-    echo "<p>No member with the username: ".htmlspecialchars($user)." exists.</p>";
-}
+} else echo "<p>No member with the username: ".htmlspecialchars($user)." exists.</p>";
 
 end:
 $pdo = null;

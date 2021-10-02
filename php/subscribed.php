@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once('lib.php');
+$x = 1;
+include_once(abs_php_include($x).'index_header.php');
+
 if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
     require_once('conn.php');
 
@@ -8,17 +12,16 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
     $_SESSION['lastname'] = $_GET['lastname'];
     $_SESSION['email'] = $_GET['email'];
 
-    echo "<div>";
+    $error = false;
 
     if(!filter_var($_GET['email'], FILTER_VALIDATE_EMAIL)){
         echo "<p>That email address is invalid.</p>";
+        $error = true;
         goto end;
     }
 
-    require_once('lib.php');
-
     if(tableExists($pdo, 'subs')){
-        $stmt = $pdo->prepare("SELECT COUNT(email) from subs WHERE email = :email;");
+        $stmt = $pdo->prepare("SELECT COUNT(email) FROM subs WHERE email = :email;");
         $stmt->bindValue(':email', $_GET['email']);
         $stmt->execute();
 
@@ -37,33 +40,36 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
                 unset($_SESSION['firstname']);
                 unset($_SESSION['lastname']);
                 unset($_SESSION['email']);
-            }
-            else{
-                echo "<h1>failed to add you to our articles, try again later.</h1>";
-            }
+            } else echo "<h1>failed to add you to our articles, try again later.</h1>";
         }
-        else{
+        else {
             echo "<p>That email address is already subscribed to our articles.</p>";
+            $error = true;
         }
-    }
-    else{
-        echo "<p>Error table subs does not exist.</p>";
-    }
-}else{
-    echo "<p>Error: no form submitted.</p>";
-}
+    } else echo "<p>Error table subs does not exist.</p>";
+} else echo "<p>Error: no form submitted.</p>";
 
 end:
 $pdo = null;
 $stmt = null;
 
-if(basename($_SERVER['PHP_SELF'], ".php")=="subscribe") {
-    require_once('lib.php');
+if(basename($_SERVER['PHP_SELF'], ".php") == "subscribed") {
     $x = 1;
 }
 
-echo "<h3>Redirecting back to subscribe...</h3>";
-echo "</div>";
-echo '<script src="'.abs_php_include($x).'js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php?page=sub");</script>';
-echo '<noscript><a href="'.abs_php_include($x).'index.php?page=sub">Click to redirect back to subscribe.</a></noscript>';
+if($error){
+    echo "<h3>Redirecting back to subscribe...</h3>";
+    echo '<noscript><a href="'.abs_php_include($x).'index.php?page=sub">Click to redirect back to subscribe.</a></noscript>';
+}
+else {
+    echo "<h3>Redirecting back to home page...</h3>";
+    echo '<noscript><a href="'.abs_php_include($x).'index.php">Click to redirect back to home page.</a></noscript>';
+}
+
+include_once(abs_php_include($x).'index_footer.php');
+
+if($error){
+    echo '<script src="'.abs_php_include($x).'js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php?page=sub");</script>';
+} else echo '<script src="'.abs_php_include($x).'js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php");</script>';
 ?>
+</body></html>

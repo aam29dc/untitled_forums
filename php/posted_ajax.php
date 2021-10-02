@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-$x = 1;
-include_once('../index_header.php');
-
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     require_once('conn.php');
     require_once('lib.php');
@@ -18,11 +15,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $error = false;
 
     if(empty($text)){
-        echo "<p>Error: enter a message to post a reply.</p>";
+        echo "1";
         $error = true;
     }
     if(strlen($_POST['post_text']) < MSG_MIN_LENGTH){
-        echo "<p>Error: enter a longer message.</p>";
+        echo "2";
         $error = true;
     }
     if($error) goto end;
@@ -36,21 +33,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $stmt->bindValue(":msg", $text);
 
         if($stmt->execute()){
-            echo "<p>Reply posted.</p>";
+            echo "0";
             
             unset($_SESSION['post_title']);
             unset($_SESSION['post_text']);
-        } else echo "<p>Error adding post.</p>";
-    } else echo "<p>Error: Require threadid to submit a post</p>";
+        } else echo "3";
+    } else echo "4";
 
     end:
     $pdo = null;
     $stmt = null;
-} else echo "<p>Error: no form submitted.</p>";
-
-echo "<h3>Redirecting back to thread...</h3>";
-echo '<noscript><a href="../index.php?thread='.$_SESSION['threadid'].'">Click to redirect to back to thread.</a></noscript>';
-include_once('../index_footer.php');
-echo '<script src="../js/waitdirect.js"></script><script>waitdirect(2000,"'.abs_php_include($x).'index.php?thread='.$_SESSION['threadid'].'");</script>';
+} else echo "5";
 ?>
-</body></html>

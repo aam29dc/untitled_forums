@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
         }
     }
     //otherwise do an update
-    else{
+    else {
         $stmt = $pdo->prepare("UPDATE blocks SET blocked = :block WHERE userid = :userid AND blockid = :blockid;");
         $stmt->bindValue(":block", $block, PDO::PARAM_BOOL);
         $stmt->bindValue(":userid", $_SESSION['userid']);
@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
             echo '<p>Error: failed to block user: '.$blockuser.'.</p>';
         }
     }
-}else {
+} else {
     echo "<p>Error: no form submitted.</p>";
 }
 end:

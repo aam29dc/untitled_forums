@@ -19,16 +19,13 @@ if(isset($_SESSION['loggedin'])){
   session_unset();
   session_destroy();
   /* logout */
-}
-else {
-  $result .= "<p>You are already logged out.</p>";
-}
+} else $result .= "<p>You are already logged out.</p>";
 
 $result .= "<h3>Redirecting to home page...</h3></div>"."\n";
 
 include_once('index_header.php');
 echo $result;
 include_once('index_footer.php');
-
+echo "</body></html>";
 exit;
 ?>

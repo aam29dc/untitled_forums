@@ -13,12 +13,13 @@ if(isset($_SESSION['loggedin'])){
     $stmt = $pdo->prepare("SELECT lift FROM bans WHERE userid = ?;");
     $stmt->bindValue(1, $row['userid']);
     $stmt->execute();
+    $unban = $stmt->fetchColumn();
     
-    if(time() > strtotime($stmt->fetchColumn().' + 4 hours')){
-        $banned = ($stmt->fetchColumn() == 0) ? false : true;
+    if((time() < strtotime($unban) + 14400) && !empty($unban)){
+        $banned = true;
+        echo ' [BANNED]';
     }
 
-    if($banned) echo ' [BANNED]';
     echo '</span></h1><hr/>';
 
     //count threads started
@@ -79,10 +80,7 @@ if(isset($_SESSION['loggedin'])){
             <input type="submit" id="profile_delete" name="profile_delete" value="Delete" style="float:right;"/>
         </form>
     </div></li></ul></nav>';
-}
-else{
-    echo "<p>You are not currently logged in.</p>";
-}
+} else echo "<p>You are not currently logged in.</p>";
 
 $pdo = null;
 $stmt = null;

@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $report .= "<p>Error: confirm password failed.</p>";
         $error = true;
     }
-    if($error == true) goto end;
+    if($error) goto end;
 
     require_once('conn.php');
     require_once('lib.php');
@@ -65,13 +65,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['loggedin'] = true;
                 $_SESSION['priviledge'] = 1;
-            }
-            else $report .= "<p>Error adding user: ".htmlspecialchars($_POST['username'])."</p>";
+            } else $report .= "<p>Error adding user: ".htmlspecialchars($_POST['username'])."</p>";
         }
-    }
-    else $report .= "<p>Sorry users table doesn't exist yet.</p>";
-}
-else $report .= "<p>Error: no form submitted.</p>";
+    } else $report .= "<p>Sorry users table doesn't exist yet.</p>";
+} else $report .= "<p>Error: no form submitted.</p>";
 
 end:
 $pdo = null;
@@ -82,8 +79,18 @@ include_once('../index_header.php');
 
 echo $report;
 
-echo "<h3>Redirecting back to sign-up...</h3>";
-echo '<script src="../js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php?page=signup");</script>';
-echo '<noscript><a href="'.abs_php_include($x).'index.php?page=signup">Click to redirect to sign-up.</a></noscript>';
+if($error){
+    echo "<h3>Redirecting back to sign-up...</h3>";
+    echo '<noscript><a href="'.abs_php_include($x).'index.php?page=signup">Click to redirect to sign-up.</a></noscript>';
+}
+else {
+    echo "<h3>Redirecting back to home page...</h3>";
+    echo '<noscript><a href="'.abs_php_include($x).'index.php">Click to redirect to home page.</a></noscript>';
+}
+
 include_once('../index_footer.php');
+
+if($error) echo '<script src="../js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php?page=signup");</script>';
+else echo '<script src="../js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php");</script>';
 ?>
+</body></html>

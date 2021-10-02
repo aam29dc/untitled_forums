@@ -14,7 +14,7 @@ $stmt = $pdo->prepare("SELECT lift FROM bans WHERE userid = ?;");
 $stmt->bindValue(1, $_SESSION['userid']);
 $stmt->execute();
 
-if(/*(time() > strtotime($stmt->fetchColumn().' + 4 hours')) &&*/ $_SESSION['priviledge'] >= 2){
+if(!((time() < strtotime($unban) + 14400) && !empty($unban)) && $_SESSION['priviledge'] >= 2){
     $stmt = $pdo->prepare("SELECT userid, username, priviledge, email FROM users limit ?, ".UMAX.";");
     $stmt->bindValue(1, (int)($pages-1)*UMAX, PDO::PARAM_INT);
     if($stmt->execute()){
@@ -41,7 +41,7 @@ if(/*(time() > strtotime($stmt->fetchColumn().' + 4 hours')) &&*/ $_SESSION['pri
             echo "<td>";
             if($stmt2->rowCount() > 0){
                 echo $stmt2->fetchColumn();
-            }else echo "0";
+            } else echo "0";
             echo "</td></tr>";
         }
         echo "</table>";
@@ -55,14 +55,8 @@ if(/*(time() > strtotime($stmt->fetchColumn().' + 4 hours')) &&*/ $_SESSION['pri
         if($stmt->rowCount() == UMAX){
             echo '<a class="nsyn" href="?page=cp_users&pages='.($pages+1).'"><button>Next</button></a>';
         }
-    }
-    else{
-        echo "<p>Error: query failed.</p>";
-    }
-}
-else{
-    echo "<p>You don't have the priviledges to use the control panel.</p>";
-}
+    } else echo "<p>Error: query failed.</p>";
+} else echo "<p>You don't have the priviledges to use the control panel.</p>";
 
 $pdo = null;
 $stmt = null;

@@ -1,19 +1,18 @@
 <?php
 session_start();
+require_once('lib.php');
+$x = 1;
+include_once(abs_php_include($x).'index_header.php');
 if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
     require_once('conn.php');
 
     //save variables for form
     $_SESSION['email'] = $_GET['email'];
 
-    echo "<div>";
-
     if(!filter_var($_GET['email'], FILTER_VALIDATE_EMAIL)){
         echo "<p>That email address is invalid.</p>";
         goto end;
     }
-
-    require_once('lib.php');
 
     if(tableExists($pdo, 'subs')){
         $stmt = $pdo->prepare("SELECT COUNT(email) from subs WHERE email = :email;");
@@ -32,21 +31,10 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
 
                 echo "<p>We currently have <b>" . $stmt->fetchColumn() . "</b> active subs to our articles.";
                 unset($_SESSION['email']);
-            }
-            else{
-                echo "<h1>failed to remove you to our articles, try again later.</h1>";
-            }
-        }
-        else{
-            echo "<p>That email is not subscribed to our articles.</p>";
-        }
-    }
-    else{
-        echo "<p>Error table subs does not exist.</p>";
-    }
-}else{
-    echo "<p>Error: no form submitted.</p>";
-}
+            } else echo "<h1>failed to remove you to our articles, try again later.</h1>";
+        } else echo "<p>That email is not subscribed to our articles.</p>";
+    } else echo "<p>Error table subs does not exist.</p>";
+} else echo "<p>Error: no form submitted.</p>";
 
 end:
 $pdo = null;
@@ -58,7 +46,8 @@ if(basename($_SERVER['PHP_SELF'], ".php")=="unsubscribe"){
 }
 
 echo "<h3>Redirecting to home page...</h3>";
-echo "</div>";
-echo '<script src="'.abs_php_include($x).'js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php");</script>';
 echo '<noscript><a href="'.abs_php_include($x).'index.php">Click to redirect to home page.</a></noscript>';
+include_once(abs_php_include($x).'index_footer.php');
+echo '<script src="'.abs_php_include($x).'js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php");</script>';
 ?>
+</body></html>

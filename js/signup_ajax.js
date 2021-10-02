@@ -33,16 +33,15 @@ $(document).ready(function(){
         let username = user.value;
         let span = document.getElementById('user_free');
 
-        if(username === ''){}
-        else if(username.length >= 3){
+        if(username.length >= 3){
             span.innerText = "checking...";
 
             $.ajax({
                 type: "POST",
                 data: {username: username},
                 url: "php/user_free.php",
-                success: function(data){
-                    if(data === '0'){
+                success: function(echo){
+                    if(echo == '0'){
                         span.style.color = 'rgb(0,255,0)';
                         span.innerText = "Available!";
                     }
@@ -52,26 +51,24 @@ $(document).ready(function(){
                     }
                 }
             });
-        }
-        else span.innerText = "Not enough characters.";
+        } else span.innerText = "Not enough characters.";
     });
 
     mail.addEventListener('blur', function(){
         let email = mail.value;
         let span = document.getElementById('email_free');
 
-        if(email === '') span.innerText = '';
+        if(email == '') span.innerText = '';
         else {
             $.ajax({
                 type: "POST",
                 data: {email: email},
                 url: "php/email_free.php",
-                success: function(data){
-                    if(data === '1'){
+                success: function(echo){
+                    if(echo == '1'){
                         span.style.color = 'red';
                         span.innerText = "Email already in use";
-                    }
-                    else span.innerText = '';
+                    } else span.innerText = '';
                 }
             });
         }

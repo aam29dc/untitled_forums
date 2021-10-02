@@ -23,8 +23,5 @@ if(!isset($_SESSION['loggedin'])){
     <input type="submit" id="signup" name="signup" value="Signup">
   </form>
   </div>';
-}
-else{
-  echo '<p>You are already signed up and logged in.</p>';
-}
+} else echo '<p>You are already signed up and logged in.</p>';
 ?>

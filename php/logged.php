@@ -7,7 +7,7 @@ if(isset($_SESSION['threadid'])){
   header("Refresh:2; url='../index.php?thread=".$_SESSION['threadid']."'");
   $report = "<h3>Redirecting back to thread...</h3>";
 }
-else{
+else {
   header("Refresh:2; url='../index.php?page=login'");
   $report = "<h3>Redirecting back to login...</h3>";
 }
@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $report .= "<p>Error: enter a password.</p>";
       $error = true;
     }
-    if($error == true) goto end;
+    if($error) goto end;
   
     if(tableExists($pdo,'users')){
       $stmt = $pdo->prepare("SELECT COUNT(username) FROM users WHERE username = :user;");
@@ -50,21 +50,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $stmt = $pdo->prepare("SELECT lift from bans WHERE userid = ?;");
           $stmt->bindValue(1, $_SESSION['userid']);
           $stmt->execute();
+          $unban = $stmt->fetchColumn();
 
-          if(time() > strtotime($stmt->fetchColumn().' + 4 hours')){
+          if(!((time() < strtotime($unban) + 14400) && !empty($unban))){
               $stmt = $pdo->prepare("UPDATE bans SET lift = NULL WHERE userid = ?;");
               $stmt->bindValue(1, $_SESSION['userid']);
               $stmt->execute();
               $report .= "<p>You have been unbanned.</p>";
           }
-        }
-        else $report .= "<p>Incorrect password.</p>";
-      }
-      else $report .= "<p>No user with the name: ".htmlspecialchars($_POST['username'])." exists.</p>";
-    }
-    else $report .= "<p>Query failed. No user table exists.</p>";
-}
-else $report .= "<p>Error: no form submitted.</p>";
+        } else $report .= "<p>Incorrect password.</p>";
+      } else $report .= "<p>No user with the name: ".htmlspecialchars($_POST['username'])." exists.</p>";
+    } else $report .= "<p>Query failed. No user table exists.</p>";
+} else $report .= "<p>Error: no form submitted.</p>";
 
 end:
 $pdo = null;
@@ -75,5 +72,5 @@ include_once("../index_header.php");
 
 echo $report;
 
-include_once('../index_footer.php');
-?>
+include_once('../index_footer.php');?>
+</body></html>

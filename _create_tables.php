@@ -6,10 +6,10 @@ $stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS users (userid int NOT NULL PRI
 if($stmt->execute()){}
 else { echo 'failed to create users';}
 
-//reset tokens
-$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS tokens (userid int NOT NULL UNIQUE, expdate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP + INTERVAL 1 HOURS, FOREIGN KEY (userid) REFERENCES users(userid));");
+//reset tokens (for password reset)
+/* $stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS tokens (userid int NOT NULL UNIQUE, expdate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP + INTERVAL 1 HOURS, FOREIGN KEY (userid) REFERENCES users(userid));");
 if($stmt->execute()){}
-else { echo 'failed to create users';}
+else { echo 'failed to create tokens';} */
 
 //threads
 $stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS threads (threadid int NOT NULL PRIMARY KEY AUTO_INCREMENT, authorid int NOT NULL, title VARCHAR(128) NOT NULL, msg TEXT NOT NULL, date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (authorid) REFERENCES users(userid));");

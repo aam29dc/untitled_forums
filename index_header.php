@@ -18,7 +18,7 @@
 <div id="background-text"><code><?php include_once(abs_php_include($x)."php/bgtext.php");?></code></div>
 <div id="wrapper" <?php if(is_mobile()) echo 'style="width:97%;"';else echo 'style="width:940px;"';?>>
 	<div id="header">
-		<img src="<?php if($_COOKIE['theme'] == 'light') echo abs_include($x)."img/logo16.png";else echo abs_include($x)."img/logo16inv.png"; ?>" alt="userx" id="checkerbox" onClick="swapsrc('checkerbox','img/logo16.png','img/logo16inv.png');swaptheme();">
+		<img src="<?php if($_COOKIE['theme'] == 'light') echo abs_include($x)."img/logo16.png";else echo abs_include($x)."img/logo16inv.png"; ?>" alt="userx" id="checkerbox">
 		<nav>
 		<form method="get" action="index.php?">
 			<ul>
@@ -29,4 +29,10 @@
 		</form>
 		</nav>
 	</div>
+	<?php if(($_SERVER['QUERY_STRING'] != 'page=login' && basename($_SERVER['PHP_SELF'], ".php") != "login")
+	&& ($_SERVER['QUERY_STRING'] != 'page=signup' && basename($_SERVER['PHP_SELF'], ".php") != "signup")){
+		echo '<div id="login_popout">';
+		include_once(abs_php_include($x)."login.php");
+		echo '</div>';
+	}?>
 	<div id="heart" <?php if(is_mobile()) echo 'style="width:98%;"';else echo 'style="width:800px;"';?>>

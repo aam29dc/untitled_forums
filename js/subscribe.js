@@ -1,3 +1,4 @@
+"use strict";
 let email = document.getElementById('email');
 let submit = document.getElementById('subscribe');
 

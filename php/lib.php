@@ -1,4 +1,8 @@
 <?php
+	$htmltags = array("a", "b", "i", "u", "s", "sub", "sup");
+	define("MSG_MIN_LENGTH", 5);	//submit/edit thread/post msg min length
+	define("TMAX", 10);				//maximum threads on one page
+
     function contains($needle, $haystack){
         return strpos($haystack, $needle) !== false;
     }
@@ -52,6 +56,4 @@
 		}
 		else return $str;
 	}
-
-	define("TMAX", 10);
 ?>

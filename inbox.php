@@ -4,7 +4,7 @@ session_start();
 require_once('php/conn.php');
 require_once('php/lib.php');
 
-define("IMAX", 10);
+define("IMAX", 10);     //inbox max messages per page
 
 $pages = str_replace("&pages=", "", str_replace("page=inbox", "", $_SERVER['QUERY_STRING']));
 if(!is_numeric($pages) || empty($pages) || $pages < 1) $pages = 1;
@@ -40,21 +40,21 @@ if(isset($_SESSION['loggedin'])){
             $toname = $stmt2->fetchColumn();
 
             echo '</td><td><a href="index.php?page=member&user='.$toname.'">'.limitstr($toname, 7);
-            echo '</a></td><td>'.date_format(date_create($row['timesent']), 'h:m:s').'</td><td style="cursor:pointer;" onclick="window.location.href=`index.php?page=convo?id=';
+            echo '</a></td><td>'.date_format(date_create($row['timesent']), 'h:m:s').'</td><td class="link" onclick="window.location.href=`index.php?page=convo&id=';
             //get convo id
             if($row['fromid'] == $_SESSION['userid']) $toid = $row['toid'];
             else $toid = $row['fromid'];
             echo $toid.'`" >';
+
+            echo '<noscript><a href="index.php?page=convo&id='.$toid.'">';
 
             $stmt2 = $pdo->prepare("SELECT blocked FROM blocks WHERE userid = :userid AND blockid = :blockid;");
             $stmt2->bindValue(":userid", $_SESSION['userid']);
             $stmt2->bindValue(":blockid", $toid);
             $stmt2->execute();
             if($stmt2->fetchColumn()){
-                echo 'Blocked message.'.'</td></tr>';
-            }else{
-                echo limitstr($row['msg'], 20).'</td></tr>';
-            }
+                echo 'Blocked message.'.'</a></noscript><span style="display:none;">'.'Blocked message'.'</span></td></tr>';
+            } else echo limitstr($row['msg'], 20).'</a></noscript><span style="display:none;">'.limitstr($row['msg'], 20).'</spa></td></tr>';
         }
         echo "</table>";
         //BUTTON: PREV
@@ -70,15 +70,9 @@ if(isset($_SESSION['loggedin'])){
             echo '<a class="nsyn" href="index.php?page=inbox&pages='.($pages+1).'"> <button>Next</button></a>';
         }
 
-    }
-    else{
-        echo "<p>Inbox is empty.</p>";
-    }
+    } else echo "<p>Inbox is empty.</p>";
     $pdo = null;
     $stmt = null;
     $stmt2 = null;
-}
-else{
-    echo "<p>Sign in to view inbox.</p>";
-}
+} else echo "<p>Sign in to view inbox.</p>";
 ?>

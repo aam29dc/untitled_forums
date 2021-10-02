@@ -31,14 +31,14 @@ window.requestAnimFrame = function(){
     );
 }();
 
- function setCookie(cname, cvalue, exdays){
+function setCookie(cname, cvalue, exdays){
      let d = new Date();
      d.setTime(d.getTime() + exdays*24*60*60*1000);
      let expires = "expires=" + d.toUTCString();
      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
  }
 
- function getCookie(cname){
+function getCookie(cname){
      let name = cname + "=";
      let decodedCookie = decodeURIComponent(document.cookie);
      let arr = decodedCookie.split(';');
@@ -70,7 +70,7 @@ function swaptheme(){
         MYAPP.html.dataset.theme = "theme-dark";
         setCookie("theme", "dark", 30);
     }
-    else{
+    else {
         MYAPP.html.dataset.theme = "theme-light";
         setCookie("theme", "light", 30);
     }
@@ -82,7 +82,7 @@ function swapsrc(id, first, second){
     if(check.src == 'http://' + location.host + '/site/' + first){
         check.src = 'http://' + location.host + '/site/' + second;
     }
-    else{
+    else {
         check.src = 'http://' + location.host + '/site/' + first;
     }
 }
@@ -90,7 +90,7 @@ function swapsrc(id, first, second){
 function togglepass(id){
     let pass = document.getElementById(id);
 
-    if(pass.type === "password") pass.type = "text";
+    if(pass.type == "password") pass.type = "text";
     else pass.type = "password";
 }
 
@@ -105,6 +105,33 @@ function input_tag(id, tag){
 
     document.getElementById(id).value += "<" + tag + subtag + "></" + tag + ">";
 }
+
+function setAttributes(el, attrs){
+    for(let key in attrs){
+        el.setAttribute(key, attrs[key]);
+    }
+}
+
+function getQueryString(href){
+    let qstr = '';
+
+    for(let i = href.length - 1; i > 0 ; i--){
+        if(href[i] == '=') break;
+        qstr += href[i];
+    }
+
+    return qstr = qstr.split('').reverse().join('');
+}
+
+/*
+    Checkerbox (light <-> dark theme button)
+*/
+let checkerbox = document.getElementById('checkerbox');
+checkerbox.style.cursor = 'pointer';
+checkerbox.addEventListener('click', function(){
+    swapsrc('checkerbox','img/logo16.png','img/logo16inv.png');
+    swaptheme();
+});
 
 /*
     SCROLL LINE EFFECT
@@ -167,44 +194,44 @@ canvas.height = 17;
 canvas.width = 12;
 
 var [r, g, b] = [255, 0, 0];
-var [i, j, k] = [0, 0, 0];
+var [ci, cj, ck] = [0, 0, 0];
 
 document.addEventListener('mousemove', function(){
     //get cursor bg color
     if(r == 255 && g == 0 && b == 0){     //red
-        i = 0;
-        j = 1;
-        k = 0;
+        ci = 0;
+        cj = 1;
+        ck = 0;
     }
     else if(r == 255 && g == 255 && b == 0){    //yellow
-        i = -1;
-        j = 0;
-        k = 0;
+        ci = -1;
+        cj = 0;
+        ck = 0;
     }
     else if(r == 0 && g == 255 && b == 0){    //green
-        i = 0;
-        j = 0;
-        k = 1;
+        ci = 0;
+        cj = 0;
+        ck = 1;
     }
     else if(r == 0 && g == 255 && b == 255){    //cyan
-        i = 0;
-        j = -1;
-        k = 0;
+        ci = 0;
+        cj = -1;
+        ck = 0;
     }
     else if(r == 0 && g == 0 && b == 255){    //blue
-        i = 1;
-        j = 0;
-        k = 0;
+        ci = 1;
+        cj = 0;
+        ck = 0;
     }
     else if(r == 255 && g == 0 && b == 255){    //pink
-        i = 0;
-        j = 0;
-        k = -1;
+        ci = 0;
+        cj = 0;
+        ck = -1;
     }
 
-    r += i;
-    g += j;
-    b += k;
+    r += ci;
+    g += cj;
+    b += ck;
 
     cxt.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
 
@@ -230,6 +257,10 @@ var [ar, ag, ab] = [255, 0, 0];
 var [ai, aj, ak] = [0, 0, 0];
 
 let syn = document.querySelectorAll('a:not(.nsyn)');
+
+for(let i = 0; i < syn.length; i++){
+    syn[i].classList.add('syn');
+}
 
 function drawsyn(){
     for(let x = 0; x < syn.length; x++){
@@ -275,18 +306,122 @@ function drawsyn(){
 }
 window.requestAnimFrame(drawsyn);
 
-/*
-    CUBE
+/* 
+    CUBE 
 */
 document.addEventListener('mousemove', function(e){
     document.getElementById('cubeicle').style.transform = "rotateX(" + e.clientX/window.innerWidth*360 + "deg) rotateY("
     + e.clientY/window.innerHeight*360 + "deg)";
 });
 
-/* SEARCH */
+/*
+    SEARCH 
+*/
 let sb = document.getElementById('searchb');
 sb.disabled = true;
 
 document.getElementById('searcht').addEventListener('input', function(){
     sb.removeAttribute('disabled');
 });
+
+/*
+    ACCORDION 
+*/
+let acc = document.getElementsByClassName("accordion");
+
+for (let i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    let panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+
+/*
+    COLLAPSIBLES
+*/
+let coll = document.getElementsByClassName("collapsible");
+let content = document.getElementsByClassName('content');
+
+function toggleContent() {
+    this.classList.toggle("active");
+    let content = this.nextElementSibling;
+    if (content.style.display == "block") {
+        content.style.display = "none";
+    } else content.style.display = "block";
+}
+
+for (let i = 0; i < coll.length; i++) {
+    coll[i].style.display = 'initial';
+    coll[i].style.cursor = 'pointer';
+    content[i].style.display = 'none';
+    coll[i].addEventListener("click", toggleContent);
+}
+
+/*
+    LOGIN POPOUT
+*/
+let user_login = document.getElementById('user_login');
+if(user_login != null && getQueryString(window.location.href) != 'signup'){
+    user_login.removeAttribute('href');
+    user_login.style.cursor = 'pointer';
+
+    let login_popout = document.getElementById('login_popout');
+    if(login_popout != null){
+        login_popout.style.display = 'none';
+
+        user_login.addEventListener('click', function(){
+            if(login_popout.style.display == 'none'){
+                login_popout.style.display = 'initial';
+            } else login_popout.style.display = 'none';
+        });
+
+        document.getElementById('f_login').setAttribute('action', "javascript:void(0);");
+
+        let login = document.getElementById('login');
+        login.addEventListener('click', function(){
+            $.ajax({
+                type: "POST",
+                data: {username: document.getElementById('username').value,
+                    pwd: document.getElementById('pwd').value},
+                url: "php/logged_ajax.php",
+                success: function(echo){
+                    if(echo == '0'){
+                        login_popout.style.display = 'none';
+                        window.location = window.location;
+                    }
+                    else {
+                        window.location = "index.php?page=login";
+                        console.log("logged.php error: " + echo);
+                    }
+                }
+            });
+        });
+    }
+}
+
+/*
+    LOGOUT
+*/
+let logout = document.getElementById('logout');
+
+if(logout != null){
+    logout.removeAttribute('href');
+    logout.style.cursor = 'pointer';
+
+    logout.addEventListener('click', function(){
+        $.ajax({
+            type: "GET",
+            url: "logout_ajax.php",
+            success: function(echo){
+                if(echo != '0'){
+                    console.log("logout_ajax.php error: " + echo);
+                } else window.location = window.location;
+            }
+        });
+    });
+}

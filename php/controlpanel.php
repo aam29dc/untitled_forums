@@ -10,6 +10,6 @@ if($_SESSION['priviledge'] >= 2){
 			<li class="vnav"><a href="'.abs_php_include($x).'index.php?page=cp_users">users</a></li>
 			<li class="vnav"><a href="'.abs_php_include($x).'index.php?page=subs">subs</a></li>
 		</ul>
-	</nav>';
+	</nav>'."\n";
 }
 ?>
