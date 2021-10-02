@@ -44,6 +44,6 @@ dynamic web pages (layout files: index_header, index_footer).
 
 --for redirecting page
 
-[mobile phone version of the site (note this is a screenshot from the first release)]
+[ mobile phone version of the site (note this is a screenshot from the first release) ]
 
 ![mobile](https://user-images.githubusercontent.com/73267302/125153834-7270cf00-e124-11eb-857b-084b47a0c2b8.png)
