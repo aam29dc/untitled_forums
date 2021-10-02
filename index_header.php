@@ -13,6 +13,42 @@
 	<link type="text/plain" rel="author" href="humans.txt"/>
 </head>
 <body>
+<script>let MYAPP = {};
+
+MYAPP.html = document.querySelector('html');
+MYAPP.theme = getCookie("theme");
+
+if(MYAPP.theme == ""){
+	setCookie("theme", "light", 30);
+	MYAPP.theme = "light";
+}
+
+MYAPP.html.dataset.theme = "theme-" + MYAPP.theme;
+
+function setCookie(cname, cvalue, exdays){
+	let d = new Date();
+	d.setTime(d.getTime() + exdays*24*60*60*1000);
+	let expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname){
+	let name = cname + "=";
+	let decodedCookie = decodeURIComponent(document.cookie);
+	let arr = decodedCookie.split(';');
+
+	for(let i = 0;i < arr.length; i++){
+		let ele = arr[i];
+
+		while(ele.charAt(0) == ' '){
+			ele = ele.substring(1);
+		}
+		if(ele.indexOf(name) == 0){
+			return ele.substring(name.length, ele.length);
+		}
+	}
+	return "";
+}</script>
 <div id="line"></div>
 <div id="vline"></div>
 <div id="background-text"><code><?php include_once(abs_php_include($x)."php/bgtext.php");?></code></div>

@@ -1,6 +1,9 @@
 <?php
 require_once('conn.php');
 
+$x = 1;
+include_once('../index_header.php');
+
 //check if user is banned
 $stmt = $pdo->prepare("SELECT lift FROM bans WHERE userid = ?;");
 $stmt->bindValue(1, $_SESSION['userid']);
@@ -34,9 +37,14 @@ if(!((time() < strtotime($unban) + 14400) && !empty($unban))){
         }
 
         if(isset($_GET['ban']) && !empty($_GET['ban']) && (int)$_GET['ban'] != 0){    // "'its a perma'" - twitch.tv/payo
-            $stmt = $pdo->prepare("INSERT INTO bans (userid, lift) VALUES (:userid, NOW());");
+                //delete user from bans before insert
+                $stmt = $pdo->prepare("DELETE FROM bans WHERE userid = :userid;");
+                $stmt->bindValue(":userid", $_GET['userid']);
+                $stmt->execute();
+
+            $stmt = $pdo->prepare("INSERT INTO bans (userid, lift) VALUES (:userid, NOW() + INTERVAL :lift MINUTE);");
             $stmt->bindValue(":userid", $_GET['userid']);
-            //$stmt->bindValue(":lift", (int)$_GET['ban']);
+            $stmt->bindValue(":lift", (int)$_GET['ban']);
             if($stmt->execute()) {
                 echo "<p>Banned userid: ".$_GET['userid']." for ".$_GET['ban']." minute(s).</p>";
             } else echo "<p>Failed to ban user.</p>";
@@ -47,4 +55,8 @@ if(!((time() < strtotime($unban) + 14400) && !empty($unban))){
 end:
 $pdo = null;
 $stmt = null;
-?>
+
+echo '<a class="nsyn" href="../index.php?page=cp_users"><button>Back</button></a>';
+
+include_once('../index_footer.php');?>
+</body></html>

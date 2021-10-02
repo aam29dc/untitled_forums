@@ -11,7 +11,7 @@ search (username) results
 	*syn links
 	*(inbox, usersprofile) blank the links when on their page
 	*posts (back button) and thread title are blank
-firefox bug: dark theme, click on differnt page, and it quickly goes to light then dark theme
+	*firefox bug dark theme: click on differnt page, and it quickly goes to light then dark theme
 failed login attempts ban (use database to store ip)
 failed login attempts cooldown
 polls for threads
@@ -30,16 +30,17 @@ add/remove slashes to profile tag, inbox messages, search?, ...
 	*send pm goes to convo instead
 	*post a reply without refresh
 	*edit/delete a reply without refresh
-fix (main.php) thread title [replies font] not showing in firefox
+	*fix (main.php) thread title [replies font] not showing in firefox
 syn effect (inside thread.php update frame) doesnt work after thread ajax refresh
 in member page when click on posts/threads show posts/threads started by user
 	*div popout when click on login instead of going to new page (use ajax)
 	*logout without going to logout page
 remember me (input check) (on login screen)
 fix margin of edit post/thread msg after refresh (ajax)
-fix back button (go to prev thread user was at, go to prev page user was at, otherwise go to home page)
+	*fix back button (go to prev thread user was at, go to prev page user was at, otherwise go to home page)
 remove special characters from signup in .js script (Available!)
 add reCAPTCHA to signup page
+	*fix NEXT button on main.php
 
 folder setup:
 	site/ ->

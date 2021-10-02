@@ -3,7 +3,9 @@
 */
 "use strict";
 
-let MYAPP = {};
+//let MYAPP = {};   
+/*  used and first defined in index_header.php because
+    firefox flickers from light <-> dark theme when on dark theme   */
 
 MYAPP.html = document.querySelector('html');
 MYAPP.theme = getCookie("theme");
@@ -14,22 +16,6 @@ if(MYAPP.theme == ""){
 }
 
 MYAPP.html.dataset.theme = "theme-" + MYAPP.theme;    //'theme-light';
-
-/*  
-    FUNCTIONS
-*/
-window.requestAnimFrame = function(){
-    return (
-        window.requestAnimationFrame       || 
-        window.webkitRequestAnimationFrame || 
-        window.mozRequestAnimationFrame    || 
-        window.oRequestAnimationFrame      || 
-        window.msRequestAnimationFrame     || 
-        function(callback){
-            window.setTimeout(callback, 1000 / 60);
-        }
-    );
-}();
 
 function setCookie(cname, cvalue, exdays){
      let d = new Date();
@@ -54,7 +40,23 @@ function getCookie(cname){
          }
      }
      return "";
-}
+} /* end of define from js <script> in index_header.php */
+
+/*  
+    FUNCTIONS
+*/
+window.requestAnimFrame = function(){
+    return (
+        window.requestAnimationFrame       || 
+        window.webkitRequestAnimationFrame || 
+        window.mozRequestAnimationFrame    || 
+        window.oRequestAnimationFrame      || 
+        window.msRequestAnimationFrame     || 
+        function(callback){
+            window.setTimeout(callback, 1000 / 60);
+        }
+    );
+}();
 
 function swaptheme(){
     let theme = getCookie("theme");

@@ -27,10 +27,11 @@ if(!((time() < strtotime($unban) + 14400) && !empty($unban)) && $_SESSION['privi
         </tr></table></form>';
 
         //get count number of users
-        $stmt2 = $pdo->prepare("SELECT COUNT(userid) FROM users;");
+        $stmt2 = $pdo->prepare("SELECT COUNT(*) FROM users;");
         $stmt2->execute();
+        $count = $stmt2->fetchColumn();
 
-        echo '<table style="text-align:center"><caption>Number of users: '.$stmt2->fetchColumn().'</caption>';
+        echo '<table style="text-align:center"><caption>Number of users: '.$count.'</caption>';
         echo '<tr><th>Id</th><th>Username</th><th>Priviledge</th><th>Email</th><th>Unban@:</th></tr>';
 
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -40,8 +41,10 @@ if(!((time() < strtotime($unban) + 14400) && !empty($unban)) && $_SESSION['privi
             $stmt2->execute();
             echo "<td>";
             if($stmt2->rowCount() > 0){
-                echo $stmt2->fetchColumn();
-            } else echo "0";
+                $ban = $stmt2->fetchColumn();
+                if((time() < strtotime($ban) + 14400) && !empty($ban)) echo $ban;
+                else echo "unbanned";
+            }
             echo "</td></tr>";
         }
         echo "</table>";
@@ -52,7 +55,7 @@ if(!((time() < strtotime($unban) + 14400) && !empty($unban)) && $_SESSION['privi
         }
 
         // BUTTON: NEXT
-        if($stmt->rowCount() == UMAX){
+        if($count > UMAX && $stmt->rowCount() == UMAX){
             echo '<a class="nsyn" href="?page=cp_users&pages='.($pages+1).'"><button>Next</button></a>';
         }
     } else echo "<p>Error: query failed.</p>";

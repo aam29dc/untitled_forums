@@ -6,7 +6,7 @@ $page = str_replace("page=", "", $_SERVER['QUERY_STRING']);
 if(!is_numeric($page) || empty($page) || $page < 1) $page = 1;   // if query string is not numeric, then page=1;
 
 //save page for when user hits, back, inside a thread
-$_SESSION['pagesid'] = $page;
+$_SESSION['mainid'] = $page;
 
 require_once('php/lib.php');
 require_once('php/conn.php');
@@ -18,7 +18,7 @@ if(tableExists($pdo,'threads')){
 
     if($stmt->rowCount() > 0){
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            echo '<h3><a style="display:block;" href="?thread='.$row['threadid'].'">'.$row['threadid']." ";
+            echo '<h3><a class="nsyn" style="display:block;" href="?thread='.$row['threadid'].'">'.$row['threadid']." ";
             
             //check if user is blocked
             $stmt2 = $pdo->prepare("SELECT blocked FROM blocks WHERE userid = :userid AND blockid = :blockid;");
@@ -49,13 +49,17 @@ if(tableExists($pdo,'threads')){
         //BUTTON: PREV
         if($page!=1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a> ';
         //BUTTON: NEXT
-        if($stmt->rowCount() >= TMAX) echo '<a class="nsyn" href="?page='.($page+1).'"><button>Next</button></a>';
+            //get count of threads
+            $stmt2 = $pdo->prepare("SELECT COUNT(*) FROM threads;");
+            $stmt2->execute();
+        if($stmt2->fetchColumn() > TMAX && $stmt->rowCount() == TMAX) echo '<a class="nsyn" href="?page='.($page+1).'"><button>Next</button></a>';
     }
     else {
         echo "<p>No threads on this page.</p>";
         if($page!=1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a>';
     }
 } else echo "<p>Sorry threads table doesn't exist yet.</p>";
+
 $pdo = null;
 $stmt = null;
 $stmt2 = null;

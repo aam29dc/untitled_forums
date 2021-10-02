@@ -206,6 +206,7 @@ div.fixindent{
 
 p {
 	padding:5px 5px 5px 5px;
+	overflow-wrap:break-word;
 }
 
 small {
@@ -224,6 +225,7 @@ table {
 
 table tr :is(th, td) {
 	background-color:var(--thtdc);
+	overflow-wrap:break-word;
 }
 
 span {

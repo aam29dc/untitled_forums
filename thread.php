@@ -85,7 +85,7 @@ if(tableExists($pdo,'threads')){
         $stmt->bindValue(":pages", (int)(($pages-1)*TMAX), PDO::PARAM_INT);
         $stmt->execute();
         if($stmt->rowCount() > 0){
-            echo "<table>";
+            echo '<table style="table-layout:fixed;">';
             $i = 1;
             $edit_posts = 0;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -138,13 +138,12 @@ if(tableExists($pdo,'threads')){
         else echo "<table><tr><td><p>No one has posted a reply yet.</p><td></tr>";
         
         // BUTTON: BACK
-        echo '</table><div>';
-        /*
-        echo '<br><div style="float:left;"><a class="nsyn" href="?thread='.$thread.'&pages=';
-            if(isset($_SESSION['pagesid'])) echo $_SESSION['pagesid']-1;
+        echo '</table>';
+        
+        echo '<br><div style="float:left;"><a class="nsyn" href="index.php?page=';
+            if(isset($_SESSION['mainid'])) echo $_SESSION['mainid'];
             else echo '1';
         echo '"><button>&laquo; Back</button></a><br/>';
-        */
 
         // BUTTON: PREV
         if($pages > 1){
