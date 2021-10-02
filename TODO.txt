@@ -1,0 +1,51 @@
+	*show password
+	*live username feedback
+	*animated navigation menu
+	*rotating cube in background . or . on side (use mouse input rotate)
+transition from light <-> dark
+	*remove jquery from menu
+lost username or password (email)
+password strength calc
+	*ban time (error)
+search (username) results
+	*syn links
+	*(inbox, usersprofile) blank the links when on their page
+	*posts (back button) and thread title are blank
+firefox bug: dark theme, click on differnt page, and it quickly goes to light then dark theme
+failed login attempts ban (use database to store ip)
+failed login attempts cooldown
+polls for threads
+users/guest currently online
+	*submit query of thread number based off of last thread numbers
+fix <a href=""></a> tag in thread/posts
+last updated time (post/thread) (when editted)
+	*if edit thread/post equal (unchanged) don't query db
+	*when editting thread/post, edit on same page, instead of redirecting to new page
+add/remove slashes to profile tag, inbox messages, search?, ...
+	*index.php should equal index.php?page=home on the navigation link(inactivate it)
+	*links with [javascript disabled] disappear
+	*pm update without refresh required
+	*start scroll at bottom in convos
+^ scroll doesnt update to bottom when new msg is sent/received
+	*send pm goes to convo instead
+	*post a reply without refresh
+	*edit/delete a reply without refresh
+fix (main.php) thread title [replies font] not showing in firefox
+syn effect (inside thread.php update frame) doesnt work after thread ajax refresh
+in member page when click on posts/threads show posts/threads started by user
+	*div popout when click on login instead of going to new page (use ajax)
+	*logout without going to logout page
+remember me (input check) (on login screen)
+fix margin of edit post/thread msg after refresh (ajax)
+fix back button (go to prev thread user was at, go to prev page user was at, otherwise go to home page)
+remove special characters from signup in .js script (Available!)
+add reCAPTCHA to signup page
+
+folder setup:
+	site/ ->
+	/js ->
+		/ajax
+		/page
+	/php ->
+		/ajax
+		/action
