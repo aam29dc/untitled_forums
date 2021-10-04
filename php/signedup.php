@@ -9,15 +9,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $report .= "<p>Error: enter a valid email address.</p>";
         $error = true;
     }
-    if(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['username']) != $_POST['username']){
+    if(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['s_username']) != $_POST['s_username']){
         $report .= "<p>Error: enter a valid username with no special characters.</p>";
         $error = true;
     }
-    if(strlen($_POST['pwd']) < 5){
+    if(strlen($_POST['s_pwd']) < 5){
         $report .= "<p>Error: enter a password with atleast 5 characters.</p>";
         $error = true;
     }
-    if($_POST['pwd'] != $_POST['confirm_pwd']){
+    if($_POST['s_pwd'] != $_POST['confirm_pwd']){
         $report .= "<p>Error: confirm password failed.</p>";
         $error = true;
     }
@@ -29,13 +29,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(tableExists($pdo,'users')) {
         //check if user already exists
         $stmt = $pdo->prepare("SELECT COUNT(username) FROM users WHERE username = :user;");
-        $stmt->bindValue(":user", $_POST['username']);
+        $stmt->bindValue(":user", $_POST['s_username']);
         $stmt->execute();
 
         $error = false;
 
         if($stmt->fetchColumn() != 0){
-            $report .= "<p>Sorry, a user with the name: ".htmlspecialchars($_POST['username'])." already exists.</p>";
+            $report .= "<p>Sorry, a user with the name: ".htmlspecialchars($_POST['s_username'])." already exists.</p>";
             $error = true;
         }
 
@@ -52,20 +52,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(!$error){
             $stmt = $pdo->prepare("INSERT INTO users (username, password, email) VALUES (:user, :pass, :email);");
 
-            $stmt->bindValue(":user", $_POST['username']);
-            $stmt->bindValue(":pass", password_hash($_POST['pwd'], PASSWORD_DEFAULT));
+            $stmt->bindValue(":user", $_POST['s_username']);
+            $stmt->bindValue(":pass", password_hash($_POST['s_pwd'], PASSWORD_DEFAULT));
             $stmt->bindValue(":email", $_POST['email']);
 
             if($stmt->execute()){
-                $report .= "<p>Successfully added user: ".$_POST['username']." Welcome to the forums, feel free to submit an article.</p>";
+                $report .= "<p>Successfully added user: ".$_POST['s_username']." Welcome to the forums, feel free to submit an article.</p>";
                 $stmt = $pdo->prepare("SELECT @@IDENTITY;");    //return primary key (userid) generated from last insert
                 $stmt->execute();
 
                 $_SESSION['userid'] = $stmt->fetchColumn();
-                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['username'] = $_POST['s_username'];
                 $_SESSION['loggedin'] = true;
                 $_SESSION['priviledge'] = 1;
-            } else $report .= "<p>Error adding user: ".htmlspecialchars($_POST['username'])."</p>";
+            } else $report .= "<p>Error adding user: ".htmlspecialchars($_POST['s_username'])."</p>";
         }
     } else $report .= "<p>Sorry users table doesn't exist yet.</p>";
 } else $report .= "<p>Error: no form submitted.</p>";

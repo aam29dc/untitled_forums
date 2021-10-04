@@ -43,21 +43,20 @@ if($stmt->execute()){
     echo '<noscript><style>button.b1{display:none;}</style></noscript>';
 
     echo '<form action="php/edited.php?posts='.$postsid.'" method="post">
-    <label for="edit_title">Edit title:</label><br/>
-    <input type="text" id="edit_title" name="edit_title" size="64" style="width:98%;" class="textfield" value="'.stripslashes($row['title']).'"><br/>
+    <label for="edit_title">Edit title:</label><br>
+    <input type="text" id="edit_title" name="edit_title" size="64" style="width:98%;" class="textfield" value="'.stripslashes($row['title']).'"><br>
     <input type="text" id="ori_title" name="ori_title" style="display:none;" value="'.stripslashes($row['title']).'">
-    <label for="edit_text">Edit Message:</label><br/>';
+    <label for="edit_text">Edit Message:</label><br>';
 
     include_once('php/msg_buttons.php');
     drawMsgButtons('edit_message');
 
-    echo '<textarea id="edit_message" name="edit_message" rows="20" style="width:98%;" class="textfield">'.stripslashes($row['msg']).'</textarea><br/>
+    echo '<textarea id="edit_message" name="edit_message" rows="20" style="width:98%;" class="textfield">'.stripslashes($row['msg']).'</textarea><br>
     <textarea id="ori_message" name="ori_message" style="display:none;">'.stripslashes($row['msg']).'</textarea>
     <input type="submit" name="edit" value="Edit">
     <input style="float:right;" type="submit" name="delete" value="Delete">
     </form>';
-}
-else echo "<p>Error: post with that postsid doesn't exist.</p>";
+} else echo "<p>Error: post with that postsid doesn't exist.</p>";
 
 end:
 $stmt = null;

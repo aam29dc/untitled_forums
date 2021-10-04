@@ -13,3 +13,14 @@ if(submit != null){
         else submit.disabled = true;
     });
 }
+
+// show/hide pass
+let tpass = document.getElementById('tpass');
+
+tpass.style.display = 'initial';
+tpass.style.cursor = 'pointer';
+
+tpass.addEventListener('click', function(){
+    swapsrc(`tpass`,`img/show.png`,`img/hide.png`);
+    togglepass(`pwd`);
+});

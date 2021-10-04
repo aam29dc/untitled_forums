@@ -368,7 +368,7 @@ for (let i = 0; i < coll.length; i++) {
     LOGIN POPOUT
 */
 let user_login = document.getElementById('user_login');
-if(user_login != null && getQueryString(window.location.href) != 'signup'){
+if(user_login != null){
     user_login.removeAttribute('href');
     user_login.style.cursor = 'pointer';
 

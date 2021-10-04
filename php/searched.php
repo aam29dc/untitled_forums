@@ -5,7 +5,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
         require_once('conn.php');
         require_once('lib.php');
 
-        echo "<h1>Search results:</h1><hr/>";
+        echo "<h1>Search results:</h1><hr>";
         
         if(tableExists($pdo,'threads')){
             $stmt = $pdo->prepare("SELECT * FROM threads WHERE msg LIKE CONCAT('%', :search, '%') OR title LIKE CONCAT('%', :search, '%');");
@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
             $stmt = $pdo->prepare("SELECT * FROM posts WHERE msg LIKE CONCAT('%', :search, '%') OR title LIKE CONCAT('%', :search, '%');");
             $stmt->bindValue(':search', $_GET['search']);
             $stmt->execute();
-            echo "<hr/>";
+            echo "<hr>";
         
             if($stmt->rowCount() > 0){
                 echo '<table><caption>Posts search: '.htmlspecialchars($_GET['search'])."</caption><tr><th>Author</th><th>Date</th><th>Title</th><th>Message</th></tr>";

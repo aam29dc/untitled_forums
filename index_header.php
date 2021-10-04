@@ -65,8 +65,7 @@ function getCookie(cname){
 		</form>
 		</nav>
 	</div>
-	<?php if(($_SERVER['QUERY_STRING'] != 'page=login' && basename($_SERVER['PHP_SELF'], ".php") != "login")
-	&& ($_SERVER['QUERY_STRING'] != 'page=signup' && basename($_SERVER['PHP_SELF'], ".php") != "signup")){
+	<?php if(($_SERVER['QUERY_STRING'] != 'page=login' && basename($_SERVER['PHP_SELF'], ".php") != "login")){
 		echo '<div id="login_popout">';
 		include_once(abs_php_include($x)."login.php");
 		echo '</div>';

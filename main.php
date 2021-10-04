@@ -43,7 +43,7 @@ if(tableExists($pdo,'threads')){
             $stmt2->execute();
             $author = $stmt2->fetchColumn();
             echo '<h5><a href="index.php?page=member&user='.$author.'">- '.$author.'</a><span style="float:right;">'.$row['date'].'</span></h5>';
-            echo "<hr><br/>"."\n";
+            echo "<hr><br>"."\n";
         }
         echo "<br>";
         //BUTTON: PREV

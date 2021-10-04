@@ -1,4 +1,4 @@
-<h1>Subscribe to receive our news articles.</h1><hr/><br/>
+<h1>Subscribe to receive our news articles.</h1><hr><br>
       <p>You will receive our news articles in your email shortly after they have been posted.</p>
       <form method="get" action="php/subscribed.php" id="f_sub">
         <label for="firstname">First name:</label><br>

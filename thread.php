@@ -94,7 +94,7 @@ if(tableExists($pdo,'threads')){
                 $stmt2->bindValue(":userid", $row['authorid']);
                 $stmt2->execute();
                 $author = $stmt2->fetchColumn();
-                echo '<tr><td class="tduser"><mark><a href="index.php?page=member&user='.$author.'">'.$author.'</a></mark><br/><img src="img/user24.png"/><br/><small>';
+                echo '<tr><td class="tduser"><mark><a href="index.php?page=member&user='.$author.'">'.$author.'</a></mark><br><img src="img/user24.png"><br><small>';
                     // get users # of posts
                     $stmt2 = $pdo->prepare("SELECT COUNT(*) FROM posts WHERE authorid = :userid;");
                     $stmt2->bindValue(":userid", $row['authorid']);
@@ -120,7 +120,7 @@ if(tableExists($pdo,'threads')){
                 // BUTTONS (POSTS): EDIT
                 if(isset($_SESSION['loggedin']) && (($_SESSION['userid'] == $row['authorid']) || $_SESSION['priviledge'] >= 2) && !$banned){
                     $_SESSION['pagesid'] = $pages;
-                    echo '<a data-postid="'.$row['postid'].'" class="edit_post nsyn" href="edit.php?posts='.$row['postid'].'"><img style="float:right;" src="img/edit16.png" alt="edit"/></a>';
+                    echo '<a data-postid="'.$row['postid'].'" class="edit_post nsyn" href="edit.php?posts='.$row['postid'].'"><img style="float:right;" src="img/edit16.png" alt="edit"></a>';
                     $edit_posts++;
                 }
 
@@ -143,11 +143,11 @@ if(tableExists($pdo,'threads')){
         echo '<br><div style="float:left;"><a class="nsyn" href="index.php?page=';
             if(isset($_SESSION['mainid'])) echo $_SESSION['mainid'];
             else echo '1';
-        echo '"><button>&laquo; Back</button></a><br/>';
+        echo '"><button>&laquo; Back</button></a><br>';
 
         // BUTTON: PREV
         if($pages > 1){
-            echo '<br/><a class="nsyn" href="?thread='.$thread.'&pages='.($pages-1).'"><button>Prev</button></a>';
+            echo '<br><a class="nsyn" href="?thread='.$thread.'&pages='.($pages-1).'"><button>Prev</button></a>';
         }
 
         // BUTTON: NEXT
@@ -173,7 +173,7 @@ if(tableExists($pdo,'threads')){
             echo '<button id="post_coll" type="button" class="collapsible" style="float:right;">Post a reply</button>
             <div id="post_content" class="content" style="float:left;clear:left;">
                 <form id="post_f" method="post" action="php/posted.php">
-                    <input type="text" id="post_title" name="post_title" size="98" class="textfield" style="width:98%;margin-bottom:5px;"/><br/>';
+                    <input type="text" id="post_title" name="post_title" size="98" class="textfield" style="width:98%;margin-bottom:5px;"/><br>';
                     include_once('php/msg_buttons.php');
                     drawMsgButtons('post_text');
                     echo '<textarea id="post_text" name="post_text" class="textfield" rows="10" style="width:98%;"></textarea>

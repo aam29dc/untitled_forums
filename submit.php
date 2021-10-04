@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-echo "<h1>Submit article</h1><hr/><br/>";
+echo "<h1>Submit article</h1><hr><br>";
 
 if(isset($_SESSION['loggedin'])){
   require_once('php/conn.php');

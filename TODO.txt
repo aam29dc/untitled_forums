@@ -41,6 +41,7 @@ fix margin of edit post/thread msg after refresh (ajax)
 remove special characters from signup in .js script (Available!)
 add reCAPTCHA to signup page
 	*fix NEXT button on main.php
+add tag buttons to edit post/thread (ajax)
 
 folder setup:
 	site/ ->

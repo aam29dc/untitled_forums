@@ -27,8 +27,8 @@ if(isset($_SESSION['loggedin'])){
             echo '<tr><td>';
             
             //seen or unseen icon
-            if($row['seen']) echo '<img src="img/seen16.png"/>';
-            else echo '<img src="img/unseen16.png"/>';     
+            if($row['seen']) echo '<img src="img/seen16.png">';
+            else echo '<img src="img/unseen16.png">';     
 
             //get the other users username
             $stmt2 = $pdo->prepare("SELECT username FROM users WHERE userid = ?;");

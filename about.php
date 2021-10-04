@@ -1,1 +1,1 @@
-﻿<div class="fixindent"><h1>About Userx.edu</h1><hr/><br/><p>Our site is a deadly creation.</p></div>
+﻿<div class="fixindent"><h1>About Userx.edu</h1><hr><br><p>Our site is a deadly creation.</p></div>

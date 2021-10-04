@@ -20,7 +20,7 @@ if(isset($_SESSION['loggedin'])){
         echo ' [BANNED]';
     }
 
-    echo '</span></h1><hr/>';
+    echo '</span></h1><hr>';
 
     //count threads started
     $stmt = $pdo->prepare("SELECT COUNT(authorid) FROM threads WHERE authorid = :userid;");
@@ -39,7 +39,7 @@ if(isset($_SESSION['loggedin'])){
     <div class="content">';
     if(!$banned) echo '<form method="get" action="php/profile_msg.php">
             <input type="text" id="profile_msg" name="profile_msg" size="98" class="textfield" value="'.$row['tag'].'"/>
-            <br/><button>Update</button>
+            <br><button>Update</button>
         </form>';else echo "- <i>forbidden</i>";
     echo '</div></li>';
 
@@ -47,7 +47,7 @@ if(isset($_SESSION['loggedin'])){
     <div class="content">';
         if(!$banned) echo '<form method="get" action="php/profile_username.php">
             <input type="text" id="profile_username" name="profile_username" size="98" class="textfield" value="'.$_SESSION['username'].'"/>
-            <br/><button>Update</button>
+            <br><button>Update</button>
         </form>';else echo "- <i>forbidden</i>";
     echo '</div></li>';
 
@@ -55,16 +55,16 @@ if(isset($_SESSION['loggedin'])){
     <div class="content">
         <form method="post" action="php/profile_password.php">
             <label for="profile_currentpass">Current password:</label>
-            <input type="password" id="profile_currentpass" name="profile_currentpass" size="98" class="textfield"/><br/>
+            <input type="password" id="profile_currentpass" name="profile_currentpass" size="98" class="textfield"/><br>
             <label for="profile_password">New password:</label>
-            <input type="password" id="profile_newpass" name="profile_newpass" size="98" class="textfield"/><br/>
+            <input type="password" id="profile_newpass" name="profile_newpass" size="98" class="textfield"/><br>
             <label for="profile_confirmpass">Confirm password:</label>
             <input type="password" id="profile_confirmpass" name="profile_confirmpass" size="98" class="textfield"/>
-            <br/><button>Update</button>
+            <br><button>Update</button>
         </form>
     </div></li>';
 
-    echo '<br/><li>Join date: '.date_format(date_create($row['jdate']), 'F d Y').
+    echo '<br><li>Join date: '.date_format(date_create($row['jdate']), 'F d Y').
     '</li><li>Threads started: '.$threads.'</li><li>Posts: '.$stmt->fetchColumn().
     '</li><li>Priviledge: '.$row['priviledge'];
 
@@ -74,7 +74,7 @@ if(isset($_SESSION['loggedin'])){
     else if($row['priviledge'] == 2) echo " (moderator)";
     else if($row['priviledge'] == 3) echo " (admin)";
 
-    echo '</li><li><br/><hr/><a class="collapsible">Delete account</a>
+    echo '</li><li><br><hr><a class="collapsible">Delete account</a>
     <div class="content">
         <form method="get" action="php/profile_delete.php">
             <input type="submit" id="profile_delete" name="profile_delete" value="Delete" style="float:right;"/>

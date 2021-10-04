@@ -40,13 +40,13 @@ if($stmt->rowCount() > 0){
         echo ' [BANNED]';
     }
 
-    echo '</span></h1><hr/>';
+    echo '</span></h1><hr>';
 
     if(!empty($row['tag'])) echo '<p>- &ldquo;'.htmlspecialchars($row['tag']).'&rdquo;</p>';
 
     if($_SESSION['loggedin']){
         //BUTTON: SEND MSG
-        echo '<br/><a class="nsyn" href="index.php?page=convo&id='.$row['userid'].'"><button style="display:block;">Send Message</button></a><br/>';
+        echo '<br><a class="nsyn" href="index.php?page=convo&id='.$row['userid'].'"><button style="display:block;">Send Message</button></a><br>';
         //BUTTON: BLOCK USER
         //get if blocked or not
         $stmt = $pdo->prepare("SELECT blocked FROM blocks WHERE userid = :userid AND blockid = :blockid;");
@@ -56,10 +56,10 @@ if($stmt->rowCount() > 0){
         $blocked = $stmt->fetchColumn();
 
         if($blocked == false){
-            echo '<a class="nsyn" href="index.php?page=block&user='.$user.'&b=1"><button style="display:block;">Block user</button></a><br/>';
+            echo '<a class="nsyn" href="index.php?page=block&user='.$user.'&b=1"><button style="display:block;">Block user</button></a><br>';
         }
         else {
-            echo '<a class="nsyn" href="index.php?page=block&user='.$user.'&b=0"><button style="display:block;">Unblock user</button></a><br/>';
+            echo '<a class="nsyn" href="index.php?page=block&user='.$user.'&b=0"><button style="display:block;">Unblock user</button></a><br>';
         }
     }
 

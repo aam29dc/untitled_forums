@@ -5,7 +5,7 @@
             <li class="vnavh"><h1>Navigation:</h1></li>
             <?php include_once(abs_php_include($x).'php/navigation.php');?>
         </ul>
-    </nav><br/>
+    </nav><br>
     <?php include_once(abs_php_include($x).'php/controlpanel.php');?>
     <section id="cubeicle">
         <div class="face front"></div>
@@ -22,15 +22,16 @@
 </div>
 </div>
 <script src="<?php abs_include($x);?>js/general.js"></script>
+<script src="<?php abs_include($x);?>js/login.js"></script>
 <script src="<?php abs_include($x);?>js/jquery-3.6.0.min.js"></script>
 <?php /* CONDITIONAL INCLUDE */
     if($_SERVER['QUERY_STRING'] == 'page=signup'){
         //echo '<script src="js/jquery-3.6.0.min.js"></script>'."\n";
         echo '<script src="js/signup_ajax.js"></script>'."\n";
     }
-    else if($_SERVER['QUERY_STRING'] == 'page=login'){
+    /*else if($_SERVER['QUERY_STRING'] == 'page=login'){    //already included on line:25
         echo '<script src="js/login.js"></script>';
-    }
+    }*/
     else if($_SERVER['QUERY_STRING'] == 'page=sub'){
         echo '<script src="js/subscribe.js"></script>';
     }
@@ -50,5 +51,3 @@
         echo '<script src="js/thread_ajax.js"></script>'."\n";
     }
 ?>
-<!--<script src="js/gl/webgl-utils.js"></script>
-<script src="js/gl/webgl.js"></script>-->

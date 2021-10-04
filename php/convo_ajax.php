@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             echo "</span>";
         } else echo "</mark>";
 
-        echo "</span><br/>";
+        echo "</span><br>";
     }
 
     end:

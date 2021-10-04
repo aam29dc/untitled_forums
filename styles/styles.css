@@ -125,6 +125,12 @@ img#checkerbox {
 	margin-top:8px;
 }
 
+img.pass {
+	display:none;
+	height:16px;
+	width:16px;
+}
+
 div#header nav {
 	float:right;
 }
@@ -356,4 +362,12 @@ div#login_popout {
 	border-radius:10px;
 	box-shadow:5px 5px 5px black;
 	z-index:1;
+}
+
+div#convo {
+	border:1px inset #ccc;
+	width:99%;
+	min-height:40px;
+	max-height:500px;
+	overflow-y:scroll;
 }

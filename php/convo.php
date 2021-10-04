@@ -35,7 +35,7 @@ if(isset($_SESSION['loggedin'])){
     $stmt->bindValue(":y", $toid);
     $stmt->execute();
 
-    echo "\n".'To: '.$toName.'<div id="convo" style="border:1px inset #ccc;width:99%;min-height:40px;max-height:500px;overflow-y:scroll;">';
+    echo "\n".'To: '.$toName.'<div id="convo">';
 
     if($stmt->rowCount() > 0){
         //set msgs sent to session user as seen

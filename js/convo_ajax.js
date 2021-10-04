@@ -21,7 +21,7 @@ document.getElementById('fpm').setAttribute('action', "javascript:void(0);");
 document.getElementById('sendpm').addEventListener('click', function(e){
     e.preventDefault();
     if(fpmsg.value.length > 0){
-        //document.getElementById('heart').firstElementChild.innerHTML += '<span>'  + 'me' + '<span class="f3">' + '(now):' + '</span>' + '<span>' + fpmsg.value + '</span>' + '</span><br/>';
+        //document.getElementById('heart').firstElementChild.innerHTML += '<span>'  + 'me' + '<span class="f3">' + '(now):' + '</span>' + '<span>' + fpmsg.value + '</span>' + '</span><br>';
         $.ajax({
             type: "POST",
             data: {pmsg: fpmsg.value,
