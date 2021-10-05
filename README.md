@@ -1,5 +1,7 @@
 # untitled_forums
 Requires jQuery for AJAX (to update page without redirect/refresh). This site is also fully functional with JS disabled.
+
+
 _______________________________________________________________________________________________
 (11/01/21) __[3nd RELEASE]__
 _______________________________________________________________________________________________
@@ -7,10 +9,7 @@ Updates with JavaScript, and AJAX: Now you can post/edit/delete a reply or threa
 _______________________________________________________________________________________________
 (10/14/21) __[2nd RELEASE]__ (note the page has been filled with blank space just to show effects)
 _______________________________________________________________________________________________
-![2_1](https://user-images.githubusercontent.com/73267302/133365684-c3b2924e-9767-4096-acaa-1b4efb716969.png)
-
-![2_2](https://user-images.githubusercontent.com/73267302/133365707-e93ed468-87b3-42f6-9878-8135a2d93adf.png)
-
+This site has been updated using JavaScript for various transitions and animations that I've also posted on my GitHub. It includes synesthesia-font, a scroll line effect that changes colors, a cube that rotates and the mouse pointer that changes color as the users moves the mouse. The signup page has been updated using AJAX (uses jQuery for web compatibility) to notify the user that a username has been taken (without refreshing the page), and passwords don't match, etc. There have been various other changes and improvements to the site. Mostly changes on the front-end of the site. More updates to come.
 _______________________________________________________________________________________________
 __[1st RELEASE]__
 _______________________________________________________________________________________________
@@ -43,7 +42,3 @@ dynamic web pages (layout files: index_header, index_footer).
 --for clicking on button to put input tags (a,b,i,s,...) in submit forms
 
 --for redirecting page
-
-[ mobile phone version of the site (note this is a screenshot from the first release) ]
-
-![mobile](https://user-images.githubusercontent.com/73267302/125153834-7270cf00-e124-11eb-857b-084b47a0c2b8.png)
