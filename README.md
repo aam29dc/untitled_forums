@@ -1,6 +1,36 @@
 # untitled_forums
 Requires jQuery for AJAX (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
+[ PHP(PDO) & SQL(mysql): ]
+
+--signup/login to create a thread or post in thread.
+
+--guest, member, moderator, admin priviledges.
+
+--control panel for mods to ban, and rank up users.
+
+--block another user to stop seeing their threads, posts, and pms.
+
+--edit username, pwd, profile msg, delete profile.
+
+--have a conversations/pm (private message) another user.
+
+[ HTML & CSS: ]
+
+--saved variable css template, click the logo in the upper left corner to swap between dark and light themes
+
+--Mobile phone layout is set with is_mobile() function (lib.php) in layouts and form elements.
+
+[ JavaScript: ]
+
+--for swapping between light and dark theme
+
+--for clicking on button to put input tags (a,b,i,s,...) in submit forms
+
+--for AJAX: edit a thread/post without a page redirect. Submit a post without a page redirect. Submit a pm in a private conversation without a page redirect. Login/signout without a page redirect.
+
+-- synesthesia font, scroll line color change as user scrolls down page, mouse pointer color change as user moves mouse
+
 ![userx_v3_1](https://user-images.githubusercontent.com/73267302/135941971-f125d8b6-1a74-4a7b-aeec-84caa96e1d01.png)
 
 ![userx_v3_2](https://user-images.githubusercontent.com/73267302/135941955-0c1eae36-6cd2-4f14-8d90-e13291cd4a8e.png)
@@ -23,29 +53,3 @@ ________________________________________________________________________________
 
 forum software with dynamic web pages
 dynamic web pages (layout files: index_header, index_footer).
-
-[ PHP(PDO) & SQL(mysql): ]
-
---signup/login to create a thread or post in thread.
-
---guest, member, moderator, admin priviledges.
-
---control panel for mods to ban, and rank up users.
-
---block another user to stop seeing their threads, posts, and pms.
-
---edit username, pwd, profile msg, delete profile.
-
-[ HTML & CSS: ]
-
---saved variable css template, click the logo in the upper left corner to swap between dark and light themes
-
---Mobile phone layout is set with is_mobile() function (lib.php) in layouts and form elements.
-
-[ JavaScript: ]
-
---for swapping between light and dark theme
-
---for clicking on button to put input tags (a,b,i,s,...) in submit forms
-
---for redirecting page
