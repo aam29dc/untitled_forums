@@ -15,13 +15,13 @@ Requires jQuery for AJAX (to update page without redirect/refresh). This site is
 
 --have a conversations/pm (private message) another user.
 
-[ HTML & CSS: ]
+[ **HTML & CSS:** ]
 
 --saved variable css template, click the logo in the upper left corner to swap between dark and light themes
 
 --Mobile phone layout is set with is_mobile() function (lib.php) in layouts and form elements.
 
-[ JavaScript/AJAX: ]
+[ **JavaScript/AJAX:** ]
 
 --for swapping between light and dark theme
 
@@ -40,15 +40,15 @@ Requires jQuery for AJAX (to update page without redirect/refresh). This site is
 ![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
 
 _______________________________________________________________________________________________
-(11/01/21) __[3nd RELEASE]__
+(11/01/21) __[**3nd RELEASE**]__
 _______________________________________________________________________________________________
 Updates with JavaScript, and AJAX: Now you can post/edit/delete a reply or thread, without redirecting you to another page. Conversations or PM's also don't require a page redirect, making it feel like a modern message app. The login button now is a pop out without redirecting you to the login page. This all makes the site feel like a modern Single Page Application. See TODO.txt for other changes/fixes (are indented and prefixed with a \*). Changes/fixes to come are not indented.
 _______________________________________________________________________________________________
-(10/14/21) __[2nd RELEASE]__
+(10/14/21) __[**2nd RELEASE**]__
 _______________________________________________________________________________________________
 This site has been updated using JavaScript for various transitions and animations that I've also posted on my GitHub. It includes synesthesia-font, a scroll line effect that changes colors, a cube that rotates and the mouse pointer that changes color as the users moves the mouse. The signup page has been updated using AJAX (uses jQuery for web compatibility) to notify the user that a username has been taken (without refreshing the page), and passwords don't match, etc. There have been various other changes and improvements to the site. Mostly changes on the front-end of the site. More updates to come.
 _______________________________________________________________________________________________
-__[1st RELEASE]__
+__[**1st RELEASE**]__
 _______________________________________________________________________________________________
 
 forum software with dynamic web pages
