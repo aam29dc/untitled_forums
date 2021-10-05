@@ -1,5 +1,5 @@
 # untitled_forums
-Requires jQuery for AJAX (to update page without redirect/refresh). This site is also fully functional with JS disabled.
+**Requires jQuery for AJAX** (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
 [ **PHP(PDO) & SQL(mysql):** ]
 
