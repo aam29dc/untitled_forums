@@ -35,7 +35,7 @@
 
 ![userx_v3_2](https://user-images.githubusercontent.com/73267302/135941955-0c1eae36-6cd2-4f14-8d90-e13291cd4a8e.png)
 
-[MOBILE Phone layout]
+[**MOBILE Phone layout**]
 
 ![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
 
