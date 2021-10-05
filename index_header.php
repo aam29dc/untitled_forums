@@ -1,4 +1,4 @@
-<?php require_once('php/lib.php');?><!DOCTYPE html>
+<?php session_start();require_once('php/lib.php');?><!DOCTYPE html>
 <html lang="en-US">
 <head>
 	<meta charset="utf-8"/>

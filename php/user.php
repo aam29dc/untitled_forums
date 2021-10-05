@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 $page = str_replace("page=", "", $_SERVER['QUERY_STRING']);
 if(!isset($x)) require_once('lib.php');
 

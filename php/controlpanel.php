@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 
 if(!isset($x)) require_once('lib.php');
 

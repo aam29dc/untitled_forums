@@ -1,12 +1,12 @@
 "use strict";
 let email = document.getElementById('email');
-let submit = document.getElementById('subscribe');
+let subscribe = document.getElementById('subscribe');
 
-submit.disabled = true;
+subscribe.disabled = true;
 
 document.getElementById('f_sub').addEventListener('input', function(){
     if(email.value.length > 0){
-        submit.removeAttribute('disabled');
+        subscribe.removeAttribute('disabled');
     }
-    else submit.disabled = true;
+    else subscribe.disabled = true;
 });

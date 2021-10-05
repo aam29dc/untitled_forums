@@ -22,16 +22,12 @@
 </div>
 </div>
 <script src="<?php abs_include($x);?>js/general.js"></script>
-<script src="<?php abs_include($x);?>js/login.js"></script>
 <script src="<?php abs_include($x);?>js/jquery-3.6.0.min.js"></script>
-<?php /* CONDITIONAL INCLUDE */
+<?php /* CONDITIONAL INCLUDE BASED ON PHP PAGE */
     if($_SERVER['QUERY_STRING'] == 'page=signup'){
         //echo '<script src="js/jquery-3.6.0.min.js"></script>'."\n";
         echo '<script src="js/signup_ajax.js"></script>'."\n";
     }
-    /*else if($_SERVER['QUERY_STRING'] == 'page=login'){    //already included on line:25
-        echo '<script src="js/login.js"></script>';
-    }*/
     else if($_SERVER['QUERY_STRING'] == 'page=sub'){
         echo '<script src="js/subscribe.js"></script>';
     }

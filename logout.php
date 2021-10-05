@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 
 header("Refresh:2; url='index.php'");
 

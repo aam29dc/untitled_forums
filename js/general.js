@@ -1,7 +1,7 @@
+"use strict";
 /*
     GLOBALS
 */
-"use strict";
 
 //let MYAPP = {};   
 /*  used and first defined in index_header.php because
@@ -81,12 +81,10 @@ function swaptheme(){
 function swapsrc(id, first, second){
     let check = document.getElementById(id);
 
-    if(check.src == 'http://' + location.host + '/site/' + first){
-        check.src = 'http://' + location.host + '/site/' + second;
+    if(check.src == location.href + first){
+        check.src = location.href + second;
     }
-    else {
-        check.src = 'http://' + location.host + '/site/' + first;
-    }
+    else check.src = location.href + first;
 }
 
 function togglepass(id){
@@ -365,7 +363,38 @@ for (let i = 0; i < coll.length; i++) {
 }
 
 /*
-    LOGIN POPOUT
+    LOGIN.PHP
+*/
+let user = document.getElementById('username');
+let pwd = document.getElementById('pwd');
+let submit = document.getElementById('login');
+
+if(submit != null){
+    submit.disabled = true;
+
+    document.getElementById('f_login').addEventListener('input', function(){
+        if(user.value.length > 0 && pwd.value.length > 0){
+            submit.removeAttribute('disabled');
+        }
+        else submit.disabled = true;
+    });
+}
+
+// show/hide pass
+let tpass = document.getElementById('tpass');
+
+if(tpass != null) {
+    tpass.style.display = 'initial';
+    tpass.style.cursor = 'pointer';
+
+    tpass.addEventListener('click', function(){
+        swapsrc(`tpass`,`img/show.png`,`img/hide.png`);
+        togglepass(`pwd`);
+    });
+}
+
+/*
+    LOGIN DIV POPOUT
 */
 let user_login = document.getElementById('user_login');
 if(user_login != null){
@@ -394,7 +423,10 @@ if(user_login != null){
                 success: function(echo){
                     if(echo == '0'){
                         login_popout.style.display = 'none';
-                        window.location = window.location;
+                        if(window.location.pathname.includes('logout')){
+                            window.location = "index.php";
+                        }
+                        else window.location = window.location;
                     }
                     else {
                         window.location = "index.php?page=login";
@@ -427,3 +459,5 @@ if(logout != null){
         });
     });
 }
+
+console.log(location.href);
