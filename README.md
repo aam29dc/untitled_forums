@@ -19,7 +19,7 @@
 
 [ **HTML & CSS:** ]
 
---saved variable css template, click the logo in the upper left corner to swap between dark and light themes
+--saved variable css template, click the logo in the upper left corner to swap between dark and light themes.
 
 --Mobile phone layout is set with is_mobile() function (lib.php) in layouts and form elements.
 
@@ -31,7 +31,7 @@
 
 --for AJAX: edit a thread/post without a page redirect. Submit a post without a page redirect. Send a pm in a private conversation without a page redirect. Login/signout without a page redirect. On signup page, notifies user a username is already in use, and passwords don't match.
 
---synesthesia font, scroll line color change as user scrolls down page, mouse pointer color change as user moves mouse
+--synesthesia font, scroll line color change as user scrolls down page, mouse pointer color change as user moves mouse.
 
 ![userx_v3_1](https://user-images.githubusercontent.com/73267302/135941971-f125d8b6-1a74-4a7b-aeec-84caa96e1d01.png)
 
@@ -54,4 +54,4 @@ __[**1st RELEASE**]__
 _______________________________________________________________________________________________
 
 forum software with dynamic web pages
-dynamic web pages (layout files: index_header, index_footer).
+dynamic web pages (layout files: index_header.php, index_footer.php).
