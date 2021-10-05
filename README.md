@@ -21,7 +21,7 @@ Requires jQuery for AJAX (to update page without redirect/refresh). This site is
 
 --Mobile phone layout is set with is_mobile() function (lib.php) in layouts and form elements.
 
-[ JavaScript: ]
+[ JavaScript/AJAX: ]
 
 --for swapping between light and dark theme
 
