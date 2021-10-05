@@ -29,7 +29,7 @@
 
 --for clicking on button to put input tags (a,b,i,s,...) in submit forms
 
---for AJAX: edit a thread/post without a page redirect. Submit a post without a page redirect. Submit a pm in a private conversation without a page redirect. Login/signout without a page redirect.
+--for AJAX: edit a thread/post without a page redirect. Submit a post without a page redirect. Send a pm in a private conversation without a page redirect. Login/signout without a page redirect. On signup page, notifies user a username is already in use, and passwords don't match.
 
 --synesthesia font, scroll line color change as user scrolls down page, mouse pointer color change as user moves mouse
 
