@@ -1,7 +1,7 @@
 # untitled_forums
 Requires jQuery for AJAX (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
-[ PHP(PDO) & SQL(mysql): ]
+[ **PHP(PDO) & SQL(mysql):** ]
 
 --signup/login to create a thread or post in thread.
 
