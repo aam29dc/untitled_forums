@@ -1,4 +1,5 @@
-__( indented with a * means its completed. Non-indented without a * means its not complete )__
+____( indented with a * means its completed. Non-indented without a * means its not complete )____
+
 	*show password
 	*live username feedback
 	*animated navigation menu
