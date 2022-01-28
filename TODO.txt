@@ -1,3 +1,4 @@
+__( indented with a * means its completed. Non-indented without a * means its not complete )__
 	*show password
 	*live username feedback
 	*animated navigation menu
