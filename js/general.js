@@ -136,40 +136,40 @@ line.style.top = 0;
 document.addEventListener('scroll', function(){ 
     let pos = (0.997)*getVerticalScrollPercentage(document.body);   //because if line is at 100% it is hidden,
     //and browsers hide line at different percents
-    let [a,b,c] = [0,0,0];
+    let [za,zb,zc] = [0,0,0];
 
     if(pos < 1/6){      //red -> yellow
-        a = 255;
-        b = (pos - 0)*6*255;
-        c = 0;
+        za = 255;
+        zb = (pos - 0)*6*255;
+        zc = 0;
     }
     else if(pos >= 1/6 && pos < 2/6){   //yellow -> green
-        a = 255 - (pos - 1/6)*6*255;
-        b = 255;
-        c = 0;
+        za = 255 - (pos - 1/6)*6*255;
+        zb = 255;
+        zc = 0;
     }
     else if(pos >= 2/6 && pos < 3/6){   //green -> sky
-        a = 0;
-        b = 255;
-        c = (pos - 2/6)*6*255;
+        za = 0;
+        zb = 255;
+        zc = (pos - 2/6)*6*255;
     }
     else if(pos >= 3/6 && pos < 4/6){   //sky -> blue
-        a = 0;
-        b = 255 - (pos - 3/6)*6*255;
-        c = 255;
+        za = 0;
+        zb = 255 - (pos - 3/6)*6*255;
+        zc = 255;
     }
     else if(pos >= 4/6 && pos < 5/6){   //blue -> pink
-        a = (pos - 4/6)*6*255;
-        b = 0;
-        c = 255;
+        za = (pos - 4/6)*6*255;
+        zb = 0;
+        zc = 255;
     }
     else if(pos >= 5/6 && pos <= 6/6){  //pink -> red
-        a = 255;
-        b = 0;
-        c = 255 - (pos - 5/6)*6*255;
+        za = 255;
+        zb = 0;
+        zc = 255 - (pos - 5/6)*6*255;
     }
 
-    line.style.backgroundColor = 'rgb(' + a + ',' + b + ',' + c + ')';
+    line.style.backgroundColor = 'rgb(' + za + ',' + zb + ',' + zc + ')';
     line.style.top = '' + pos*100 + '%';
 });
 
