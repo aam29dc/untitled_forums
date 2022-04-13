@@ -48,7 +48,8 @@ ________________________________________________________________________________
 _______________________________________________________________________________________________
 Added likes to posts, now you can like a post by clicking the thumbs up button, and mouse hover over the number to see who upvoted a post.
 Added replies to posts, reply to a post by clicking the reply button and the post will be 'linked' by table data to the post. The title will automatically include "Reply to #n". Added <q>quote element</q> to posts.
-Serveral fixes to thread.php, and fixes to query string array in PHP and JS, a more polished solution is now used.
+Added order posts by newest / oldest in thread.php.
+Serveral fixes to thread.php, thread_ajax.js, and fixes to query string array in PHP and JS, a more polished solution is now used.
 _______________________________________________________________________________________________
 (11/01/21) __[**3nd RELEASE**]__
 _______________________________________________________________________________________________
