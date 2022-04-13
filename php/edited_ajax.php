@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     require_once('conn.php');
 
     if(empty($_POST['postid']) || !isset($_POST['postid']) || !is_numeric($_POST['postid'])){
-        echo '2';
+        echo "2";
         goto end;
     }
 

@@ -1,5 +1,9 @@
 <?php session_start();
-$page = str_replace("page=", "", $_SERVER['QUERY_STRING']);
+
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+$page = $q['page'];
+
 if(!isset($x)) require_once('lib.php');
 
 if(!isset($_SESSION['loggedin'])){

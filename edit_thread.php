@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-$threadid = str_replace("thread=", "", $_SERVER['QUERY_STRING']);
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+$threadid = $q['thread'];
 $error = false;
 
 include_once('index_header.php');

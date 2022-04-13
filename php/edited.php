@@ -11,7 +11,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     require_once('conn.php');
-    $postsid = str_replace("posts=", "", $_SERVER['QUERY_STRING']);
+    $q = array();
+    parse_str($_SERVER['QUERY_STRING'], $q);
+    $postsid = $q['posts'];
+
     //DELETE CLICKED
     if($_POST['delete'] == "Delete"){
             //get threadid
@@ -53,7 +56,7 @@ $history = false;
 
 if(isset($_SESSION['threadid']) && isset($_SESSION['pagesid'])){
     echo "<h3>Redirecting back to thread...</h3>";
-    echo '<noscript><a href="../index.php?thread='.$_SESSION['threadid'].'">Click to redirect to back to thread.</a></noscript>';
+    echo '<noscript><a href="../index.php?thread='.$_SESSION['threadid'].'&pages='.$_SESSION['pagesid'].'">Click to redirect to back to thread.</a></noscript>';
     $history = true;
 }
 else {

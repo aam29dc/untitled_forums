@@ -12,14 +12,19 @@ if($stmt->execute()){}
 else { echo 'failed to create tokens';} */
 
 //threads
-$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS threads (threadid int NOT NULL PRIMARY KEY AUTO_INCREMENT, authorid int NOT NULL, title VARCHAR(128) NOT NULL, msg TEXT NOT NULL, date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (authorid) REFERENCES users(userid));");
+$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS threads (threadid int NOT NULL PRIMARY KEY AUTO_INCREMENT, authorid int NOT NULL, title VARCHAR(128) NOT NULL, msg TEXT NOT NULL, date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, posts int NOT NULL DEFAULT '0', FOREIGN KEY (authorid) REFERENCES users(userid));");
 if($stmt->execute()){}
 else { echo 'failed to create threads';}
 
 //posts
-$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS posts (postid int NOT NULL PRIMARY KEY AUTO_INCREMENT, threadid int NOT NULL, authorid int NOT NULL, title VARCHAR(128), msg TEXT NOT NULL, date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (threadid) REFERENCES threads(threadid), FOREIGN KEY (authorid) REFERENCES users(userid));");
+$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS posts (postid int NOT NULL PRIMARY KEY AUTO_INCREMENT, threadid int NOT NULL, authorid int NOT NULL, title VARCHAR(128), msg TEXT NOT NULL, date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, postnum int NOT NULL, replyid int DEFAULT NULL, FOREIGN KEY (threadid) REFERENCES threads(threadid), FOREIGN KEY (authorid) REFERENCES users(userid)), FOREIGN KEY (replyid) REFERENCES posts(postid);");
 if($stmt->execute()){}
 else { echo 'failed to create posts';}
+
+//likes (posts)
+$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS posts_likes (postid int NOT NULL, likeid int NOT NULL, threadid int NOT NULL, FOREIGN KEY (postid) REFERENCES posts(postid), FOREIGN KEY (likeid) REFERENCES users(userid), FOREIGN KEY (threadid) REFERENCES threads(threadid));");
+if($stmt->execute()){}
+else { echo 'failed to likes for posts';}
 
 //subs
 $stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS subs (firstname VARCHAR(32), lastname VARCHAR(32), email VARCHAR(32) NOT NULL UNIQUE);");

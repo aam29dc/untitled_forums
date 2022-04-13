@@ -371,3 +371,15 @@ div#convo {
 	max-height:500px;
 	overflow-y:scroll;
 }
+
+/* Likes (who) Hover */
+span.likes:hover + div.likeids {
+	display:block;
+}
+
+div.likeids {
+	display:none;
+	position:absolute;
+	min-width:100px;
+	min-height:0;
+}

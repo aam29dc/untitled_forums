@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $stmt->execute();
         $threadid = $stmt->fetchColumn() + 1;
         //INSERT thread
-        $stmt = $pdo->prepare("INSERT INTO threads (threadid, authorid, title, msg, date) VALUES (:threadid, :userid, :title, :text, NOW());");
+        $stmt = $pdo->prepare("INSERT INTO threads (threadid, authorid, title, msg, date, posts) VALUES (:threadid, :userid, :title, :text, NOW(), 0);");
         $stmt->bindValue(':threadid', $threadid);
         $stmt->bindValue(':userid', $_SESSION['userid']);
         $stmt->bindValue(':title', $title);

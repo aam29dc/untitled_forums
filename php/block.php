@@ -3,11 +3,10 @@ session_start();
 require_once('conn.php');
 require_once('lib.php');
 
-$blockuser = str_replace("page=block&user=", "", $_SERVER['QUERY_STRING']);
-    $blockuser = str_replace("&b=1", "", $blockuser);
-    $blockuser = str_replace("&b=0", "", $blockuser);
-
-$block = str_replace("page=block&user=".$blockuser."&b=", "", $_SERVER['QUERY_STRING']);
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+$blockuser = $q['user'];
+$block = $q['b'];
 
 $error = false;
 

@@ -1,7 +1,9 @@
 <?php
 require_once("php/conn.php");
 
-$user = str_replace("&user=", "", str_replace("page=member", "", $_SERVER['QUERY_STRING']));
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+$user = $q['user'];
 
 if(empty($user) || !isset($user)){
     echo "<p>Error: no user selected.</p>";

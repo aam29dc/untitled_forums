@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-$page = str_replace("page=", "", $_SERVER['QUERY_STRING']);
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+$page = $q['page'];
 
 if(!is_numeric($page) || empty($page) || $page < 1) $page = 1;   // if query string is not numeric, then page=1;
 

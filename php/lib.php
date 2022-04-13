@@ -1,5 +1,5 @@
 <?php
-	$htmltags = array("a", "b", "i", "u", "s", "sub", "sup");
+	$htmltags = array("a", "b", "i", "u", "s", "sub", "sup", "q");
 	define("MSG_MIN_LENGTH", 5);	//submit/edit thread/post msg min length
 	define("TMAX", 10);				//maximum threads on one page
 

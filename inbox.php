@@ -5,8 +5,10 @@ require_once('php/conn.php');
 require_once('php/lib.php');
 
 define("IMAX", 10);     //inbox max messages per page
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+$pages = $q['pages'];
 
-$pages = str_replace("&pages=", "", str_replace("page=inbox", "", $_SERVER['QUERY_STRING']));
 if(!is_numeric($pages) || empty($pages) || $pages < 1) $pages = 1;
 
 if(isset($_SESSION['loggedin'])){

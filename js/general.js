@@ -81,10 +81,10 @@ function swaptheme(){
 function swapsrc(id, first, second){
     let check = document.getElementById(id);
 
-    if(check.src == location.href + first){
-        check.src = location.href + second;
+    if(check.src == location.origin + first){
+        check.src = location.origin + second;
     }
-    else check.src = location.href + first;
+    else check.src = location.origin + first;
 }
 
 function togglepass(id){
@@ -112,24 +112,13 @@ function setAttributes(el, attrs){
     }
 }
 
-function getQueryString(href){
-    let qstr = '';
-
-    for(let i = href.length - 1; i > 0 ; i--){
-        if(href[i] == '=') break;
-        qstr += href[i];
-    }
-
-    return qstr = qstr.split('').reverse().join('');
-}
-
 /*
     Checkerbox (light <-> dark theme button)
 */
 let checkerbox = document.getElementById('checkerbox');
 checkerbox.style.cursor = 'pointer';
 checkerbox.addEventListener('click', function(){
-    swapsrc('checkerbox','img/logo16.png','img/logo16inv.png');
+    swapsrc('checkerbox','/site/img/logo16.png','/site/img/logo16inv.png');     // remove/rename /site when using webserver
     swaptheme();
 });
 
@@ -459,5 +448,3 @@ if(logout != null){
         });
     });
 }
-
-console.log(location.href);

@@ -30,7 +30,9 @@ else if(basename($_SERVER['PHP_SELF'], ".php") == "edited_thread")
 else if(contains("thread=", $_SERVER['QUERY_STRING'])){
 	if(basename($_SERVER['PHP_SELF'], ".php") == "edit_thread") echo "Edit ";
 	echo "Thread | ";
-	$thread = str_replace("thread=", "", $_SERVER['QUERY_STRING']);
+	$q = array();
+	parse_str($_SERVER['QUERY_STRING'], $q);
+	$thread = $q['thread'];
 
 	require_once(abs_php_include($x).'conn.php');
 

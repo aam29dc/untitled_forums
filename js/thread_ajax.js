@@ -1,6 +1,6 @@
 "use strict";
 
-/* POST REPLY */
+/* POST to a thread */
 document.getElementById('post_f').setAttribute('action', "javascript:void(0);");
 document.getElementById('post_b').setAttribute('onClick', "postAJAX();");
 
@@ -8,22 +8,67 @@ document.getElementById('post_b').setAttribute('onClick', "postAJAX();");
 let qstring = window.location.search;
 let threadId = '';
 let pageId = '';
-let qi = 0;
+let replyId = '';
 
-//get threadId
-for(qi = 0; qi < qstring.length; qi++){
-    if(qstring[qi] >= '0' && qstring[qi] <= '9'){
-        threadId += qstring[qi];
-    }
-    else if(qstring[qi] == '&') break;
-}
+var queryDict = {};
+location.search.substring(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
+threadId = queryDict["thread"];
+pageId = queryDict["pages"];
 
-//get pageId
-for(; qi < qstring.length; qi++){
-    if(qstring[qi] >= '0' && qstring[qi] <= '9'){
-        pageId += qstring[qi];
+/*
+    LIKE a post
+*/
+function likeEvent(){
+    let upvotes = document.getElementsByClassName('upvote');
+    for(let i = 0;i < upvotes.length;i++){
+        upvotes[i].removeAttribute('href');
+        upvotes[i].style.cursor = 'pointer';
+
+        upvotes[i].addEventListener('click', function(){
+            $.ajax({
+                type: "GET",
+                data: {postId: upvotes[i].getAttribute('data-postid'),
+                        threadId: threadId},
+                url: "php/like_post_ajax.php",
+                success: function(echo){
+                    if(echo.charAt(0) != '0'){ 
+                        console.log("like_post_ajax.php failure: " + echo);
+                    }
+                    else if(echo.substring(1) == "-1"){
+                        document.getElementsByClassName('likes')[i].innerText = parseInt(document.getElementsByClassName('likes')[i].innerText) - 1;
+                    } else {
+                        document.getElementsByClassName('likes')[i].innerText = parseInt(document.getElementsByClassName('likes')[i].innerText) + 1;
+                    }
+                }
+            });
+        });
     }
 }
+likeEvent();
+
+/*
+    REPLY to a post
+*/
+function replyEvent(){
+    let replys = document.getElementsByClassName('reply_post');
+
+    let post_content = document.getElementById('post_content');
+
+    for(let i = 0;i < replys.length;i++){
+        replys[i].removeAttribute('href');
+        replys[i].style.cursor = 'pointer';
+
+        replys[i].addEventListener('click', function(){
+
+            document.getElementById('reply').innerText = "[Reply to #" + replys[i].getAttribute('data-postnum') + "]";
+            post_content.style.display = "block"
+            post_content.scrollIntoView();
+            replyId = replys[i].getAttribute('data-replyid');
+        });
+
+    }
+}
+replyEvent();
 
 function postAJAX(){
     let ptitle = document.getElementById('post_title');
@@ -32,7 +77,8 @@ function postAJAX(){
     $.ajax({
         type: "POST",
         data: {post_title: ptitle.value,
-            post_text: pmsg.value},
+            post_text: pmsg.value,
+            replyEventId: replyId},
         url: "php/posted_ajax.php",
         success: function(echo){
             if(echo != '0') console.log("posted_ajax.php failure: " + echo);
@@ -46,12 +92,11 @@ function postAJAX(){
 }
 
 function refreshThread(){
-    let post_coll = document.getElementById('post_coll');
-    let post_content = document.getElementById('post_content');
-
     $.ajax({
         type: "GET",
         url: "thread.php",
+        data: {thread: threadId,
+                pages: pageId},
         success: function(echo){
             document.getElementById('heart').innerHTML = echo;
             // re-set attributes and eventlisteners to new echo'd content
@@ -77,10 +122,12 @@ let edit_thread = document.getElementById('edit_thread');
 
 function threadEvent(){
     edit_thread = document.getElementById('edit_thread');
-    edit_thread.removeAttribute('href');
-    edit_thread.setAttribute('style', 'cursor:pointer;');
-    edit_thread.addEventListener('click', editThread);
-};
+    if(edit_thread) {
+        edit_thread.removeAttribute('href');
+        edit_thread.setAttribute('style', 'cursor:pointer;');
+        edit_thread.addEventListener('click', editThread);
+    }
+}
 threadEvent();
 
 function removeThreadElements(){
@@ -182,10 +229,10 @@ function postsEvent(){
         edit_posts[i].removeAttribute('href');
         edit_posts[i].setAttribute('style', 'cursor:pointer;');
         edit_posts[i].addEventListener('click', editPost);
-        edit_posts[i].index = i;
+        edit_posts[i].index = edit_posts[i].getAttribute('data-num');
         edit_posts[i].postid = edit_posts[i].getAttribute('data-postid');
     }
-};
+}
 postsEvent();
 
 function editPost(){

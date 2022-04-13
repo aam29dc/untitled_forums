@@ -1,6 +1,8 @@
 <?php
 session_start();
-$toid = str_replace("page=convo&id=", "", $_SERVER['QUERY_STRING']);
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+$toid = $q['id'];
 
 if(!is_numeric($toid) || empty($toid) || $toid < 0){
     echo "<p>Invalid conversation id.".$toid."</p>";

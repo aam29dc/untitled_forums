@@ -11,7 +11,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     require_once('conn.php');
-    $threadid = str_replace("thread=", "", $_SERVER['QUERY_STRING']);
+    $q = array();
+    parse_str($_SERVER['QUERY_STRING'], $q);
+    $threadid = $q['thread'];
+
     //DELETE CLICKED
     if($_POST['delete'] == "Delete"){
         //delete posts

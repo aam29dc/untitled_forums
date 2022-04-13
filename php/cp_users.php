@@ -3,7 +3,9 @@ session_start();
 
 define("UMAX", 20);
 
-$pages = str_replace("page=cp_users", "", str_replace("&pages=", "", $_SERVER['QUERY_STRING']));
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+$pages = $q['pages'];
 
 if(empty($pages)) $pages = 1;
 

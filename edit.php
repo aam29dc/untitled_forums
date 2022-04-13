@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-$postsid = str_replace("posts=", "", $_SERVER['QUERY_STRING']);
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+$postsid = $q['posts'];
 $error = false;
 
 include_once('index_header.php');

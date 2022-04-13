@@ -1,18 +1,10 @@
 "use strict";
-function getId(href){
-    let i = href.length - 1;
-    let result = '';
 
-    while(href[i] != '=' && i > 0){
-        result += href[i];
-        i--;
-    }
-    return result;
-}
+var queryDict = {};
+location.search.substring(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
+let toid = queryDict["id"];
 
 let fpmsg = document.getElementById('pmsg');
-let toid = getId(window.location.href);
-
 let convo = document.getElementById('convo');
 convo.scrollTo(0, convo.scrollHeight);
 
