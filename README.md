@@ -1,4 +1,4 @@
-# untitled_forums v0.3.4
+# untitled_forums v0.3.5
 **Requires jQuery for AJAX** (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
 **How to INSTALL:** Put jquery-3.6.0.min.js in /js folder. Open \_create_tables.php in your browser (on localhost).
@@ -17,6 +17,8 @@
 
 --have a conversations/pm (private message) another user.
 
+--like a post in a thread
+
 [ **HTML & CSS:** ]
 
 --saved variable css template, click the logo in the upper left corner to swap between dark and light themes.
@@ -29,7 +31,7 @@
 
 --for clicking on button to put input tags (a,b,i,s,...) in submit forms
 
---for AJAX: edit a thread/post without a page redirect. Submit a post without a page redirect. Send a pm in a private conversation without a page redirect. Login/signout without a page redirect. On signup page, notifies user a username is already in use, and passwords don't match.
+--for AJAX: edit a thread/post without a page redirect. Submit a post without a page redirect. Send a pm in a private conversation without a page redirect. Login/signout without a page redirect. On signup page, notifies user a username is already in use, and passwords don't match. Like a post.
 
 --synesthesia font, scroll line color change as user scrolls down page, mouse pointer color change as user moves mouse.
 
@@ -41,6 +43,12 @@
 
 ![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
 
+_______________________________________________________________________________________________
+(04/13/22) __[**0.3.5**]__
+_______________________________________________________________________________________________
+Added likes to posts, now you can like a post by clicking the thumbs up button, and mouse hover over the number to see who upvoted a post.
+Added replies to posts, reply to a post by clicking the reply button and the post will be 'linked' by table data to the post. The title will automatically include "Reply to #n". Added <q>quote element</q> to posts.
+Serveral fixes to thread.php, and fixes to query string array in PHP and JS, a more polished solution is now used.
 _______________________________________________________________________________________________
 (11/01/21) __[**3nd RELEASE**]__
 _______________________________________________________________________________________________
