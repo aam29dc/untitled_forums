@@ -53,6 +53,8 @@ Added replies to posts, reply to a post by clicking the reply button and the pos
 Added order posts by newest / oldest in thread.php.
 
 Serveral fixes to thread.php, thread_ajax.js, and fixes to query string array in PHP and JS, a more polished solution is now used.
+
+Additional bug fixes.
 _______________________________________________________________________________________________
 (11/01/21) __[**3nd RELEASE**]__
 _______________________________________________________________________________________________
