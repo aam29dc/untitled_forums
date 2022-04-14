@@ -1,4 +1,4 @@
-# untitled_forums v0.3.5 (screenshots slightly outdated)
+# untitled_forums v0.3.6 (screenshots slightly outdated)
 **Requires jQuery for AJAX** (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
 **How to INSTALL:** Put jquery-3.6.0.min.js in /js folder. Open \_create_tables.php in your browser (on localhost).
@@ -43,6 +43,12 @@
 
 ![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
 
+_______________________________________________________________________________________________
+(04/13/22) __[**0.3.6**]__
+_______________________________________________________________________________________________
+Added polls, create a poll with max 15 choices min 2. Vote on a poll to see results. A bar graph will appear and show percentages. Ajax scripts to polls have not been added yet.
+
+Additional bug fixes.
 _______________________________________________________________________________________________
 (04/13/22) __[**0.3.5**]__
 _______________________________________________________________________________________________
