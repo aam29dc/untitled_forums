@@ -19,6 +19,8 @@
 
 --like a post in a thread
 
+--create a poll, vote on a poll
+
 [ **HTML & CSS:** ]
 
 --saved variable css template, click the logo in the upper left corner to swap between dark and light themes.
