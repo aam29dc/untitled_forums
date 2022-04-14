@@ -46,7 +46,7 @@
 ![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
 
 _______________________________________________________________________________________________
-(04/13/22) __[**0.3.6**]__
+(04/14/22) __[**0.3.6**]__
 _______________________________________________________________________________________________
 Added polls, create a poll with max 15 choices min 2. Vote on a poll to see results. A bar graph will appear and show percentages. Ajax scripts to polls have not been added yet.
 
