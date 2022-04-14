@@ -1,7 +1,8 @@
 <?php
-    session_start();
-    $x = 1;
-    include_once('../index_header.php');
+session_start();
+$x = 1;
+include_once('../index_header.php');
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $title = addslashes($_POST['submit_title']);
     $text = addslashes($_POST['submit_text']);

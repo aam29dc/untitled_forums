@@ -7,11 +7,11 @@ $page = $q['page'];
 if(!isset($x)) require_once('lib.php');
 
 if(!isset($_SESSION['loggedin'])){
-    if($_SERVER['QUERY_STRING'] == 'page=signup')
+    if($page == 'signup')
         echo '<li class="hnav">Signup</li>'."\n";
     else echo '<li class="hnav"><a href="'.abs_php_include($x).'index.php?page=signup">Signup</a></li>'."\n";
 
-    if($_SERVER['QUERY_STRING'] == 'page=login')
+    if($page == 'login')
         echo '<li class="hnav">Login</li>'. "\n";
     else echo '<li class="hnav"><a id="user_login" href="'.abs_php_include($x).'index.php?page=login">Login</a></li>'. "\n";
 }

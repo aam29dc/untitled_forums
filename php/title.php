@@ -3,24 +3,33 @@ require_once('lib.php');
 
 echo "Userx.edu | ";
 
-if($_SERVER['QUERY_STRING'] == 'page=home' || (basename($_SERVER['PHP_SELF'], ".php") == "index" && empty($_SERVER['QUERY_STRING'])))
+$q = array();
+parse_str($_SERVER['QUERY_STRING'], $q);
+
+if($q['page'] == 'home' || (basename($_SERVER['PHP_SELF'], ".php") == "index" && empty($_SERVER['QUERY_STRING'])))
 	echo "Home";
-else if($_SERVER['QUERY_STRING'] == 'page=submit')
-	echo "Submit";
-else if($_SERVER['QUERY_STRING'] == 'page=about')
+else if($q['page'] == 'polls')
+	echo "Polls";
+else if($q['page'] == 'submit_poll')
+	echo "Submit Poll";
+else if($q['page'] == 'submit')
+	echo "Submit Article";
+else if($q['page'] == 'about')
 	echo "About us";
-else if($_SERVER['QUERY_STRING'] == 'page=sub')
+else if($q['page'] == 'sub')
 	echo "Subscribe";
-else if($_SERVER['QUERY_STRING'] == 'page=unsub')
+else if($q['page'] == 'unsub')
 	echo "Unsubscribe";
-else if($_SERVER['QUERY_STRING'] == 'page=signup')
+else if($q['page'] == 'signup')
 	echo "Signup";
-else if($_SERVER['QUERY_STRING'] == 'page=login')
+else if($q['page'] == 'login')
 	echo "Login";
 else if(basename($_SERVER['PHP_SELF'], ".php") == "logout")
 	echo "Logout";
 else if(basename($_SERVER['PHP_SELF'], ".php") == "logged")
 	echo "Logging in";
+else if(basename($_SERVER['PHP_SELF'], ".php") == "submit_vote")
+	echo "Submitting vote";
 else if(contains("page=member", $_SERVER['QUERY_STRING']))
 	echo "Member | ".str_replace("&user=", "", str_replace("page=member", "", $_SERVER['QUERY_STRING']));
 else if(basename($_SERVER['PHP_SELF'], ".php") == "edit")
@@ -30,8 +39,6 @@ else if(basename($_SERVER['PHP_SELF'], ".php") == "edited_thread")
 else if(contains("thread=", $_SERVER['QUERY_STRING'])){
 	if(basename($_SERVER['PHP_SELF'], ".php") == "edit_thread") echo "Edit ";
 	echo "Thread | ";
-	$q = array();
-	parse_str($_SERVER['QUERY_STRING'], $q);
 	$thread = $q['thread'];
 
 	require_once(abs_php_include($x).'conn.php');
@@ -50,6 +57,32 @@ else if(contains("thread=", $_SERVER['QUERY_STRING'])){
 		if($stmt->rowCount() > 0){
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 			echo $row['title'];
+		}
+		else echo "404";
+	}
+	else echo "404";
+}
+else if(contains("poll=", $_SERVER['QUERY_STRING'])){
+	if(basename($_SERVER['PHP_SELF'], ".php") == "edit_poll") echo "Edit ";
+	echo "Poll | ";
+	$poll = $q['poll'];
+
+	require_once(abs_php_include($x).'conn.php');
+
+	if(!is_numeric($poll) || empty($poll)){ // if query string is not numeric, then thread = newest thread
+		$stmt = $pdo->prepare("SELECT MAX(pollid) FROM polls;");
+		if($stmt->execute()){
+			$poll = $stmt->fetchColumn();
+		}
+		else $poll = 1;
+	}
+
+	$stmt = $pdo->prepare("SELECT question FROM polls WHERE pollid = :poll;");
+	$stmt->bindValue(":poll", $poll);
+	if($stmt->execute()){
+		if($stmt->rowCount() > 0){
+			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+			echo $row['question'];
 		}
 		else echo "404";
 	}
@@ -77,7 +110,7 @@ else if(basename($_SERVER['PHP_SELF'], ".php") == "profile_password")
 	echo "Edit password";
 else if(basename($_SERVER['PHP_SELF'], ".php") == "profile_username")
 	echo "Edit username";
-else if($_SERVER['QUERY_STRING'] == 'page=cp_users')
+else if($q['page'] == 'cp_users')
 	echo "Control Panel | Users";
 else if(contains("page=inbox", $_SERVER['QUERY_STRING']))
 	echo "Inbox";

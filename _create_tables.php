@@ -24,7 +24,22 @@ else { echo 'failed to create posts';}
 //likes (posts)
 $stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS posts_likes (postid int NOT NULL, likeid int NOT NULL, threadid int NOT NULL, FOREIGN KEY (postid) REFERENCES posts(postid), FOREIGN KEY (likeid) REFERENCES users(userid), FOREIGN KEY (threadid) REFERENCES threads(threadid));");
 if($stmt->execute()){}
-else { echo 'failed to likes for posts';}
+else { echo 'failed to create likes for posts';}
+
+//polls
+$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS polls (pollid int NOT NULL PRIMARY KEY AUTO_INCREMENT, question VARCHAR(32) NOT NULL, authorid int NOT NULL, date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (authorid) REFERENCES users(userid));");
+if($stmt->execute()){}
+else { echo 'failed to create polls';}
+
+//polls - choices
+$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS polls_choices (choiceid int NOT NULL, pollid int NOT NULL, choice VARCHAR(32) NOT NULL, FOREIGN KEY (pollid) REFERENCES polls(pollid), UNIQUE KEY (choiceid, pollid));");
+if($stmt->execute()){}
+else { echo 'failed to create polls choice';}
+
+//polls - votes
+$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS polls_votes (pollid int NOT NULL, choiceid int NOT NULL, userid int NOT NULL, FOREIGN KEY (pollid) REFERENCES polls(pollid), FOREIGN KEY (choiceid) REFERENCES polls_choices(choiceid), FOREIGN KEY (userid) REFERENCES users(userid));");
+if($stmt->execute()){}
+else { echo 'failed to create polls votes';}
 
 //subs
 $stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS subs (firstname VARCHAR(32), lastname VARCHAR(32), email VARCHAR(32) NOT NULL UNIQUE);");

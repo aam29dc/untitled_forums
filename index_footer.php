@@ -24,14 +24,16 @@
 <script src="<?php abs_include($x);?>js/general.js"></script>
 <script src="<?php abs_include($x);?>js/jquery-3.6.0.min.js"></script>
 <?php /* CONDITIONAL INCLUDE BASED ON PHP PAGE */
-    if($_SERVER['QUERY_STRING'] == 'page=signup'){
+    $q = array();
+    parse_str($_SERVER['QUERY_STRING'], $q);
+    if($q['page'] == 'signup'){
         //echo '<script src="js/jquery-3.6.0.min.js"></script>'."\n";
         echo '<script src="js/signup_ajax.js"></script>'."\n";
     }
-    else if($_SERVER['QUERY_STRING'] == 'page=sub'){
+    else if($q['page'] == 'sub'){
         echo '<script src="js/subscribe.js"></script>';
     }
-    else if(isset($_SESSION['loggedin']) && $_SERVER['QUERY_STRING'] == 'page=inbox'){
+    else if(isset($_SESSION['loggedin']) && $q['page'] == 'inbox'){
         echo '<script src="js/inbox.js"></script>';
     }
     else if(contains("&submit=x", $_SERVER['QUERY_STRING'])){

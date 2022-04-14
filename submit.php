@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 
 echo "<h1>Submit article</h1><hr><br>";
 

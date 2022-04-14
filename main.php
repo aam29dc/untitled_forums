@@ -20,7 +20,7 @@ if(tableExists($pdo,'threads')){
 
     if($stmt->rowCount() > 0){
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            echo '<h3><a class="nsyn" style="display:block;" href="?thread='.$row['threadid'].'">'.$row['threadid']." ";
+            echo '<h3><a class="nsyn" style="display:block;" href="?thread='.$row['threadid'].'">'.$row['threadid'].") ";
             
             //check if user is blocked
             $stmt2 = $pdo->prepare("SELECT blocked FROM blocks WHERE userid = :userid AND blockid = :blockid;");

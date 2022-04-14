@@ -83,15 +83,6 @@ if(tableExists($pdo,'threads')){
         echo '<h5><a href="index.php?page=member&user='.$author.'">- '.$author.'</a><span style="float:right;">'.$row['date']."</span></h5>";
         echo "<hr>"."\n";
 
-        //sort thread by date
-        echo '<div>Sort by: ';
-            if($sort == 1) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.$pages.'&sort=0">Oldest</a>';
-            else echo 'Oldest';
-        echo ' | '; 
-            if(empty($sort) || $sort == 0) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.$pages.'&sort=1">Newest</a>';
-            else echo 'Newest';
-        echo '</div>';
-
         if(empty($sort) || $sort == 0) $order = "date ASC";
         else $order = "date DESC";
         //print POSTS from posts table
@@ -99,7 +90,17 @@ if(tableExists($pdo,'threads')){
         $stmt->bindValue(":thread", $thread);
         $stmt->bindValue(":pages", (int)(($pages-1)*TMAX), PDO::PARAM_INT);
         $stmt->execute();
+
         if($stmt->rowCount() > 0){
+        //sort thread by date links
+            echo '<div>Sort by: ';
+            if($sort == 1) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.$pages.'&sort=0">Oldest</a>';
+            else echo 'Oldest';
+            echo ' | '; 
+            if(empty($sort) || $sort == 0) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.$pages.'&sort=1">Newest</a>';
+            else echo 'Newest';
+            echo '</div>';
+
             echo '<table style="table-layout:fixed;">';
             $i = 1;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
