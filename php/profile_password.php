@@ -4,7 +4,7 @@ session_start();
 $x = 1;
 include_once('../index_header.php');
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     require_once('conn.php');
 
     $error = false;
@@ -20,13 +20,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     //check if new password is equal to current password
-    if($_POST['profile_newpass'] == $_POST['profile_currentpass']){
+    if($_POST['profile_newpass'] === $_POST['profile_currentpass']){
         echo "<p>New password can't be the same as the current password.</p>";
         $error = true;
     }
 
     //check if new pass is equal to cofirm pass
-    if($_POST['profile_newpass'] != $_POST['profile_confirmpass']){
+    if($_POST['profile_newpass'] !== $_POST['profile_confirmpass']){
         echo "<p>Confirm password failed, not the same as new password.</p>";
         $error = true;
     }

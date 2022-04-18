@@ -4,7 +4,7 @@ require_once('lib.php');
 $x = 1;
 include_once(abs_php_include($x).'index_header.php');
 
-if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
+if($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET) && !empty($_GET)){
     require_once('conn.php');
 
     //save variables for form
@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
         $stmt->bindValue(':email', $_GET['email']);
         $stmt->execute();
 
-        if($stmt->fetchColumn() == 0){
+        if($stmt->fetchColumn() === 0){
             $stmt = $pdo->prepare("INSERT INTO subs VALUES (:first,:last,:email);");
             $stmt->bindValue(':first', $_GET['firstname']);
             $stmt->bindValue(':last', $_GET['lastname']);
@@ -53,7 +53,7 @@ end:
 $pdo = null;
 $stmt = null;
 
-if(basename($_SERVER['PHP_SELF'], ".php") == "subscribed") {
+if(basename($_SERVER['PHP_SELF'], ".php") === "subscribed") {
     $x = 1;
 }
 

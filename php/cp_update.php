@@ -11,7 +11,7 @@ $stmt->execute();
 $unban = $stmt->fetchColumn();
 
 if(!((time() < strtotime($unban) + 14400) && !empty($unban))){
-    if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET) && !empty($_GET)){
+    if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET) && !empty($_GET)){
         if(!isset($_GET['userid']) || empty($_GET['userid'])){
             echo "<p>Error: Id required to update row.</p>";
             goto end;
@@ -36,7 +36,7 @@ if(!((time() < strtotime($unban) + 14400) && !empty($unban))){
             } else echo "<p>Failed to update user priviledge.</p>";
         }
 
-        if(isset($_GET['ban']) && !empty($_GET['ban']) && (int)$_GET['ban'] != 0){    // "'its a perma'" - twitch.tv/payo
+        if(isset($_GET['ban']) && !empty($_GET['ban']) && (int)$_GET['ban'] !== 0){    // "'its a perma'" - twitch.tv/payo
                 //delete user from bans before insert
                 $stmt = $pdo->prepare("DELETE FROM bans WHERE userid = :userid;");
                 $stmt->bindValue(":userid", $_GET['userid']);

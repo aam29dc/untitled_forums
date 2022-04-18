@@ -3,13 +3,13 @@ session_start();
 require_once('conn.php');
 require_once('lib.php');
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
 
-    if(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['username']) != $_POST['username']){
+    if(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['username']) !== $_POST['username']){
         echo "1";
         goto end;
     }
-    if(strlen($_POST['pwd']) == 0){
+    if(strlen($_POST['pwd']) === 0){
         echo "2";
         goto end;
     }

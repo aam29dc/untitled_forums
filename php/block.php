@@ -15,7 +15,7 @@ if(empty($blockuser) || !isset($blockuser) || is_numeric($blockuser)){
     $error = true;
 }
 
-if((empty($block) || !isset($block) || !is_numeric($block)) && $block !=0){
+if((empty($block) || !isset($block) || !is_numeric($block)) && $block !==0){
     echo "<p>Error: bool block variable not correctly set.</p>";
     $error = true;
 }
@@ -26,7 +26,7 @@ $stmt->bindValue(1, $blockuser);
 $stmt->execute();
 $blockid = $stmt->fetchColumn();
 
-if($_SESSION['userid'] == $blockid){
+if($_SESSION['userid'] === $blockid){
     echo "<p>Error: can't block yourself.</p>";
     $error = true;
 }
@@ -38,7 +38,7 @@ if(empty($blockid)){
 
 if($error) goto end;
 
-if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
+if($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET) && !empty($_GET)){
     //check if already blocked
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM blocks WHERE userid = :userid AND blockid = :blockid;");
     $stmt->bindValue(":userid", $_SESSION['userid']);
@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
     $blocked = $stmt->fetchColumn();
 
     //if not blocked, do an insert
-    if(empty($blocked) || $blocked == false){
+    if(empty($blocked) || $blocked === false){
         $stmt = $pdo->prepare("INSERT INTO blocks (userid, blockid) VALUES (:userid, :blockid);");
         $stmt->bindValue(":userid", $_SESSION['userid']);
         $stmt->bindValue(":blockid", $blockid);

@@ -1,5 +1,5 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
+if($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET) && !empty($_GET)){
     if(!empty($_GET['search'])){
 
         require_once('conn.php');

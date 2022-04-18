@@ -4,7 +4,7 @@ session_start();
 $x = 1;
 include_once('../index_header.php');
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     if(strlen($_POST['edit_message']) < MSG_MIN_LENGTH){
         echo "<p>Error: enter a longer message.</p>";
         goto end;
@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $postsid = $q['posts'];
 
     //DELETE CLICKED
-    if($_POST['delete'] == "Delete"){
+    if($_POST['delete'] === "Delete"){
             //get threadid
             $stmt = $pdo->prepare("SELECT threadid FROM posts WHERE postid = ?;");
             $stmt->bindValue(1, $postsid);
@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         goto end;
     }
     //EDIT CLICKED
-    if($_POST['edit_title'] == $_POST['ori_title'] && $_POST['edit_message'] == $_POST['ori_message']){
+    if($_POST['edit_title'] === $_POST['ori_title'] && $_POST['edit_message'] === $_POST['ori_message']){
         echo "<p>Nothing updated. No changes have been made to the post title or message.</p>";
     } else {
         $stmt = $pdo->prepare("UPDATE posts SET title = :title, msg = :msg, date = NOW() WHERE postid = :postid;");

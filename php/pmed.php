@@ -4,7 +4,7 @@ session_start();
 $x = 1;
 include_once('../index_header.php');
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+if($_SERVER['REQUEST_METHOD'] === "POST"){
     require_once('conn.php');
     require_once('lib.php');
     $error = false;
@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         echo "<p>Error: empty message.</p>";
         $error = true;
     }
-    if($_SESSION['userid'] == $_POST['recipient']){
+    if($_SESSION['userid'] === $_POST['recipient']){
         echo "<p>Error: can't message yourself.</p>";
         $error = true;
     }
@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE userid = ?;");
     $stmt->bindValue(1, $_POST['recipient']);
     $stmt->execute();
-    if($stmt->fetchColumn() == 0){
+    if($stmt->fetchColumn() === 0){
         echo "<p>Error: That user doesn't exist.</p>";
         goto end;    //end before querying... ^
     }

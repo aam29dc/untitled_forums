@@ -1,5 +1,8 @@
 ____( indented with a * means its completed. Non-indented without a * means its not complete )____
 
+[0.3.7]
+	*polished code, and bug fixes.
+
 [0.3.6]
 	*added polls (still more WIP, such as deleteing a poll)
 	*more bug fixes

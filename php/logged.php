@@ -12,14 +12,14 @@ else {
   $report = "<h3>Redirecting back to login...</h3>";
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     $error = false;
   
-    if(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['username']) != $_POST['username']){
+    if(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['username']) !== $_POST['username']){
       $report .= "<p>Error: enter a valid username with no special characters.</p>";
       $error = true;
     }
-    if(strlen($_POST['pwd']) == 0){
+    if(strlen($_POST['pwd']) === 0){
       $report .= "<p>Error: enter a password.</p>";
       $error = true;
     }

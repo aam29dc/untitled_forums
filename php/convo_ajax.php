@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
     require_once('conn.php');
 
     $error = false;
@@ -33,13 +33,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     //rearrange styled for js
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         echo "<span>";
-        if($_SESSION['userid'] == $row['fromid']){
+        if($_SESSION['userid'] === $row['fromid']){
             echo "<span>".$_SESSION['username'];
         } else echo "<mark>".$toName;
 
         echo '<span class="f3"> ('.$row['timesent'].'): </span><span>'.$row['msg'].'</span>';
 
-        if($_SESSION['userid'] == $row['fromid']){
+        if($_SESSION['userid'] === $row['fromid']){
             echo "</span>";
         } else echo "</mark>";
 

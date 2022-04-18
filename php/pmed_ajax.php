@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+if($_SERVER['REQUEST_METHOD'] === "POST"){
     require_once('conn.php');
     require_once('lib.php');
 
@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         echo '2';
         $error = true;
     }
-    if($_SESSION['userid'] == $_POST['recipient']){
+    if($_SESSION['userid'] === $_POST['recipient']){
         echo '3';
         $error = true;
     }
@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE userid = ?;");
     $stmt->bindValue(1, $_POST['recipient']);
     $stmt->execute();
-    if($stmt->fetchColumn() == 0){
+    if($stmt->fetchColumn() === 0){
         echo '4';
         goto end;    //end before querying... ^
     }

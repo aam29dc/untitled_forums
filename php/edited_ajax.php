@@ -1,6 +1,6 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(strlen($_POST['edit_message']) < 5  && $_POST['delete'] != "Delete"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+    if(strlen($_POST['edit_message']) < 5  && $_POST['delete'] !== "Delete"){
         echo "1";
         goto end;
     }
@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     //DELETE CLICKED
-    if($_POST['delete'] == "Delete"){
+    if($_POST['delete'] === "Delete"){
             //get threadid
             $stmt = $pdo->prepare("SELECT threadid FROM posts WHERE postid = ?;");
             $stmt->bindValue(1, $_POST['postid']);
@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     //EDIT CLICKED
-    if($_POST['edit_title'] == $_POST['ori_title'] && $_POST['edit_message'] == $_POST['ori_message']){
+    if($_POST['edit_title'] === $_POST['ori_title'] && $_POST['edit_message'] === $_POST['ori_message']){
         echo "4";
     } else {
         $stmt = $pdo->prepare("UPDATE posts SET title = :title, msg = :msg, date = NOW() WHERE postid = :postid;");

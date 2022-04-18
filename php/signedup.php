@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){      
+if($_SERVER["REQUEST_METHOD"] === "POST"){      
     $error = false;
     $report = "";
 
-    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) == false){
+    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
         $report .= "<p>Error: enter a valid email address.</p>";
         $error = true;
     }
-    if(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['s_username']) != $_POST['s_username']){
+    if(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['s_username']) !== $_POST['s_username']){
         $report .= "<p>Error: enter a valid username with no special characters.</p>";
         $error = true;
     }
@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $report .= "<p>Error: enter a password with atleast 5 characters.</p>";
         $error = true;
     }
-    if($_POST['s_pwd'] != $_POST['confirm_pwd']){
+    if($_POST['s_pwd'] !== $_POST['confirm_pwd']){
         $report .= "<p>Error: confirm password failed.</p>";
         $error = true;
     }
@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $error = false;
 
-        if($stmt->fetchColumn() != 0){
+        if($stmt->fetchColumn() !== 0){
             $report .= "<p>Sorry, a user with the name: ".htmlspecialchars($_POST['s_username'])." already exists.</p>";
             $error = true;
         }
@@ -44,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $stmt->bindValue(1, $_POST['email']);
         $stmt->execute();
 
-        if($stmt->fetchColumn() != 0){
+        if($stmt->fetchColumn() !== 0){
             $report .= "<p>The email: ".htmlspecialchars($_POST['email'])." is already being used.</p>";
             $error = true;
         }

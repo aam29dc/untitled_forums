@@ -38,7 +38,7 @@ $stmt->bindValue(":postsid", $postsid);
 if($stmt->execute()){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if(($_SESSION['userid'] != $row['authorid']) && $_SESSION['priviledge'] <= 1){
+    if(($_SESSION['userid'] !== $row['authorid']) && $_SESSION['priviledge'] <= 1){
         echo "<p>This user cannot edit this post.</p>";
         goto end;
     }

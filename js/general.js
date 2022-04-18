@@ -3,14 +3,14 @@
     GLOBALS
 */
 
-//let MYAPP = {};   
+//const MYAPP = {};   
 /*  used and first defined in index_header.php because
     firefox flickers from light <-> dark theme when on dark theme   */
 
 MYAPP.html = document.querySelector('html');
 MYAPP.theme = getCookie("theme");
 
-if(MYAPP.theme == ""){
+if(MYAPP.theme === ""){
      setCookie("theme", "light", 30);
      MYAPP.theme = "light";
 }
@@ -25,17 +25,17 @@ function setCookie(cname, cvalue, exdays){
  }
 
 function getCookie(cname){
-     let name = cname + "=";
+     const name = cname + "=";
      let decodedCookie = decodeURIComponent(document.cookie);
      let arr = decodedCookie.split(';');
      
      for(let i = 0;i < arr.length; i++){
          let ele = arr[i];
 
-         while(ele.charAt(0) == ' '){   // deletes white spaces
+         while(ele.charAt(0) === ' '){   // deletes white spaces
              ele = ele.substring(1);
          }
-         if(ele.indexOf(name) == 0){
+         if(ele.indexOf(name) === 0){
              return ele.substring(name.length, ele.length);
          }
      }
@@ -62,13 +62,13 @@ function swaptheme(){
     let theme = getCookie("theme");
 
     //not set
-    if(theme == ""){
+    if(theme === ""){
          setCookie("theme", "light", 30);
          theme = "light";
     }
 
     //swap
-    if(theme == "light"){
+    if(theme === "light"){
         MYAPP.html.dataset.theme = "theme-dark";
         setCookie("theme", "dark", 30);
     }
@@ -81,7 +81,7 @@ function swaptheme(){
 function swapsrc(id, first, second){
     let check = document.getElementById(id);
 
-    if(check.src == location.origin + first){
+    if(check.src === location.origin + first){
         check.src = location.origin + second;
     }
     else check.src = location.origin + first;
@@ -90,7 +90,7 @@ function swapsrc(id, first, second){
 function togglepass(id){
     let pass = document.getElementById(id);
 
-    if(pass.type == "password") pass.type = "text";
+    if(pass.type === "password") pass.type = "text";
     else pass.type = "password";
 }
 
@@ -101,7 +101,7 @@ function hideelement(id){
 
 function input_tag(id, tag){
     let subtag = '';
-    if(tag == 'a') subtag = ' href=""';
+    if(tag === 'a') subtag = ' href=""';
 
     document.getElementById(id).value += "<" + tag + subtag + "></" + tag + ">";
 }
@@ -126,7 +126,7 @@ checkerbox.addEventListener('click', function(){
     SCROLL LINE EFFECT
 */
 function getVerticalScrollPercentage(elm){
-    let p = elm.parentNode;
+    const p = elm.parentNode;
     return (elm.scrollTop || p.scrollTop) / (p.scrollHeight - p.clientHeight);
 }
 
@@ -134,7 +134,7 @@ let line = document.getElementById('line');
 line.style.top = 0;
 
 document.addEventListener('scroll', function(){ 
-    let pos = (0.997)*getVerticalScrollPercentage(document.body);   //because if line is at 100% it is hidden,
+    const pos = (0.997)*getVerticalScrollPercentage(document.body);   //because if line is at 100% it is hidden,
     //and browsers hide line at different percents
     let [za,zb,zc] = [0,0,0];
 
@@ -163,7 +163,7 @@ document.addEventListener('scroll', function(){
         zb = 0;
         zc = 255;
     }
-    else if(pos >= 5/6 && pos <= 6/6){  //pink -> red
+    else if(pos >= 5/6 && pos <= 1){  //pink -> red
         za = 255;
         zb = 0;
         zc = 255 - (pos - 5/6)*6*255;
@@ -187,32 +187,32 @@ var [ci, cj, ck] = [0, 0, 0];
 
 document.addEventListener('mousemove', function(){
     //get cursor bg color
-    if(r == 255 && g == 0 && b == 0){     //red
+    if(r === 255 && g === 0 && b === 0){     //red
         ci = 0;
         cj = 1;
         ck = 0;
     }
-    else if(r == 255 && g == 255 && b == 0){    //yellow
+    else if(r === 255 && g === 255 && b === 0){    //yellow
         ci = -1;
         cj = 0;
         ck = 0;
     }
-    else if(r == 0 && g == 255 && b == 0){    //green
+    else if(r === 0 && g === 255 && b === 0){    //green
         ci = 0;
         cj = 0;
         ck = 1;
     }
-    else if(r == 0 && g == 255 && b == 255){    //cyan
+    else if(r === 0 && g === 255 && b === 255){    //cyan
         ci = 0;
         cj = -1;
         ck = 0;
     }
-    else if(r == 0 && g == 0 && b == 255){    //blue
+    else if(r === 0 && g === 0 && b === 255){    //blue
         ci = 1;
         cj = 0;
         ck = 0;
     }
-    else if(r == 255 && g == 0 && b == 255){    //pink
+    else if(r === 255 && g === 0 && b === 255){    //pink
         ci = 0;
         cj = 0;
         ck = -1;
@@ -256,32 +256,32 @@ function drawsyn(){
         syn[x].style.backgroundImage = `linear-gradient(90deg, rgb(${ar}, ${ag}, ${ab}), rgb(${ab}, ${ar}, ${ag}), rgb(${ag}, ${ab}, ${ar}))`;
     }
     
-    if(ar == 255 && ag == 0 && ab == 0){     //red
+    if(ar === 255 && ag === 0 && ab === 0){     //red
         ai = 0;
         aj = 1;
         ak = 0;
     }
-    else if(ar == 255 && ag == 255 && ab == 0){    //yellow
+    else if(ar === 255 && ag === 255 && ab === 0){    //yellow
         ai = -1;
         aj = 0;
         ak = 0;
     }
-    else if(ar == 0 && ag == 255 && ab == 0){    //green
+    else if(ar === 0 && ag === 255 && ab === 0){    //green
         ai = 0;
         aj = 0;
         ak = 1;
     }
-    else if(ar == 0 && ag == 255 && ab == 255){    //cyan
+    else if(ar === 0 && ag === 255 && ab === 255){    //cyan
         ai = 0;
         aj = -1;
         ak = 0;
     }
-    else if(ar == 0 && ag == 0 && ab == 255){    //blue
+    else if(ar === 0 && ag === 0 && ab === 255){    //blue
         ai = 1;
         aj = 0;
         ak = 0;
     }
-    else if(ar == 255 && ag == 0 && ab == 255){    //pink
+    else if(ar === 255 && ag === 0 && ab === 255){    //pink
         ai = 0;
         aj = 0;
         ak = -1;
@@ -338,8 +338,8 @@ let content = document.getElementsByClassName('content');
 
 function toggleContent() {
     this.classList.toggle("active");
-    let content = this.nextElementSibling;
-    if (content.style.display == "block") {
+    content = this.nextElementSibling;
+    if (content.style.display === "block") {
         content.style.display = "none";
     } else content.style.display = "block";
 }
@@ -358,7 +358,7 @@ let user = document.getElementById('username');
 let pwd = document.getElementById('pwd');
 let submit = document.getElementById('login');
 
-if(submit != null){
+if(submit !== null){
     submit.disabled = true;
 
     document.getElementById('f_login').addEventListener('input', function(){
@@ -372,7 +372,7 @@ if(submit != null){
 // show/hide pass
 let tpass = document.getElementById('tpass');
 
-if(tpass != null) {
+if(tpass !== null) {
     tpass.style.display = 'initial';
     tpass.style.cursor = 'pointer';
 
@@ -386,16 +386,16 @@ if(tpass != null) {
     LOGIN DIV POPOUT
 */
 let user_login = document.getElementById('user_login');
-if(user_login != null){
+if(user_login !== null){
     user_login.removeAttribute('href');
     user_login.style.cursor = 'pointer';
 
     let login_popout = document.getElementById('login_popout');
-    if(login_popout != null){
+    if(login_popout !== null){
         login_popout.style.display = 'none';
 
         user_login.addEventListener('click', function(){
-            if(login_popout.style.display == 'none'){
+            if(login_popout.style.display === 'none'){
                 login_popout.style.display = 'initial';
             } else login_popout.style.display = 'none';
         });
@@ -410,7 +410,7 @@ if(user_login != null){
                     pwd: document.getElementById('pwd').value},
                 url: "php/logged_ajax.php",
                 success: function(echo){
-                    if(echo == '0'){
+                    if(echo === '0'){
                         login_popout.style.display = 'none';
                         if(window.location.pathname.includes('logout')){
                             window.location = "index.php";
@@ -432,7 +432,7 @@ if(user_login != null){
 */
 let logout = document.getElementById('logout');
 
-if(logout != null){
+if(logout !== null){
     logout.removeAttribute('href');
     logout.style.cursor = 'pointer';
 
@@ -441,7 +441,7 @@ if(logout != null){
             type: "GET",
             url: "logout_ajax.php",
             success: function(echo){
-                if(echo != '0'){
+                if(echo !== '0'){
                     console.log("logout_ajax.php error: " + echo);
                 } else window.location = window.location;
             }

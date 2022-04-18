@@ -9,7 +9,7 @@ signup.disabled = true;
 function confirmPass(){
     let span = document.getElementById('span_pwd');
 
-    if(s_pwd.value != c_pwd.value){
+    if(s_pwd.value !== c_pwd.value){
         span.style.color = 'red';
         span.innerText = "Passwords not equal.";
     }
@@ -29,7 +29,7 @@ document.getElementById('f_signup').addEventListener('input', function(){
 });
 
 s_user.addEventListener('blur', function(){
-    let username = s_user.value;
+    const username = s_user.value;
     let span = document.getElementById('user_free');
 
     if(username.length >= 3){
@@ -40,7 +40,7 @@ s_user.addEventListener('blur', function(){
             data: {username: username},
             url: "php/user_free.php",
             success: function(echo){
-                if(echo == '0'){
+                if(echo === '0'){
                     span.style.color = 'rgb(0,255,0)';
                     span.innerText = "Available!";
                 }
@@ -54,17 +54,17 @@ s_user.addEventListener('blur', function(){
 });
 
 mail.addEventListener('blur', function(){
-    let email = mail.value;
+    const email = mail.value;
     let span = document.getElementById('email_free');
 
-    if(email == '') span.innerText = '';
+    if(email === '') span.innerText = '';
     else {
         $.ajax({
             type: "POST",
             data: {email: email},
             url: "php/email_free.php",
             success: function(echo){
-                if(echo == '1'){
+                if(echo === '1'){
                     span.style.color = 'red';
                     span.innerText = "Email already in use";
                 } else span.innerText = '';

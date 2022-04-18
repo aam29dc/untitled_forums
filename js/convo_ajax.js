@@ -1,8 +1,8 @@
 "use strict";
 
-var queryDict = {};
+const queryDict = {};
 location.search.substring(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
-let toid = queryDict["id"];
+const toid = queryDict["id"];
 
 let fpmsg = document.getElementById('pmsg');
 let convo = document.getElementById('convo');
@@ -20,7 +20,7 @@ document.getElementById('sendpm').addEventListener('click', function(e){
                 recipient: toid},
             url: "php/pmed_ajax.php",
             success: function(echo){
-                if (echo != '0') console.log('pmed_ajax.php failure: ' + echo);
+                if (echo !== '0') console.log('pmed_ajax.php failure: ' + echo);
             }
         });
         refreshMsg();

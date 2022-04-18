@@ -19,7 +19,7 @@ if(!isset($_SESSION['loggedin'])){
 
 require_once('conn.php');
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+if($_SERVER['REQUEST_METHOD'] === "POST"){
     //insert vote into polls_votes
     $stmt = $pdo->prepare("INSERT INTO polls_votes (pollid, choiceid, userid) VALUES (:pollid, :choiceid, :userid);");
     $stmt->bindValue(":pollid", $_GET['pollid']);

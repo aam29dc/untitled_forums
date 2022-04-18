@@ -4,7 +4,7 @@ session_start();
 $x = 1;
 include_once('../index_header.php');
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     require_once('conn.php');
     require_once('lib.php');
               

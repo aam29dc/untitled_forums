@@ -10,7 +10,7 @@ $stmt->bindValue(":pollid", $q['poll']);
 $stmt->bindValue(":userid", $_SESSION['userid']);
 $stmt->execute();
 
-if($stmt->rowCount() == 0) $voted = false;
+if($stmt->rowCount() === 0) $voted = false;
 else {
      $voted = true;
      $choiceid = $stmt->fetchColumn();
@@ -58,7 +58,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $stmt2->bindValue(":choiceid", $row['choiceid']);
         $stmt2->execute();
         $count = $stmt2->fetchColumn();
-        if($total == 0) $percent = 0;
+        if($total === 0) $percent = 0;
         else $percent = ($count / $total * 100);
         echo '<span style="margin-left:15px;"> '.(floor($percent*100)/100).'%</span><span style="margin-left:15px;">('.$count.' votes)</span><div style="background-color:rgb(155,155,155);height:16px;width:';
         if($percent <= 0.1) echo '0.1';

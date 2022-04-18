@@ -16,7 +16,7 @@ if(isset($_SESSION['loggedin'])){
     $stmt = $pdo->prepare("SELECT username FROM users WHERE userid = :toid;");
     $stmt->bindValue(":toid", $toid);
     $stmt->execute();
-    if($stmt->rowCount() == 0){
+    if($stmt->rowCount() === 0){
         echo "<p>That user doesn't exist.</p>";
         goto end;
     }
@@ -53,14 +53,14 @@ if(isset($_SESSION['loggedin'])){
             $stmt2->bindValue(1, $row['fromid']);
             $stmt2->execute();
 
-            if($_SESSION['userid'] != $row['fromid']){
+            if($_SESSION['userid'] !== $row['fromid']){
                 echo "<mark>".$stmt2->fetchColumn();
             }
             else echo "<span>".$stmt2->fetchColumn();
 
             echo '<span class="f3"> ('.$row['timesent'].'): </span>';
             echo '<span>'.$row['msg'].'</span>';
-            if($_SESSION['userid'] != $row['fromid']){
+            if($_SESSION['userid'] !== $row['fromid']){
                 echo "</mark>";
             } else echo "</span>";
             echo "\n".'</span>'."\n"."<br>";

@@ -57,7 +57,7 @@ if(!((time() < strtotime($unban) + 14400) && !empty($unban)) && $_SESSION['privi
         }
 
         // BUTTON: NEXT
-        if($count > UMAX && $stmt->rowCount() == UMAX){
+        if($count > UMAX && $stmt->rowCount() === UMAX){
             echo '<a class="nsyn" href="?page=cp_users&pages='.($pages+1).'"><button>Next</button></a>';
         }
     } else echo "<p>Error: query failed.</p>";

@@ -49,16 +49,16 @@ if(tableExists($pdo,'threads')){
         }
         echo "<br>";
         //BUTTON: PREV
-        if($page!=1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a> ';
+        if($page!==1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a> ';
         //BUTTON: NEXT
             //get count of threads
             $stmt2 = $pdo->prepare("SELECT COUNT(*) FROM threads;");
             $stmt2->execute();
-        if($stmt2->fetchColumn() > TMAX && $stmt->rowCount() == TMAX) echo '<a class="nsyn" href="?page='.($page+1).'"><button>Next</button></a>';
+        if($stmt2->fetchColumn() > TMAX && $stmt->rowCount() === TMAX) echo '<a class="nsyn" href="?page='.($page+1).'"><button>Next</button></a>';
     }
     else {
         echo "<p>No threads on this page.</p>";
-        if($page!=1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a>';
+        if($page!==1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a>';
     }
 } else echo "<p>Sorry threads table doesn't exist yet.</p>";
 

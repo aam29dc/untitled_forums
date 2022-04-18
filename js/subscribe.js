@@ -1,5 +1,5 @@
 "use strict";
-let email = document.getElementById('email');
+const email = document.getElementById('email');
 let subscribe = document.getElementById('subscribe');
 
 subscribe.disabled = true;

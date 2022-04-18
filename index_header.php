@@ -9,16 +9,16 @@
 	<meta name="keywords" content="programming, philosophy, math"/>
 	<meta http-equiv="author" content="aam29dc"/>
 	<link href="<?php abs_include($x);?>styles/styles.css?v=1" type="text/css" rel="stylesheet"/>
-	<link rel="shortcut icon" href="<?php if($_COOKIE['theme'] == 'light') echo abs_include($x)."img/Icon0.ico";else echo abs_include($x)."img/Icon1.ico";?>"/>
+	<link rel="shortcut icon" href="<?php if($_COOKIE['theme'] === 'light') echo abs_include($x)."img/Icon0.ico";else echo abs_include($x)."img/Icon1.ico";?>"/>
 	<link type="text/plain" rel="author" href="humans.txt"/>
 </head>
 <body>
-<script>let MYAPP = {};
+<script>const MYAPP = {};
 
 MYAPP.html = document.querySelector('html');
 MYAPP.theme = getCookie("theme");
 
-if(MYAPP.theme == ""){
+if(MYAPP.theme === ""){
 	setCookie("theme", "light", 30);
 	MYAPP.theme = "light";
 }
@@ -33,17 +33,17 @@ function setCookie(cname, cvalue, exdays){
 }
 
 function getCookie(cname){
-	let name = cname + "=";
+	const name = cname + "=";
 	let decodedCookie = decodeURIComponent(document.cookie);
 	let arr = decodedCookie.split(';');
 
 	for(let i = 0;i < arr.length; i++){
 		let ele = arr[i];
 
-		while(ele.charAt(0) == ' '){
+		while(ele.charAt(0) === ' '){
 			ele = ele.substring(1);
 		}
-		if(ele.indexOf(name) == 0){
+		if(ele.indexOf(name) === 0){
 			return ele.substring(name.length, ele.length);
 		}
 	}
@@ -54,7 +54,7 @@ function getCookie(cname){
 <div id="background-text"><code><?php include_once(abs_php_include($x)."php/bgtext.php");?></code></div>
 <div id="wrapper" <?php if(is_mobile()) echo 'style="width:97%;"';else echo 'style="width:940px;"';?>>
 	<div id="header">
-		<img src="<?php if($_COOKIE['theme'] == 'light') echo abs_include($x)."img/logo16.png";else echo abs_include($x)."img/logo16inv.png"; ?>" alt="userx" id="checkerbox">
+		<img src="<?php if($_COOKIE['theme'] === 'light') echo abs_include($x)."img/logo16.png";else echo abs_include($x)."img/logo16inv.png"; ?>" alt="userx" id="checkerbox">
 		<nav>
 		<form method="get" action="index.php?">
 			<ul>
@@ -65,7 +65,7 @@ function getCookie(cname){
 		</form>
 		</nav>
 	</div>
-	<?php if(($_SERVER['QUERY_STRING'] != 'page=login' && basename($_SERVER['PHP_SELF'], ".php") != "login")){
+	<?php if(($_SERVER['QUERY_STRING'] !== 'page=login' && basename($_SERVER['PHP_SELF'], ".php") !== "login")){
 		echo '<div id="login_popout">';
 		include_once(abs_php_include($x)."login.php");
 		echo '</div>';

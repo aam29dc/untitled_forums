@@ -3,11 +3,11 @@ function createpages($numpages, $currentpage, $link){
     echo " [ ";
 
     for($i=1;$i<=$numpages-1;$i++){
-        if($currentpage == $i) echo '<a>'.$i.'</a>, ';
+        if($currentpage === $i) echo '<a>'.$i.'</a>, ';
         else echo '<a href="'.$link.$i.'">'.$i.'</a>, ';
     }
 
-    if($currentpage == $i) echo '<a>'.$i.'</a>';
+    if($currentpage === $i) echo '<a>'.$i.'</a>';
     else echo '<a href="'.$link.$i.'">'.$i.'</a>';
 
     echo " ] ";
@@ -67,7 +67,7 @@ if(tableExists($pdo,'threads')){
         if($blocked) echo 'Blocked title.</h1>';
         else echo htmlspecialchars(stripslashes($row['title']))."</h1>";
         // BUTTON: (thread) EDIT
-        if(isset($_SESSION['loggedin']) && (($_SESSION['userid'] == $row['authorid']) || $_SESSION['priviledge'] >= 2) && !$banned){
+        if(isset($_SESSION['loggedin']) && (($_SESSION['userid'] === $row['authorid']) || $_SESSION['priviledge'] >= 2) && !$banned){
             echo '<a id="edit_thread" class="nsyn" href="edit_thread.php?thread='.$thread.'"><img src="img/edit16.png" style="float:right;"></a>';
         }
         echo '</div><p id="thread_msg" style="text-indent:5px;">';
@@ -83,7 +83,7 @@ if(tableExists($pdo,'threads')){
         echo '<h5><a href="index.php?page=member&user='.$author.'">- '.$author.'</a><span style="float:right;">'.$row['date']."</span></h5>";
         echo "<hr>"."\n";
 
-        if(empty($sort) || $sort == 0) $order = "date ASC";
+        if(empty($sort) || $sort === 0) $order = "date ASC";
         else $order = "date DESC";
         //print POSTS from posts table
         $stmt = $pdo->prepare("SELECT postid, authorid, replyid, postnum, title, msg, date FROM posts WHERE threadid = :thread ORDER BY ".$order." LIMIT :pages, ".TMAX.";");
@@ -94,10 +94,10 @@ if(tableExists($pdo,'threads')){
         if($stmt->rowCount() > 0){
         //sort thread by date links
             echo '<div>Sort by: ';
-            if($sort == 1) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.$pages.'&sort=0">Oldest</a>';
+            if($sort === 1) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.$pages.'&sort=0">Oldest</a>';
             else echo 'Oldest';
             echo ' | '; 
-            if(empty($sort) || $sort == 0) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.$pages.'&sort=1">Newest</a>';
+            if(empty($sort) || $sort === 0) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.$pages.'&sort=1">Newest</a>';
             else echo 'Newest';
             echo '</div>';
 
@@ -150,7 +150,7 @@ if(tableExists($pdo,'threads')){
                     echo '&replyid='.$row['postid'].'#post_content"><img style="float:right;width:16px;height:16px;" src="img/reply.png" alt="reply"></a>';
                 }
 
-                if(isset($_SESSION['loggedin']) && (($_SESSION['userid'] == $row['authorid']) || $_SESSION['priviledge'] >= 2) && !$banned){
+                if(isset($_SESSION['loggedin']) && (($_SESSION['userid'] === $row['authorid']) || $_SESSION['priviledge'] >= 2) && !$banned){
                     $_SESSION['pagesid'] = $pages;
                 // BUTTON: EDIT
                     echo '<a data-num="'.($i-1).'" data-postid="'.$row['postid'].'" class="edit_post nsyn" href="edit.php?posts='.$row['postid'].'"><img style="float:right;" src="img/edit16.png" alt="edit"></a>';
@@ -177,11 +177,11 @@ if(tableExists($pdo,'threads')){
                 while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
                     echo $row2['username'].'<br>';
                 }
-                echo'</div><span style="float:right;text-align:right;">'.$row['date'].'</span></div></td></tr>';
+                echo '</div><span style="float:right;text-align:right;">'.$row['date'].'</span></div></td></tr>';
 
                 $i++;
             }
-        } else if($stmt->rowCount() == 0 && $pages > 1) echo "<table><tr><td><p>This page does not exist yet.</p><td></tr>";
+        } else if($stmt->rowCount() === 0 && $pages > 1) echo "<table><tr><td><p>This page does not exist yet.</p><td></tr>";
         else echo "<table><tr><td><p>No one has posted a reply yet.</p><td></tr>";
         
         // BUTTON: BACK

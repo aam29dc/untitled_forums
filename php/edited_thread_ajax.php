@@ -1,5 +1,5 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     if(strlen($_POST['edit_message']) < 5){
         echo "1";//"<p>Error: enter a longer message.</p>";
         goto end;
@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         goto end;
     }
     //EDIT CLICKED
-    if($_POST['edit_title'] == $_POST['ori_title'] && $_POST['edit_message'] == $_POST['ori_message']){
+    if($_POST['edit_title'] === $_POST['ori_title'] && $_POST['edit_message'] === $_POST['ori_message']){
         echo "4";//"<p>Nothing updated. No changes have been made to the thread title or message.</p>";
     } else {
         $stmt = $pdo->prepare("UPDATE threads SET title = :title, msg = :msg, date = NOW() WHERE threadid = :threadid;");

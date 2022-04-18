@@ -57,7 +57,7 @@ if($stmt->rowCount() > 0){
         $stmt->execute();
         $blocked = $stmt->fetchColumn();
 
-        if($blocked == false){
+        if($blocked === false){
             echo '<a class="nsyn" href="index.php?page=block&user='.$user.'&b=1"><button style="display:block;">Block user</button></a><br>';
         }
         else {
@@ -70,10 +70,10 @@ if($stmt->rowCount() > 0){
     '</li><li>Priviledge: '.$row['priviledge'];
 
     // 0: guest, 1: member, 2: mod, 3: admin
-    if($row['priviledge'] == 0) echo " (guest)";
-    else if($row['priviledge'] == 1) echo " (member)";
-    else if($row['priviledge'] == 2) echo " (moderator)";
-    else if($row['priviledge'] == 3) echo " (admin)";
+    if($row['priviledge'] === 0) echo " (guest)";
+    else if($row['priviledge'] === 1) echo " (member)";
+    else if($row['priviledge'] === 2) echo " (moderator)";
+    else if($row['priviledge'] === 3) echo " (admin)";
 
     echo '</li></ul></nav>';
 } else echo "<p>No member with the username: ".htmlspecialchars($user)." exists.</p>";

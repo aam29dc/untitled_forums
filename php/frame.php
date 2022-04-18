@@ -10,29 +10,29 @@ function find_path($file, $depth = 2){
 $q = array();
 parse_str($_SERVER['QUERY_STRING'], $q);
 
-if($q['page'] == 'home')
+if($q['page'] === 'home')
 	include_once('main.php');
-else if($q['page'] == 'submit')
+else if($q['page'] === 'submit')
 	include_once('submit.php');
-else if($q['page'] == 'about')
+else if($q['page'] === 'about')
 	include_once('about.php');
-else if($q['page'] == 'sub')
+else if($q['page'] === 'sub')
 	include_once('subscribe.php');
-else if($q['page'] == 'unsub')
+else if($q['page'] === 'unsub')
 	include_once('unsubscribe.php');
-else if($q['page'] == 'signup')
+else if($q['page'] === 'signup')
 	include_once('signup.php');
-else if($q['page'] == 'login')
+else if($q['page'] === 'login')
 	include_once('login.php');
-/*else if($q['page'] == 'logout')
+/*else if($q['page'] === 'logout')
 	include_once('php/logout.php');*/
-else if($q['page'] == 'profile')
+else if($q['page'] === 'profile')
 	include_once('profile.php');
-else if($q['page'] == 'inbox')
+else if($q['page'] === 'inbox')
 	include_once('inbox.php');
-else if($q['page'] == 'cp_users')
+else if($q['page'] === 'cp_users')
 	include_once('cp_users.php');
-else if($q['page'] == 'member')
+else if($q['page'] === 'member')
 	include_once('member.php');
 else if(contains("thread=", $_SERVER['QUERY_STRING']))
 	include_once('thread.php');
@@ -42,17 +42,17 @@ else if(contains("&submit=x", $_SERVER['QUERY_STRING']))
 //	include_once('php/subscribed.php');
 //else if(contains("&unsub=Unsub", $_SERVER['QUERY_STRING']))
 //	include_once('php/unsubscribed.php');
-else if($q['page'] == 'pm')
+else if($q['page'] === 'pm')
 	include_once('pm.php');
-else if($q['page'] == 'convo')
+else if($q['page'] === 'convo')
 	include_once('php/convo.php');
-else if($q['page'] == 'block')
+else if($q['page'] === 'block')
 	include_once('php/block.php');
 else if(contains("poll=", $_SERVER['QUERY_STRING']))
 	include_once('poll.php');
-else if($q['page'] == 'polls')
+else if($q['page'] === 'polls')
 	include_once('polls.php');
-else if($q['page'] == 'submit_poll')
+else if($q['page'] === 'submit_poll')
 	include_once('submit_poll.php');
 else {
 	if(@!include_once('main.php')){

@@ -3,7 +3,7 @@ session_start();
 require_once('lib.php');
 $x = 1;
 include_once(abs_php_include($x).'index_header.php');
-if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
+if($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET) && !empty($_GET)){
     require_once('conn.php');
 
     //save variables for form
@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
         $stmt->bindValue(':email', $_GET['email']);
         $stmt->execute();
 
-        if($stmt->fetchColumn() == 1){
+        if($stmt->fetchColumn() === 1){
             $stmt = $pdo->prepare("DELETE FROM subs WHERE email = :email;");
             $stmt->bindValue(':email', $_GET['email']);
             
@@ -40,7 +40,7 @@ end:
 $pdo = null;
 $stmt = null;
 
-if(basename($_SERVER['PHP_SELF'], ".php")=="unsubscribe"){
+if(basename($_SERVER['PHP_SELF'], ".php")==="unsubscribe"){
     require_once('lib.php');
     $x = 1;
 }

@@ -5,12 +5,11 @@ document.getElementById('post_f').setAttribute('action', "javascript:void(0);");
 document.getElementById('post_b').setAttribute('onClick', "postAJAX();");
 
 //get thread id and pages id
-let qstring = window.location.search;
 let threadId = '';
 let pageId = '';
 let replyId = '';
 
-var queryDict = {};
+const queryDict = {};
 location.search.substring(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
 threadId = queryDict["thread"];
 pageId = queryDict["pages"];
@@ -31,10 +30,10 @@ function likeEvent(){
                         threadId: threadId},
                 url: "php/like_post_ajax.php",
                 success: function(echo){
-                    if(echo.charAt(0) != '0'){ 
+                    if(echo.charAt(0) !== '0'){ 
                         console.log("like_post_ajax.php failure: " + echo);
                     }
-                    else if(echo.substring(1) == "-1"){
+                    else if(echo.substring(1) === "-1"){
                         document.getElementsByClassName('likes')[i].innerText = parseInt(document.getElementsByClassName('likes')[i].innerText) - 1;
                     } else {
                         document.getElementsByClassName('likes')[i].innerText = parseInt(document.getElementsByClassName('likes')[i].innerText) + 1;
@@ -81,7 +80,7 @@ function postAJAX(){
             replyEventId: replyId},
         url: "php/posted_ajax.php",
         success: function(echo){
-            if(echo != '0') console.log("posted_ajax.php failure: " + echo);
+            if(echo !== '0') console.log("posted_ajax.php failure: " + echo);
         }
     });
 
@@ -177,7 +176,7 @@ function editThread(){
                     threadid: threadId},
                 url: "php/edited_thread_ajax.php",
                 success: function(echo){
-                    if(echo != '0') console.log("edited_thread_ajax.php error: " + echo);
+                    if(echo !== '0') console.log("edited_thread_ajax.php error: " + echo);
                     else {
                         thread_title.innerHTML = title.value;
                         thread_msg.innerHTML = msg.value;
@@ -200,7 +199,7 @@ function editThread(){
                         threadid: threadId},
                 url: "php/deleted_thread_ajax.php",
                 success: function(echo){
-                    if(echo != '0'){
+                    if(echo !== '0'){
                         console.log("edit_thread_ajax.php error: " + echo);
                     }
                     else document.getElementById('heart').innerHTML = 'Thread deleted. Redirecting to home page.';
@@ -236,8 +235,8 @@ function postsEvent(){
 postsEvent();
 
 function editPost(){
-    let postid = this.postid;
-    let post = this.index;
+    const postid = this.postid;
+    const post = this.index;
     let post_title = document.getElementsByClassName('post_title')[post];
     let post_msg = document.getElementsByClassName('post_msg')[post];
 
@@ -268,7 +267,7 @@ function editPost(){
                 ori_message: post_msg.innerHTML},
             url: "php/edited_ajax.php",
             success: function(echo){
-                if(echo != '0'){
+                if(echo !== '0'){
                     console.log("edited_ajax.php error: " + echo);
                 }
                 else {
@@ -296,7 +295,7 @@ function editPost(){
                 delete: "Delete"},
             url: "php/edited_ajax.php",
             success: function(echo){
-                if(echo != '0'){
+                if(echo !== '0'){
                     console.log("deleted_post_ajax.php error: " + echo);
                 }
             }

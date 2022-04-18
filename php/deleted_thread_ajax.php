@@ -1,5 +1,5 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
 
     if(empty($_POST['threadid']) || !isset($_POST['threadid']) || !is_numeric($_POST['threadid'])){
         echo "1";
@@ -9,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     require_once('conn.php');
 
     //DELETE CLICKED
-    if($_POST['deleted'] == "Delete"){
+    if($_POST['deleted'] === "Delete"){
         //delete posts
         $stmt = $pdo->prepare("DELETE FROM posts WHERE threadid = :threadid;");
         $stmt->bindValue(":threadid", $_POST['threadid']);

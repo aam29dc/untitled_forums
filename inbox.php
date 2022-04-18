@@ -34,7 +34,7 @@ if(isset($_SESSION['loggedin'])){
 
             //get the other users username
             $stmt2 = $pdo->prepare("SELECT username FROM users WHERE userid = ?;");
-            if($row['fromid'] == $_SESSION['userid'])
+            if($row['fromid'] === $_SESSION['userid'])
                 $stmt2->bindValue(1, $row['toid']);
             else
                 $stmt2->bindValue(1, $row['fromid']);
@@ -44,7 +44,7 @@ if(isset($_SESSION['loggedin'])){
             echo '</td><td><a href="index.php?page=member&user='.$toname.'">'.limitstr($toname, 7);
             echo '</a></td><td>'.date_format(date_create($row['timesent']), 'h:m:s').'</td><td class="link" onclick="window.location.href=`index.php?page=convo&id=';
             //get convo id
-            if($row['fromid'] == $_SESSION['userid']) $toid = $row['toid'];
+            if($row['fromid'] === $_SESSION['userid']) $toid = $row['toid'];
             else $toid = $row['fromid'];
             echo $toid.'`" >';
 

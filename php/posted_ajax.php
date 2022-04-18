@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     require_once('conn.php');
     require_once('lib.php');
               

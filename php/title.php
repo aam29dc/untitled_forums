@@ -6,38 +6,38 @@ echo "Userx.edu | ";
 $q = array();
 parse_str($_SERVER['QUERY_STRING'], $q);
 
-if($q['page'] == 'home' || (basename($_SERVER['PHP_SELF'], ".php") == "index" && empty($_SERVER['QUERY_STRING'])))
+if($q['page'] === 'home' || (basename($_SERVER['PHP_SELF'], ".php") === "index" && empty($_SERVER['QUERY_STRING'])))
 	echo "Home";
-else if($q['page'] == 'polls')
+else if($q['page'] === 'polls')
 	echo "Polls";
-else if($q['page'] == 'submit_poll')
+else if($q['page'] === 'submit_poll')
 	echo "Submit Poll";
-else if($q['page'] == 'submit')
+else if($q['page'] === 'submit')
 	echo "Submit Article";
-else if($q['page'] == 'about')
+else if($q['page'] === 'about')
 	echo "About us";
-else if($q['page'] == 'sub')
+else if($q['page'] === 'sub')
 	echo "Subscribe";
-else if($q['page'] == 'unsub')
+else if($q['page'] === 'unsub')
 	echo "Unsubscribe";
-else if($q['page'] == 'signup')
+else if($q['page'] === 'signup')
 	echo "Signup";
-else if($q['page'] == 'login')
+else if($q['page'] === 'login')
 	echo "Login";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "logout")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "logout")
 	echo "Logout";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "logged")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "logged")
 	echo "Logging in";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "submit_vote")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "submit_vote")
 	echo "Submitting vote";
 else if(contains("page=member", $_SERVER['QUERY_STRING']))
 	echo "Member | ".str_replace("&user=", "", str_replace("page=member", "", $_SERVER['QUERY_STRING']));
-else if(basename($_SERVER['PHP_SELF'], ".php") == "edit")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "edit")
 	echo "Edit Post | ".str_replace("posts=", "", $_SERVER['QUERY_STRING']);
-else if(basename($_SERVER['PHP_SELF'], ".php") == "edited_thread")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "edited_thread")
 	echo "Edited thread";
 else if(contains("thread=", $_SERVER['QUERY_STRING'])){
-	if(basename($_SERVER['PHP_SELF'], ".php") == "edit_thread") echo "Edit ";
+	if(basename($_SERVER['PHP_SELF'], ".php") === "edit_thread") echo "Edit ";
 	echo "Thread | ";
 	$thread = $q['thread'];
 
@@ -63,7 +63,7 @@ else if(contains("thread=", $_SERVER['QUERY_STRING'])){
 	else echo "404";
 }
 else if(contains("poll=", $_SERVER['QUERY_STRING'])){
-	if(basename($_SERVER['PHP_SELF'], ".php") == "edit_poll") echo "Edit ";
+	if(basename($_SERVER['PHP_SELF'], ".php") === "edit_poll") echo "Edit ";
 	echo "Poll | ";
 	$poll = $q['poll'];
 
@@ -92,25 +92,25 @@ else if(contains("&submit=x", $_SERVER['QUERY_STRING'])){
 	echo "Search | ";
 	if(isset($_GET['search'])) echo $_GET['search'];
 }
-else if(basename($_SERVER['PHP_SELF'], ".php") == "submitted")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "submitted")
 	echo "Submitting article";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "signedup")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "signedup")
 	echo "Registering user";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "subscribed")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "subscribed")
 	echo "Registering subscription";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "unsubscribed")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "unsubscribed")
 	echo "Removing subscription";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "posted")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "posted")
 	echo "Submitting post";
 else if(contains("page=profile", $_SERVER['QUERY_STRING']))
 	echo "My Profile";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "profile_msg")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "profile_msg")
 	echo "Edit tag";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "profile_password")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "profile_password")
 	echo "Edit password";
-else if(basename($_SERVER['PHP_SELF'], ".php") == "profile_username")
+else if(basename($_SERVER['PHP_SELF'], ".php") === "profile_username")
 	echo "Edit username";
-else if($q['page'] == 'cp_users')
+else if($q['page'] === 'cp_users')
 	echo "Control Panel | Users";
 else if(contains("page=inbox", $_SERVER['QUERY_STRING']))
 	echo "Inbox";

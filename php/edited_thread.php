@@ -4,7 +4,7 @@ session_start();
 $x = 1;
 include_once('../index_header.php');
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     if(strlen($_POST['edit_message']) < MSG_MIN_LENGTH){
         echo "<p>Error: enter a longer message.</p>";
         goto end;
@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $threadid = $q['thread'];
 
     //DELETE CLICKED
-    if($_POST['delete'] == "Delete"){
+    if($_POST['delete'] === "Delete"){
         //delete posts
         $stmt = $pdo->prepare("DELETE FROM posts WHERE threadid = :threadid;");
         $stmt->bindValue(":threadid", $threadid);
@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         goto end;
     }
     //EDIT CLICKED
-    if($_POST['edit_title'] == $_POST['ori_title'] && $_POST['edit_message'] == $_POST['ori_message']){
+    if($_POST['edit_title'] === $_POST['ori_title'] && $_POST['edit_message'] === $_POST['ori_message']){
         echo "<p>Nothing updated. No changes have been made to the thread title or message.</p>";
     } else {
         $stmt = $pdo->prepare("UPDATE threads SET title = :title, msg = :msg, date = NOW() WHERE threadid = :threadid;");
@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 $history = false;
 
-if(isset($_SESSION['threadid']) && isset($_SESSION['pagesid']) && $_POST['delete'] != "Delete"){
+if(isset($_SESSION['threadid']) && isset($_SESSION['pagesid']) && $_POST['delete'] !== "Delete"){
     echo "<h3>Redirecting back to thread...</h3>";
     echo '<noscript><a href="'.abs_php_include($x).'index.php?thread='.$_SESSION['threadid'].'&pages='.$_SESSION['pagesid'].'">Click to redirect to home page.</a></noscript>';
     $history = true;

@@ -69,10 +69,10 @@ if(isset($_SESSION['loggedin'])){
     '</li><li>Priviledge: '.$row['priviledge'];
 
     // 0: guest, 1: member, 2: mod, 3: admin
-    if($row['priviledge'] == 0) echo " (guest)";
-    else if($row['priviledge'] == 1) echo " (member)";
-    else if($row['priviledge'] == 2) echo " (moderator)";
-    else if($row['priviledge'] == 3) echo " (admin)";
+    if($row['priviledge'] === 0) echo " (guest)";
+    else if($row['priviledge'] === 1) echo " (member)";
+    else if($row['priviledge'] === 2) echo " (moderator)";
+    else if($row['priviledge'] === 3) echo " (admin)";
 
     echo '</li><li><br><hr><a class="collapsible">Delete account</a>
     <div class="content">

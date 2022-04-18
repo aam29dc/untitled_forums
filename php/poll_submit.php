@@ -1,7 +1,7 @@
 <?php session_start();
     $x = 1;
     include_once('../index_header.php');
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     $question = addslashes($_POST['poll_question']);
 
     $error = false;

@@ -3,7 +3,7 @@ session_start();
 $x = 1;
 include_once('../index_header.php');
 
-if($_SERVER['REQUEST_METHOD'] == "GET"){
+if($_SERVER['REQUEST_METHOD'] === "GET"){
     require_once('conn.php');
 
     if(empty($_GET['postId'])){

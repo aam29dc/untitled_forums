@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET) && !empty($_GET)){
+if($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET) && !empty($_GET)){
     require_once('conn.php');
 
     //delete posts

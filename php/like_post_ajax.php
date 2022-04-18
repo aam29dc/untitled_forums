@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_SERVER['REQUEST_METHOD'] == "GET"){
+if($_SERVER['REQUEST_METHOD'] === "GET"){
     require_once('conn.php');
 
     if(empty($_GET['postId'])){
