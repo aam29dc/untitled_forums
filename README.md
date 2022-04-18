@@ -1,4 +1,4 @@
-# untitled_forums v0.3.6 (screenshots slightly outdated)
+# untitled_forums v0.3.7 (screenshots slightly outdated)
 **Requires jQuery for AJAX** (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
 **How to INSTALL:** Put jquery-3.6.0.min.js in /js folder. Open \_create_tables.php in your browser (on localhost).
@@ -45,6 +45,10 @@
 
 ![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
 
+_______________________________________________________________________________________________
+(04/17/22) __[**0.3.7**]__
+_______________________________________________________________________________________________
+polished code, etc. I'll be working on other projects to add to my portfolio now, and occasionally add more features. And i'll publish this site on a domain.
 _______________________________________________________________________________________________
 (04/14/22) __[**0.3.6**]__
 _______________________________________________________________________________________________
