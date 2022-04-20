@@ -1,4 +1,4 @@
-# untitled_forums v0.3.7 (screenshots slightly outdated)
+# untitled_forums v0.3.7
 **Requires jQuery for AJAX** (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
 **How to INSTALL:** Put jquery-3.6.0.min.js in /js folder. Open \_create_tables.php in your browser (on localhost).
@@ -37,6 +37,7 @@
 
 --synesthesia font, scroll line color change as user scrolls down page, mouse pointer color change as user moves mouse.
 
+#  (screenshots slightly outdated)
 ![userx_v3_1](https://user-images.githubusercontent.com/73267302/135941971-f125d8b6-1a74-4a7b-aeec-84caa96e1d01.png)
 
 ![userx_v3_2](https://user-images.githubusercontent.com/73267302/135941955-0c1eae36-6cd2-4f14-8d90-e13291cd4a8e.png)
