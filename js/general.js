@@ -29,8 +29,8 @@ function getCookie(cname){
      let decodedCookie = decodeURIComponent(document.cookie);
      let arr = decodedCookie.split(';');
      
-     for(let i = 0;i < arr.length; i++){
-         let ele = arr[i];
+     for(let e of arr){
+         let ele = e;
 
          while(ele.charAt(0) === ' '){   // deletes white spaces
              ele = ele.substring(1);
@@ -245,15 +245,15 @@ document.addEventListener('mousemove', function(){
 var [ar, ag, ab] = [255, 0, 0];
 var [ai, aj, ak] = [0, 0, 0];
 
-let syn = document.querySelectorAll('a:not(.nsyn)');
+let syns = document.querySelectorAll('a:not(.nsyn)');
 
-for(let i = 0; i < syn.length; i++){
-    syn[i].classList.add('syn');
+for(let syn of syns){
+    syn.classList.add('syn');
 }
 
 function drawsyn(){
-    for(let x = 0; x < syn.length; x++){
-        syn[x].style.backgroundImage = `linear-gradient(90deg, rgb(${ar}, ${ag}, ${ab}), rgb(${ab}, ${ar}, ${ag}), rgb(${ag}, ${ab}, ${ar}))`;
+    for(let syn of syns){
+        syn.style.backgroundImage = `linear-gradient(90deg, rgb(${ar}, ${ag}, ${ab}), rgb(${ab}, ${ar}, ${ag}), rgb(${ag}, ${ab}, ${ar}))`;
     }
     
     if(ar === 255 && ag === 0 && ab === 0){     //red
@@ -316,10 +316,10 @@ document.getElementById('searcht').addEventListener('input', function(){
 /*
     ACCORDION 
 */
-let acc = document.getElementsByClassName("accordion");
+let accs = document.getElementsByClassName("accordion");
 
-for (let i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
+for (let acc of accs) {
+  acc.addEventListener("click", function() {
     this.classList.toggle("active");
     let panel = this.nextElementSibling;
     if (panel.style.maxHeight) {
@@ -377,7 +377,7 @@ if(tpass !== null) {
     tpass.style.cursor = 'pointer';
 
     tpass.addEventListener('click', function(){
-        swapsrc(`tpass`,`img/show.png`,`img/hide.png`);
+        swapsrc(`tpass`,`/site/img/show.png`,`/site/img/hide.png`);
         togglepass(`pwd`);
     });
 }
