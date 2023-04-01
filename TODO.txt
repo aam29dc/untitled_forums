@@ -1,5 +1,11 @@
 ____( indented with a * means its completed. Non-indented without a * means its not complete )____
 
+CAPTCHA for posting on forums
+client side and server side input validation for every form
+stored procedures for common queries in SQL
+logging failed attempts at logins, errors, etc
+HTTPS
+
 [0.3.7]
 	*polished code, and bug fixes.
 
@@ -16,7 +22,6 @@ sort posts by most likes
 	*sort posts in thread, except OP thread, by first date, last date
 	*fixed get query strings method in PHP & JS
 	*fixed edit post on non-moderators
-	
 	*show password
 	*live username feedback
 	*animated navigation menu
