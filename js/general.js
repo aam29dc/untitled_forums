@@ -118,7 +118,7 @@ function setAttributes(el, attrs){
 let checkerbox = document.getElementById('checkerbox');
 checkerbox.style.cursor = 'pointer';
 checkerbox.addEventListener('click', function(){
-    swapsrc('checkerbox','/site/img/logo16.png','/site/img/logo16inv.png');     // remove/rename /site when using webserver
+    swapsrc('checkerbox','img/logo16.png','img/logo16inv.png');     // remove/rename /site when using webserver
     swaptheme();
 });
 
@@ -377,7 +377,7 @@ if(tpass !== null) {
     tpass.style.cursor = 'pointer';
 
     tpass.addEventListener('click', function(){
-        swapsrc(`tpass`,`/site/img/show.png`,`/site/img/hide.png`);
+        swapsrc(`tpass`,`img/show.png`,`img/hide.png`);
         togglepass(`pwd`);
     });
 }
@@ -397,6 +397,14 @@ if(user_login !== null){
         user_login.addEventListener('click', function(){
             if(login_popout.style.display === 'none'){
                 login_popout.style.display = 'initial';
+                //click outside of login should close the login popup
+                /*document.body.addEventListener('mousedown', function(e){
+                    if(e.)
+                    login_popout.style.display = 'none';
+                })*/
+                document.body.addEventListener('keydown', function(e){
+                    if(e.key === 'Escape') login_popout.style.display = 'none';
+                })
             } else login_popout.style.display = 'none';
         });
 
