@@ -17,7 +17,7 @@ if($stmt->execute()){}
 else { echo 'failed to create threads';}
 
 //posts
-$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS posts (postid int NOT NULL PRIMARY KEY AUTO_INCREMENT, threadid int NOT NULL, authorid int NOT NULL, title VARCHAR(128), msg TEXT NOT NULL, date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, postnum int NOT NULL, replyid int DEFAULT NULL, FOREIGN KEY (threadid) REFERENCES threads(threadid), FOREIGN KEY (authorid) REFERENCES users(userid)), FOREIGN KEY (replyid) REFERENCES posts(postid);");
+$stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS posts (postid int NOT NULL PRIMARY KEY AUTO_INCREMENT, threadid int NOT NULL, authorid int NOT NULL, title VARCHAR(128), msg TEXT NOT NULL, date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, postnum int NOT NULL, replyid int DEFAULT NULL, FOREIGN KEY (threadid) REFERENCES threads(threadid), FOREIGN KEY (authorid) REFERENCES users(userid), FOREIGN KEY (replyid) REFERENCES posts(postid));");
 if($stmt->execute()){}
 else { echo 'failed to create posts';}
 
