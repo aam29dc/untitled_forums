@@ -82,11 +82,11 @@ tcpass.style.display = 'initial';
 tcpass.style.cursor = 'pointer';
 
 s_tpass.addEventListener('click', function(){
-    swapsrc(`s_tpass`,`img/show.png`,`img/hide.png`);
+    swapsrc(`s_tpass`,`/img/show.png`,`/img/hide.png`);
     togglepass(`s_pwd`);
 });
 
 tcpass.addEventListener('click', function(){
-    swapsrc(`tcpass`,`img/show.png`,`img/hide.png`);
+    swapsrc(`tcpass`,`/img/show.png`,`/img/hide.png`);
     togglepass(`confirm_pwd`);
 });
