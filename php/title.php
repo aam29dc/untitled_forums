@@ -1,7 +1,7 @@
 <?php
 require_once('lib.php');
 
-echo "Userx.edu | ";
+echo "arrottatech.com | ";
 
 $q = array();
 parse_str($_SERVER['QUERY_STRING'], $q);
