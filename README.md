@@ -3,6 +3,8 @@
 
 **How to INSTALL:** Put jquery-3.6.0.min.js in /js folder. Open \_create_tables.php in your browser (on localhost).
 
+remove /site/ in strings from js files
+
 [ **PHP(PDO) & SQL(mysql):** ]
 
 --signup/login to create a thread or post in thread.
