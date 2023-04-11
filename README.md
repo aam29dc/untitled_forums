@@ -1,4 +1,4 @@
-# untitled_forums v0.3.7
+# untitled_forums v0.3.8
 **Requires jQuery for AJAX** (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
 **How to INSTALL:** Put jquery-3.6.0.min.js in /js folder. Open \_create_tables.php in your browser (on localhost).
@@ -47,6 +47,11 @@ remove /site/ in strings from js files
 [**MOBILE Phone layout**]
 
 ![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
+
+_______________________________________________________________________________________________
+(04/11/2023) __[**0.3.8**]__
+_______________________________________________________________________________________________
+clicking outside/exit the login screen should drop the login screen
 
 _______________________________________________________________________________________________
 (04/17/22) __[**0.3.7**]__
