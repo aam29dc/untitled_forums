@@ -5,7 +5,6 @@ CAPTCHA for posting on forums
 client side and server side input validation for every form
 stored procedures for common queries in SQL
 logging failed attempts at logins, errors, etc
-HTTPS
 javascript loading screen while page loads
 account lockout policies to prevent brute force attacks
 
