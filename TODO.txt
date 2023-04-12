@@ -1,16 +1,17 @@
 ____( indented with a * means its completed. Non-indented without a * means its not complete )____
 
+change 'see' icon next to passwords to white when in dark mode
 CAPTCHA for posting on forums
 client side and server side input validation for every form
 stored procedures for common queries in SQL
 logging failed attempts at logins, errors, etc
 HTTPS
+javascript loading screen while page loads
+account lockout policies to prevent brute force attacks
 
 [0.3.8]
-	*press exit to exit out of login screen
-	*removed /site/ from strings in js files, for LIVE website
-fix php/user.php: query for inbox count causes rendering page error
-fix php/subscribed.php: logs email exist when it doesn't
+	*clicking outside/exit the login screen should drop the login screen
+
 [0.3.7]
 	*polished code, and bug fixes.
 
