@@ -6,6 +6,11 @@ stored procedures for common queries in SQL
 logging failed attempts at logins, errors, etc
 HTTPS
 
+[0.3.8]
+	*press exit to exit out of login screen
+	*removed /site/ from strings in js files, for LIVE website
+fix php/user.php: query for inbox count causes rendering page error
+fix php/subscribed.php: logs email exist when it doesn't
 [0.3.7]
 	*polished code, and bug fixes.
 
