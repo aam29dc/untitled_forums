@@ -1,12 +1,13 @@
 ____( indented with a * means its completed. Non-indented without a * means its not complete )____
 
+add ads to live site
 change 'see' icon next to passwords to white when in dark mode
-CAPTCHA for posting on forums
+CAPTCHA for posting on forums, signing up, large queries to DB
 client side and server side input validation for every form
 stored procedures for common queries in SQL
 logging failed attempts at logins, errors, etc
-javascript loading screen while page loads
 account lockout policies to prevent brute force attacks
+javascript loading screen while page loads
 
 [0.3.8]
 	*clicking outside/exit the login screen should drop the login screen
