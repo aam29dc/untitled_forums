@@ -52,13 +52,13 @@ if(!((time() < strtotime($unban) + 14400) && !empty($unban)) && $_SESSION['privi
         echo "</table>";
 
         // BUTTON: PREV
-        if($pages>1){
-            echo '<a class="nsyn" href="?page=cp_users&pages='.($pages-1).'"><button>Prev</button></a>';
+        if($pages > 1){
+            echo '<a class="nsyn" href="?page=cp_users&pages='.($pages-1).'"><button>&laquo; Prev</button></a>';
         }
 
         // BUTTON: NEXT
         if($count > UMAX && $stmt->rowCount() === UMAX){
-            echo '<a class="nsyn" href="?page=cp_users&pages='.($pages+1).'"><button>Next</button></a>';
+            echo '<a class="nsyn" href="?page=cp_users&pages='.($pages+1).'"><button>Next &raquo;</button></a>';
         }
     } else echo "<p>Error: query failed.</p>";
 } else echo "<p>You don't have the priviledges to use the control panel.</p>";

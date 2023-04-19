@@ -11,7 +11,7 @@ if(!isset($_SESSION['loggedin'])){
 
     echo '"><br>
     <label for="pwd">Password:</label><br>
-    <input type="password" id="pwd" name="pwd" class="textfield"><img src="'.abs_php_include($x).'img/show.png" alt="see" id="tpass" class="pass"><br>
+    <input type="password" id="pwd" name="pwd" class="textfield"><img src="'.abs_php_include($x).'img/hide.png" alt="see" id="tpass" class="pass"><br>
     <input type="submit" id="login" name="login" value="Login">
   </form>
   <br>

@@ -11,9 +11,9 @@ if(!isset($_SESSION['loggedin'])){
     
     echo '"><span id="user_free" style="margin-left:5px;"></span><br>
     <label for="s_pwd">Password:</label><br>
-    <input type="password" id="s_pwd" name="s_pwd" class="textfield"><img src="img/show.png" alt="see" id="s_tpass" class="pass"><br>
+    <input type="password" id="s_pwd" name="s_pwd" class="textfield"><img src="img/hide.png" alt="see" id="s_tpass" class="pass"><br>
     <label for="confirm_pwd">Confirm Password:</label><br>
-    <input type="password" id="confirm_pwd" name="confirm_pwd" class="textfield"><img src="img/show.png" alt="see" id="tcpass" class="pass"><span id="span_pwd" style="margin-left:5px;"></span><br>
+    <input type="password" id="confirm_pwd" name="confirm_pwd" class="textfield"><img src="img/hide.png" alt="see" id="tcpass" class="pass"><span id="span_pwd" style="margin-left:5px;"></span><br>
     <label for="email">Email:</label><br>
     <input type="text" id="email" name="email" class="textfield" value ="';
 

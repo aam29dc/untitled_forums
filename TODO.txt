@@ -1,13 +1,20 @@
 ____( indented with a * means its completed. Non-indented without a * means its not complete )____
 
-add ads to live site
 change 'see' icon next to passwords to white when in dark mode
-CAPTCHA for posting on forums, signing up, large queries to DB
+CAPTCHA for posting on forums
 client side and server side input validation for every form
 stored procedures for common queries in SQL
 logging failed attempts at logins, errors, etc
-account lockout policies to prevent brute force attacks
 javascript loading screen while page loads
+account lockout policies to prevent brute force attacks
+when autofill user/pw, a locked out login button
+
+[0.3.8.2]
+	*fixed threads page titles, index.php?page=# showing up as 'Untitled'
+	*moved ' | ArrottaTech.com' in title to end
+	*fixed page=0 showing previous button
+	*added arrows to all prev and next buttons
+	*swaped hide and show pictures, on defaults
 
 [0.3.8]
 	*clicking outside/exit the login screen should drop the login screen

@@ -46,16 +46,16 @@ if(tableExists($pdo,'polls')){
             echo "<hr><br>"."\n";
         }
         //BUTTON: PREV
-        if($pages!==1) echo '<a class="nsyn" href="?page=polls&pages='.($pages-1).'"><button>Previous</button></a><br/>';
+        if($pages!==1) echo '<a class="nsyn" href="?page=polls&pages='.($pages-1).'"><button>&laquo; Previous</button></a><br/>';
         //BUTTON: NEXT
             //get count of polls
             $stmt2 = $pdo->prepare("SELECT COUNT(*) FROM polls;");
             $stmt2->execute();
-        if($stmt2->fetchColumn() > TMAX && $stmt->rowCount() === TMAX) echo '<a class="nsyn" href="?page=polls&pages='.($pages+1).'"><button>Next</button></a><br/>';
+        if($stmt2->fetchColumn() > TMAX && $stmt->rowCount() === TMAX) echo '<a class="nsyn" href="?page=polls&pages='.($pages+1).'"><button>Next &raquo;</button></a><br/>';
     }
     else {  //BUTTON: Prev (for main)
         echo "<p>No polls on this page.</p>";
-        if($pages!==1) echo '<a class="nsyn" href="?page=polls&pages='.($pages-1).'"><button>Previous</button></a>';
+        if($pages!==1) echo '<a class="nsyn" href="?page=polls&pages='.($pages-1).'"><button>&laquo; Previous</button></a>';
     }
     //BUTTON: CREATE POLL
     if(isset($_SESSION['loggedin'])) echo '<a class="nsyn" href="?page=submit_poll"><br/><button>Create poll</button></a>';

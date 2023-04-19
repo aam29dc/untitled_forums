@@ -69,7 +69,7 @@ if(isset($_SESSION['loggedin'])){
         $stmt2->bindValue(":userid", $_SESSION['userid']);
         $stmt2->execute();
         if($count > 0 && $pages < ceil($stmt2->fetchColumn()/IMAX)){
-            echo '<a class="nsyn" href="index.php?page=inbox&pages='.($pages+1).'"> <button>Next</button></a>';
+            echo '<a class="nsyn" href="index.php?page=inbox&pages='.($pages+1).'"> <button>Next &raquo;</button></a>';
         }
 
     } else echo "<p>Inbox is empty.</p>";

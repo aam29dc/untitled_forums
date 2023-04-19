@@ -5,7 +5,7 @@ $q = array();
 parse_str($_SERVER['QUERY_STRING'], $q);
 $page = $q['page'];
 
-if(!is_numeric($page) || empty($page) || $page < 1) $page = 1;   // if query string is not numeric, then page=1;
+if(!is_numeric($page) || empty($page) || $page <= 1) $page = 1;   // if query string is not numeric, then page=1;
 
 //save page for when user hits, back, inside a thread
 $_SESSION['mainid'] = $page;
@@ -45,20 +45,20 @@ if(tableExists($pdo,'threads')){
             $stmt2->execute();
             $author = $stmt2->fetchColumn();
             echo '<h5><a href="index.php?page=member&user='.$author.'">- '.$author.'</a><span style="float:right;">'.$row['date'].'</span></h5>';
-            echo "<hr><br>"."\n";
+            echo "<hr>"."\n";
         }
         echo "<br>";
         //BUTTON: PREV
-        if($page!==1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a> ';
+        if($page>1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>&laquo; Previous</button></a> ';
         //BUTTON: NEXT
             //get count of threads
             $stmt2 = $pdo->prepare("SELECT COUNT(*) FROM threads;");
             $stmt2->execute();
-        if($stmt2->fetchColumn() > TMAX && $stmt->rowCount() === TMAX) echo '<a class="nsyn" href="?page='.($page+1).'"><button>Next</button></a>';
+        if($stmt2->fetchColumn() > TMAX && $stmt->rowCount() === TMAX) echo '<a class="nsyn" href="?page='.($page+1).'"><button>Next &raquo;</button></a>';
     }
     else {
         echo "<p>No threads on this page.</p>";
-        if($page!==1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>Previous</button></a>';
+        if($page>1) echo '<a class="nsyn" href="?page='.($page-1).'"><button>&laquo; Previous</button></a>';
     }
 } else echo "<p>Sorry threads table doesn't exist yet.</p>";
 

@@ -187,13 +187,13 @@ if(tableExists($pdo,'threads')){
         // BUTTON: BACK
         echo '</table>';
         echo '<br><div style="float:left;"><a class="nsyn" href="index.php?page=';
-            if(isset($_SESSION['mainid'])) echo $_SESSION['mainid'];
+            if(isset($_SESSION['mainid']) && $_SESSION['mainid'] != 0) echo $_SESSION['mainid'];
             else echo '1';
         echo '"><button>&laquo; Back</button></a><br>';
 
         // BUTTON: PREV
         if($pages > 1){
-            echo '<br><a class="nsyn" href="?thread='.$thread.'&pages='.($pages-1).'"><button>Prev</button></a>';
+            echo '<br><a class="nsyn" href="?thread='.$thread.'&pages='.($pages-1).'"><button>&laquo; Prev</button></a>';
         }
 
         // BUTTON: NEXT
@@ -208,7 +208,7 @@ if(tableExists($pdo,'threads')){
 
         if($numOfPages > 0){      
             createpages($numOfPages, $pages, "?thread=".$thread."&pages=");
-            if($pages < $numOfPages) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.($pages+1).'"><button>Next</button></a>';
+            if($pages < $numOfPages) echo '<a class="nsyn" href="?thread='.$thread.'&pages='.($pages+1).'"><button>Next &raquo;</button></a>';
         }
 
         echo '</div>';

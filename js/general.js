@@ -118,7 +118,7 @@ function setAttributes(el, attrs){
 let checkerbox = document.getElementById('checkerbox');
 checkerbox.style.cursor = 'pointer';
 checkerbox.addEventListener('click', function(){
-    swapsrc('checkerbox','/img/logo16.png','/img/logo16inv.png');     // remove/rename /site when using webserver
+    swapsrc('checkerbox','/img/logo16.png','/img/logo16inv.png');
     swaptheme();
 });
 
