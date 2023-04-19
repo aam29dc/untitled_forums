@@ -50,10 +50,16 @@ ________________________________________________________________________________
 (04/11/2023) __[**0.3.8.2**]__
 _______________________________________________________________________________________________
 clicking outside/exit the login screen should drop the login screen
+
+
 fixed threads page titles, index.php?page=# showing up as 'Untitled'
+
 moved ' | ArrottaTech.com' in title to end
+
 fixed page=0 showing previous button
+
 added arrows to all prev and next buttons
+
 swaped hide and show pictures, on defaults
 
 _______________________________________________________________________________________________
