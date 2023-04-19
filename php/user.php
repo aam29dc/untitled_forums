@@ -17,16 +17,18 @@ if(!isset($_SESSION['loggedin'])){
 }
 else {
     //get count of non-read pms
-    if($pdo === null){   /* unfortuante way to fix pdo null error */
+    /* //unfortuante way to fix pdo null error, uncomment when offline
+    if($pdo === null){
         @include_once('conn.php');
         @$pdo = new PDO("mysql:host=" . constant("DB_HOST") . ";dbname=" . constant("DB_NAME"), constant("DB_USER"), "");
         @$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
+    }*/
 
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM pms WHERE toid = ? AND seen = false;");
+    // something is wrong with this query, on LIVE server
+    /*$stmt = $pdo->prepare("SELECT COUNT(*) FROM pms WHERE toid = ? AND seen = false;");
     $stmt->bindValue(1, $_SESSION['userid']);
     $stmt->execute();
-    $unseen = $stmt->fetchColumn();
+    $unseen = $stmt->fetchColumn();*/
 
     if($page === 'inbox') echo '<li class="hnav">Inbox';
     else echo '<li class="hnav"><a href="'.abs_php_include($x).'index.php?page=inbox">Inbox';

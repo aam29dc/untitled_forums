@@ -146,7 +146,7 @@ div#header nav ul li a {
 }
 
 li.hnav {
-	list-style:square inside url('../img/hlist3.png');
+	list-style:square inside url('../img/hlist3_user.png');
 }
 
 li.hnav:hover {

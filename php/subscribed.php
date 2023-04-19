@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET) && !empty($_GET)){
         $stmt->bindValue(':email', $_GET['email']);
         $stmt->execute();
 
-        if($stmt->fetchColumn() === 0){
+        if($stmt->fetchColumn() === 0){     // fetch col === 0 is a problem on LIVE server, use ==, or '0'
             $stmt = $pdo->prepare("INSERT INTO subs VALUES (:first,:last,:email);");
             $stmt->bindValue(':first', $_GET['firstname']);
             $stmt->bindValue(':last', $_GET['lastname']);

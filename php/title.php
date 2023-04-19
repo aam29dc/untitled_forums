@@ -1,13 +1,13 @@
 <?php
 require_once('lib.php');
 
-echo "Arrotta Tech | ";
-
 $q = array();
 parse_str($_SERVER['QUERY_STRING'], $q);
 
 if($q['page'] === 'home' || (basename($_SERVER['PHP_SELF'], ".php") === "index" && empty($_SERVER['QUERY_STRING'])))
 	echo "Home";
+else if(basename($_SERVER['PHP_SELF']) === "index.php" && contains("page=", $_SERVER['QUERY_STRING']))
+	echo "Threads | ".$q['page'];
 else if($q['page'] === 'polls')
 	echo "Polls";
 else if($q['page'] === 'submit_poll')
@@ -120,6 +120,7 @@ else if(contains("page=convo", $_SERVER['QUERY_STRING']))
 	echo "Conversation";
 else if(contains("page=block", $_SERVER['QUERY_STRING']))
 	echo "Block user";
-else
-	echo "Untitled";	// Home
+else echo "Untitled";
+	
+echo " | ArrottaTech.com";
 ?>
