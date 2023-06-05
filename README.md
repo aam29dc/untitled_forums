@@ -89,7 +89,7 @@ ________________________________________________________________________________
 _______________________________________________________________________________________________
 This site has been updated using JavaScript for various transitions and animations that I've also posted on my GitHub. It includes synesthesia-font, a scroll line effect that changes colors, a cube that rotates and the mouse pointer that changes color as the users moves the mouse. The signup page has been updated using AJAX (uses jQuery for web compatibility) to notify the user that a username has been taken (without refreshing the page), and passwords don't match, etc. There have been various other changes and improvements to the site. Mostly changes on the front-end of the site. More updates to come.
 
-#  (screenshots slightly outdated)
+##  (screenshots slightly outdated)
 ![userx_v3_1](https://user-images.githubusercontent.com/73267302/135941971-f125d8b6-1a74-4a7b-aeec-84caa96e1d01.png)
 
 ![userx_v3_2](https://user-images.githubusercontent.com/73267302/135941955-0c1eae36-6cd2-4f14-8d90-e13291cd4a8e.png)
