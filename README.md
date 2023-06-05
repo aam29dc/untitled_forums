@@ -50,6 +50,7 @@
 
 _______________________________________________________________________________________________
 (06/05/2023) __[**0.4**]__
+_______________________________________________________________________________________________
 renamed and moved .php files around for a more intuitive design: layout elements, & different pages are in the root folder, and actions are in the php folder(with the exception of a few files),
 delay added before refreshing page after posting to a thread, to help alleviate a possible race-condition,
 long threads on home page are shortened with a [continued],
