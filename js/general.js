@@ -329,7 +329,7 @@ document.addEventListener('mousemove', function(e){
 let sb = document.getElementById('searchb');
 sb.disabled = true;
 
-document.getElementById('searcht').addEventListener('input', function(){
+document.getElementById('search').addEventListener('input', function(){
     sb.removeAttribute('disabled');
 });
 

@@ -78,8 +78,8 @@ a:hover {	color:var(--ahoverc); }
 a:active {	color:var(--aactivec); }
 
 .syn {	/* ENABLED THROUGH JAVASCRIPT */
-    background-clip:text;
     -webkit-background-clip:text;
+	background-clip:text;
     color:transparent;
     -webkit-text-fill-color:transparent;
 }

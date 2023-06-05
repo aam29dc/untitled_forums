@@ -110,7 +110,7 @@ else if(basename($_SERVER['PHP_SELF'], ".php") === "profile_password")
 	echo "Edit password";
 else if(basename($_SERVER['PHP_SELF'], ".php") === "profile_username")
 	echo "Edit username";
-else if($q['page'] === 'cp_users')
+else if(isset($q['page']) && $q['page'] === 'cp_users')
 	echo "Control Panel | Users";
 else if(contains("page=inbox", $_SERVER['QUERY_STRING']))
 	echo "Inbox";

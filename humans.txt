@@ -4,4 +4,4 @@ email: aam29dc@gmail.com
 
 /* SITE */
 Standards: HTML4, CSS, 
-Software: PHP(PDO), mySQL, Javascript, AJAX
+Software: PHP(PDO), mySQL, Javascript

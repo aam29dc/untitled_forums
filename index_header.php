@@ -59,7 +59,7 @@ function getCookie(cname){
 		<form method="get" action="index.php?">
 			<ul>
 				<?php include_once(abs_php_include($x)."user.php");?>
-				<li class="hnav"><label for="search"><input type="search" name="search" id="searcht" <?php if(is_mobile()) echo 'style="width:60px;"';else echo 'style="width:120px;"';?> value="<?php if(isset($_GET['search'])) echo $_GET['search']; ?>"/></label></li>
+				<li class="hnav"><label for="search"><span style="display:none;">search</span></label><input type="search" name="search" id="search" <?php if(is_mobile()) echo 'style="width:60px;"';else echo 'style="width:120px;"';?> value="<?php if(isset($_GET['search'])) echo $_GET['search']; ?>"/></li>
 				<li class="hnav"><label for="submit"><input type="submit" name="submit" id="searchb" value="x"/></label></li>
 			</ul>
 		</form>

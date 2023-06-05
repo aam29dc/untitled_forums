@@ -67,7 +67,7 @@ if(tableExists($pdo,'threads')){
         else echo htmlspecialchars(stripslashes($row['title']))."</h1>";
         // BUTTON: (thread) EDIT
         if(isset($_SESSION['loggedin']) && (($_SESSION['userid'] === $row['authorid']) || $_SESSION['priviledge'] >= 2) && !$banned){
-            echo '<a id="edit_thread" class="nsyn" href="php/thread_edit.php?thread='.$q['thread'].'"><img src="img/edit16.png" style="float:right;"></a>';
+            echo '<a id="edit_thread" class="nsyn" href="php/thread_edit.php?thread='.$q['thread'].'"><img src="img/edit16.png" alt="edit" style="float:right;"></a>';
         }
         echo '</div><p id="thread_msg" style="text-indent:5px;">';
 
@@ -108,7 +108,7 @@ if(tableExists($pdo,'threads')){
                 $stmt2->bindValue(":userid", $row['authorid']);
                 $stmt2->execute();
                 $author = $stmt2->fetchColumn();
-                echo '<tr><td class="tduser"><mark><a href="index.php?page=member&user='.$author.'">'.$author.'</a></mark><br><img src="img/user24.png"><br><small>';
+                echo '<tr><td class="tduser"><mark><a href="index.php?page=member&user='.$author.'">'.$author.'</a></mark><br><img src="img/user24.png" alt="user"><br><small>';
                     // get users # of posts
                     $stmt2 = $pdo->prepare("SELECT COUNT(*) FROM posts WHERE authorid = :userid;");
                     $stmt2->bindValue(":userid", $row['authorid']);
@@ -221,21 +221,21 @@ if(tableExists($pdo,'threads')){
             <div id="post_content" class="content" style="float:left;clear:left;">
                 <form id="post_f" method="post" action="php/posted.php';
                 if(isset($_GET['replyid'])){ echo '?replyid='.$_GET['replyid'].'';}    //add reply id to string
-                echo '">
-                    <span id="reply">';
+                echo '">';
                     if(isset($_GET['replyid'])){ 
+                        echo '<span id="reply">';
                         echo '[Reply to #';
                         //get postnum from replyid
                         $stmt = $pdo->prepare("SELECT postnum FROM posts WHERE postid = :postid;");
                         $stmt->bindValue(":postid", $_GET['replyid']);
                         $stmt->execute();
                         echo $stmt->fetchColumn()."]";
+                        echo '</span>';
                     }
-                    echo '</span>
-                    <input type="text" id="post_title" name="post_title" size="98" class="textfield" style="width:98%;margin-bottom:5px;"/><br>';
+                    echo '<label for="post_title"><span style="display:none;">title</span></label><input type="text" id="post_title" name="post_title" size="98" class="textfield" style="width:98%;margin-bottom:5px;"/><br>';
                     include_once('php/_msg_buttons.php');
                     drawMsgButtons('post_text');
-                    echo '<textarea id="post_text" name="post_text" class="textfield" rows="10" style="width:98%;"></textarea>
+                    echo '<label for="post_text"><span style="display:none;">message</span></label><textarea id="post_text" name="post_text" class="textfield" rows="10" style="width:98%;"></textarea>
                     <br><button id="post_b">Post</button>
                 </form>
             </div>';
