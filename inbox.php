@@ -1,21 +1,17 @@
 <?php
-session_start();
-
-require_once('php/conn.php');
-require_once('php/lib.php');
+require_once('php/_conn.php');
+require_once('php/_lib.php');
 
 define("IMAX", 10);     //inbox max messages per page
 $q = array();
 parse_str($_SERVER['QUERY_STRING'], $q);
-$pages = $q['pages'];
-
-if(!is_numeric($pages) || empty($pages) || $pages < 1) $pages = 1;
+if(!isset($q['pages']) || !is_numeric($q['pages']) || $q['pages'] < 1) $q['pages'] = 1;
 
 if(isset($_SESSION['loggedin'])){
     //get unique sent/received msgs (conversations)
     $stmt = $pdo->prepare("SELECT * FROM (SELECT *, row_number() OVER (PARTITION BY (CASE WHEN fromid = :userid THEN toid ELSE fromid END) ORDER BY timesent DESC) AS seqnum FROM pms WHERE :userid IN (fromid, toid)) pms WHERE seqnum = :userid LIMIT :page, ".IMAX.";");
     $stmt->bindValue(":userid", $_SESSION['userid']);
-    $stmt->bindValue(":page", (int)(($pages-1)*IMAX), PDO::PARAM_INT);
+    $stmt->bindValue(":page", (int)(($q['pages']-1)*IMAX), PDO::PARAM_INT);
     $stmt->execute();
     if($stmt->rowCount() > 0){
         //get unread messages
@@ -60,19 +56,19 @@ if(isset($_SESSION['loggedin'])){
         }
         echo "</table>";
         //BUTTON: PREV
-        if($pages > 1){
-            echo '<a class="nsyn" href="index.php?page=inbox&pages='.($pages-1).'"><button>Prev</button></a>';
+        if($q['pages'] > 1){
+            echo '<a class="nsyn" href="index.php?page=inbox&pages='.($q['pages']-1).'"><button>Prev</button></a>';
         }
         //BUTTON: NEXT
         // one off ?
         $stmt2 = $pdo->prepare("SELECT SUM(num) FROM (SELECT COUNT(DISTINCT toid) AS num FROM pms WHERE fromid = :userid UNION SELECT COUNT(DISTINCT fromid) AS num FROM pms WHERE toid = :userid) AS x;");
         $stmt2->bindValue(":userid", $_SESSION['userid']);
         $stmt2->execute();
-        if($count > 0 && $pages < ceil($stmt2->fetchColumn()/IMAX)){
-            echo '<a class="nsyn" href="index.php?page=inbox&pages='.($pages+1).'"> <button>Next &raquo;</button></a>';
+        if($q['pages'] < ceil($stmt2->fetchColumn()/IMAX)){
+            echo '<a class="nsyn" href="index.php?page=inbox&pages='.($q['pages']+1).'"> <button>Next &raquo;</button></a>';
         }
 
-    } else echo "<p>Inbox is empty.</p>";
+    } else echo "<p>Inbox is !isset.</p>";
     $pdo = null;
     $stmt = null;
     $stmt2 = null;

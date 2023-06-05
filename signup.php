@@ -1,6 +1,4 @@
 ﻿<?php
-session_start();
-
 if(!isset($_SESSION['loggedin'])){
   echo '<div class="fixindent"><h1>Sign up</h1><hr><br>
   <form id="f_signup" method="post" action="php/signedup.php">

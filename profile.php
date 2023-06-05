@@ -1,6 +1,6 @@
 <?php
 if(isset($_SESSION['loggedin'])){
-    require_once("php/conn.php");
+    require_once("php/_conn.php");
     $stmt = $pdo->prepare("SELECT userid, username, email, jdate, priviledge, tag FROM users WHERE userid = :userid;");
     $stmt->bindValue(':userid', $_SESSION['userid']);
     $stmt->execute();
@@ -15,10 +15,12 @@ if(isset($_SESSION['loggedin'])){
     $stmt->execute();
     $unban = $stmt->fetchColumn();
     
-    if((time() < strtotime($unban) + 14400) && !empty($unban)){
+    if((time() < strtotime($unban) + 14400) && isset($unban)){
         $banned = true;
         echo ' [BANNED]';
     }
+
+    if(!isset($banned)) $banned = false;
 
     echo '</span></h1><hr>';
 
@@ -33,7 +35,7 @@ if(isset($_SESSION['loggedin'])){
     $stmt->bindValue(":userid", $_SESSION['userid']);
     $stmt->execute();
 
-    if(!empty($row['tag'])) echo '<p>- &ldquo;'.htmlspecialchars($row['tag']).'&rdquo;</p>';
+    if(isset($row['tag'])) echo '<p>- &ldquo;'.htmlspecialchars($row['tag']).'&rdquo;</p>';
 
     echo '<nav><ul><li><a class="collapsible">Edit Profile message</a>
     <div class="content">';

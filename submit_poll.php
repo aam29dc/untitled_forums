@@ -1,12 +1,11 @@
-<?php session_start();
-
+<?php
 echo "<h1>Submit poll</h1><hr><br>";
 
 if(isset($_SESSION['loggedin'])){
-  require_once('php/conn.php');
-  require_once('php/lib.php');
+  require_once('php/_conn.php');
+  require_once('php/_lib.php');
 
-  if(empty($_POST['choices']) || !is_numeric($_POST['choices']) || $_POST['choices'] < 2){
+  if(!isset($_POST['choices']) || !is_numeric($_POST['choices']) || $_POST['choices'] < 2){
     $_POST['choices'] = 2;
   }
   else if($_POST['choices'] > 15){
@@ -20,10 +19,10 @@ if(isset($_SESSION['loggedin'])){
   $stmt->execute();
   $unban = $stmt->fetchColumn();
   
-  if(!((time() < strtotime($unban) + 14400) && !empty($unban))){
+  if(!((time() < strtotime($unban) + 14400) && isset($unban))){
     echo '<form action="" method="post"><label for="choices">Enter number of choices: </label><input class="textfield" type="number" id="choices" name="choices" min="2" max="15"/>
     <input type="submit" name="update" value="Update"/></form><br>
-        <div style="margin-left:5px;"><form action="php/poll_submit.php?choices='.$_POST['choices'].'" method="post">
+        <div style="margin-left:5px;"><form action="php/poll_submitted.php?choices='.$_POST['choices'].'" method="post">
         <label for="poll_question">The question: </label><br>
         <input type="text" class="textfield" name="poll_question" id="poll_question" size="64"/><br>
         <br><span>Choices</span><br>';

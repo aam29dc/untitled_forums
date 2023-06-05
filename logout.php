@@ -1,5 +1,5 @@
 <?php session_start();
-
+$x = 0;
 header("Refresh:2; url='index.php'");
 
 $result = "<div>"."\n";

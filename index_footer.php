@@ -1,12 +1,12 @@
-<?php if(!isset($x)) require_once('php/lib.php');?></div>
+<?php require_once('php/_lib.php');?></div>
 <div id="aside">
     <nav>
         <ul>
             <li class="vnavh"><h1>Navigation:</h1></li>
-            <?php include_once(abs_php_include($x).'php/navigation.php');?>
+            <?php include_once(abs_php_include($x).'navigation.php');?>
         </ul>
     </nav><br>
-    <?php include_once(abs_php_include($x).'php/controlpanel.php');?>
+    <?php include_once(abs_php_include($x).'controlpanel.php');?>
     <section id="cubeicle">
         <div class="face front"></div>
         <div class="face right"></div>
@@ -22,29 +22,27 @@
 </div>
 </div>
 <script src="<?php abs_include($x);?>js/general.js"></script>
-<script src="<?php abs_include($x);?>js/jquery-3.6.0.min.js"></script>
+<script src="<?php abs_include($x);?>js/jquery-3.7.0.min.js"></script>
 <?php /* CONDITIONAL INCLUDE BASED ON PHP PAGE */
     $q = array();
     parse_str($_SERVER['QUERY_STRING'], $q);
-    if($q['page'] === 'signup'){
-        //echo '<script src="js/jquery-3.6.0.min.js"></script>'."\n";
+    
+    if(isset($q['page']) && $q['page'] === 'signup'){
         echo '<script src="js/signup_ajax.js"></script>'."\n";
     }
-    else if($q['page'] === 'sub'){
+    else if(isset($q['page']) && $q['page'] === 'sub'){
         echo '<script src="js/subscribe.js"></script>';
     }
-    else if(isset($_SESSION['loggedin']) && $q['page'] === 'inbox'){
+    else if(isset($_SESSION['loggedin']) && isset($q['page']) && $q['page'] === 'inbox'){
         echo '<script src="js/inbox.js"></script>';
     }
     else if(contains("&submit=x", $_SERVER['QUERY_STRING'])){
         echo '<script src="js/search.js"></script>';
     }
     else if(isset($_SESSION['loggedin']) && contains("page=convo&id=", $_SERVER['QUERY_STRING'])) {
-        //echo '<script src="js/jquery-3.6.0.min.js"></script>'."\n";
         echo '<script src="js/convo_ajax.js"></script>';
     }
     else if(isset($_SESSION['loggedin']) && contains("thread=", $_SERVER['QUERY_STRING'])) {
-        //echo '<script src="js/jquery-3.6.0.min.js"></script>'."\n";
         echo '<script src="js/waitdirect.js"></script>'."\n";
         echo '<script src="js/thread_ajax.js"></script>'."\n";
     }

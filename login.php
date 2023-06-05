@@ -1,6 +1,5 @@
 ﻿<?php
-session_start();
-
+require_once('php/_lib.php');
 if(!isset($_SESSION['loggedin'])){
   echo '<div class="fixindent"><h1>Login</h1><hr><br>
   <form id="f_login" method="post" action="php/logged.php">
@@ -17,5 +16,12 @@ if(!isset($_SESSION['loggedin'])){
   <br>
   <a class="nsyn"><h5>lost username or password</h5></a>
   </div>'."\n";
-} else echo "<p>You are currently logged in.</p>"."\n";
+} else {
+  echo "<span>You are currently logged in.</span>"."\n";
+  if(($_SERVER['QUERY_STRING'] === 'page=login' || basename($_SERVER['PHP_SELF'], ".php") === "login")){
+    echo "<h3>Redirecting to home page...</h3>";
+    echo '<noscript><a href="'.abs_php_include($x).'index.php">Click to redirect to home page.</a></noscript>';
+    echo '<script src="'.abs_php_include($x).'js/waitdirect.js"></script><script>waitdirect(2000, "'.abs_php_include($x).'index.php");</script>';
+  }
+}
 ?>

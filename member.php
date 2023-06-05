@@ -1,17 +1,16 @@
 <?php
-require_once("php/conn.php");
+require_once("php/_conn.php");
 
 $q = array();
 parse_str($_SERVER['QUERY_STRING'], $q);
-$user = $q['user'];
 
-if(empty($user) || !isset($user)){
+if(!isset($q['user'])){
     echo "<p>Error: no user selected.</p>";
     goto end;
 }
 
 $stmt = $pdo->prepare("SELECT userid, username, priviledge, email, jdate, tag FROM users WHERE username = :user;");
-$stmt->bindValue(":user", $user);
+$stmt->bindValue(":user", $q['user']);
 $stmt->execute();
 
 if($stmt->rowCount() > 0){
@@ -37,16 +36,16 @@ if($stmt->rowCount() > 0){
     $stmt->execute();
     $unban = $stmt->fetchColumn();
 
-    if((time() < strtotime($unban) + 14400) && !empty($unban)){
+    if((time() < strtotime($unban) + 14400) && isset($unban)){
         $banned = true;
         echo ' [BANNED]';
     }
 
     echo '</span></h1><hr>';
 
-    if(!empty($row['tag'])) echo '<p>- &ldquo;'.htmlspecialchars($row['tag']).'&rdquo;</p>';
+    if(isset($row['tag'])) echo '<p>- &ldquo;'.htmlspecialchars($row['tag']).'&rdquo;</p>';
 
-    if($_SESSION['loggedin']){
+    if(isset($_SESSION['loggedin'])){
         //BUTTON: SEND MSG
         echo '<br><a class="nsyn" href="index.php?page=convo&id='.$row['userid'].'"><button style="display:block;">Send Message</button></a><br>';
         //BUTTON: BLOCK USER
@@ -58,10 +57,10 @@ if($stmt->rowCount() > 0){
         $blocked = $stmt->fetchColumn();
 
         if($blocked === false){
-            echo '<a class="nsyn" href="index.php?page=block&user='.$user.'&b=1"><button style="display:block;">Block user</button></a><br>';
+            echo '<a class="nsyn" href="index.php?page=block&user='.$q['user'].'&b=1"><button style="display:block;">Block user</button></a><br>';
         }
         else {
-            echo '<a class="nsyn" href="index.php?page=block&user='.$user.'&b=0"><button style="display:block;">Unblock user</button></a><br>';
+            echo '<a class="nsyn" href="index.php?page=block&user='.$q['user'].'&b=0"><button style="display:block;">Unblock user</button></a><br>';
         }
     }
 
@@ -76,7 +75,7 @@ if($stmt->rowCount() > 0){
     else if($row['priviledge'] === 3) echo " (admin)";
 
     echo '</li></ul></nav>';
-} else echo "<p>No member with the username: ".htmlspecialchars($user)." exists.</p>";
+} else echo "<p>No member with the username: ".htmlspecialchars($q['user'])." exists.</p>";
 
 end:
 $pdo = null;

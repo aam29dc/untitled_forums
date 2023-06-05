@@ -1,19 +1,21 @@
-<?php session_start();
+<?php @session_start();
 $q = array();
 parse_str($_SERVER['QUERY_STRING'], $q);
 
-require_once('php/conn.php');
+@include('php/_conn.php');   /* require_once: causes an error, include fixes it but causes a warning for already defined constants ... */
 
 //check if user already voted and get choiceid
-$stmt = $pdo->prepare("SELECT choiceid FROM polls_votes WHERE pollid = :pollid AND userid = :userid;");
-$stmt->bindValue(":pollid", $q['poll']);
-$stmt->bindValue(":userid", $_SESSION['userid']);
-$stmt->execute();
+if(isset($_SESSION['loggedin'])){
+    $stmt = $pdo->prepare("SELECT choiceid FROM polls_votes WHERE pollid = :pollid AND userid = :userid;");
+    $stmt->bindValue(":pollid", $q['poll']);
+    $stmt->bindValue(":userid", $_SESSION['userid']);
+    $stmt->execute();
 
-if($stmt->rowCount() === 0) $voted = false;
-else {
-     $voted = true;
-     $choiceid = $stmt->fetchColumn();
+    if($stmt->rowCount() === 0) $voted = false;
+    else {
+        $voted = true;
+        $choiceid = $stmt->fetchColumn();
+    }
 }
 
 //get authorid, and question from polls
@@ -42,17 +44,17 @@ $stmt = $pdo->prepare("SELECT choiceid, choice FROM polls_choices WHERE pollid =
 $stmt->bindValue(":pollid", $q['poll']);
 $stmt->execute();
 
-echo '<div style="width:98%;margin:0 auto;"><form action="php/submit_vote.php?pollid='.$q['poll'].'" method="post">';
+echo '<div style="width:98%;margin:0 auto;"><form action="php/poll_vote.php?pollid='.$q['poll'].'" method="post">';
 
 while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     echo '<span>'.$row['choiceid'].') </span>';
-    if(!$voted && isset($_SESSION['loggedin'])){
+    if(isset($voted) && !$voted && isset($_SESSION['loggedin'])){
         echo '<input type="radio" name="choice" value="'.$row['choiceid'].'"/>';
     }
 
     echo '<span> "'.$row['choice'].'"</span>';
-    if(!$voted) echo '<br/>';
-    else {  //user already voted: draw percentages, and a bar graph
+    //if(!$voted) echo '<br/>';
+    //else {  //user already voted: draw percentages, and a bar graph
         $stmt2 = $pdo->prepare("SELECT COUNT(*) FROM polls_votes WHERE pollid = :pollid AND choiceid = :choiceid;");
         $stmt2->bindValue(":pollid", $q['poll']);
         $stmt2->bindValue(":choiceid", $row['choiceid']);
@@ -64,11 +66,11 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         if($percent <= 0.1) echo '0.1';
         else echo $percent;
         echo '%;"></div>';
-    }
+    //}
 }
 
 echo '<br/><span>'.$total.' total votes</span>';
-if($voted){ 
+if(isset($voted) && $voted){ 
     //get choice from choiceid
     $stmt = $pdo->prepare("SELECT choice FROM polls_choices WHERE pollid = :pollid AND choiceid = :choiceid;");
     $stmt->bindValue(":pollid", $q['poll']);
@@ -76,7 +78,7 @@ if($voted){
     $stmt->execute();
     echo '<br/><span>You voted #'.$choiceid.' "'.$stmt->fetchColumn().'".</span>';
 }
-if(!$voted && isset($_SESSION['loggedin'])) echo '<br/><button>Vote</button></form><br/>';
+if(isset($voted) && !$voted && isset($_SESSION['loggedin'])) echo '<br/><button>Vote</button></form><br/>';
 else echo '</form>';
 if(!isset($_SESSION['loggedin'])) echo '<p style="float:right;padding:0;"><a href="index.php?page=login">Sign in to vote.</a></p>';
 echo '</div>';

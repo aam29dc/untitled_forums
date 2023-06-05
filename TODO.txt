@@ -8,8 +8,31 @@ logging failed attempts at logins, errors, etc
 javascript loading screen while page loads
 account lockout policies to prevent brute force attacks
 when autofill user/pw, a locked out login button
+add hide/seen.png inv
+like a thread/poll
 
-[0.3.8.2]
+[0.4]
+	*renamed and moved .php files around for a more intuitive design: layout elements, & different pages are in the root folder, and actions are in the php folder(with the exception of a few files).
+fullscreen / windowed button
+	*delay added before refreshing page after posting to a thread, to help alleviate a race-condition error
+	*long threads on home page are shortened with a [continued]
+threads.php should have a page select like in a thread, [1,2,3,...], etc
+	*polished code, & bug fixes
+
+[0.3.8.2] (First Live publish on arrottatech.com at April 2023)
+scrolling title
+	*if error starts in title its usually a directory traversal issue, write $x at the top of the errornous file
+	*fixed cant delete threads/posts that have liked posts or are liked
+	*deleting multiple posts (from old to new) after the first delete is buggy
+when on login/logout redirect user back to page they were previously on
+	*post a reply doesnt always update with new post(usually the first), user has to refresh
+inbox doesnt show messages sent until recipient replies
+	*fixed logout page, missing $x (directory traversal level) in logout.php
+	*fixed like post when not signed in, and redirects back to thread & page
+	*is_numeric(str_replace()) op on thread title, checks for numeric value, fixes titles
+	*guest and users who haven't voted can see poll results
+	*changed '===' & '!==' to '==' & '!=' for fetchColumn() lines, fixed signup issues
+	*renamed icon0.ico to Icon0.ico, fixed icon not showing for default layout light
 	*fixed threads page titles, index.php?page=# showing up as 'Untitled'
 	*moved ' | ArrottaTech.com' in title to end
 	*fixed page=0 showing previous button
@@ -77,14 +100,5 @@ fix margin of edit post/thread msg after refresh (ajax)
 	*fix back button (go to prev thread user was at, go to prev page user was at, otherwise go to home page)
 remove special characters from signup in .js script (Available!)
 add reCAPTCHA to signup page
-	*fix NEXT button on main.php
+	*fix NEXT button on threads.php
 add tag buttons to edit post/thread (ajax)
-
-folder setup:
-	site/ ->
-	/js ->
-		/ajax
-		/page
-	/php ->
-		/ajax
-		/action
