@@ -5,14 +5,17 @@ document.getElementById('post_f').setAttribute('action', "javascript:void(0);");
 document.getElementById('post_b').setAttribute('onClick', "postAJAX();");
 
 //get thread id and pages id
-let threadId = '';
-let pageId = '';
-let replyId = '';
+let threadId = null;
+let pageId = null;
+let replyId = null;
 
 const queryDict = {};
 location.search.substring(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
 threadId = queryDict["thread"];
 pageId = queryDict["pages"];
+
+let edit_thread = document.getElementById('edit_thread');
+let edit_posts = document.getElementsByClassName('edit_post');
 
 /*
     LIKE a post
@@ -69,6 +72,63 @@ function replyEvent(){
 }
 replyEvent();
 
+/* EDIT THREAD */
+function threadEvent(){
+    edit_thread = document.getElementById('edit_thread');
+    if(edit_thread) {
+        edit_thread.removeAttribute('href');
+        edit_thread.setAttribute('style', 'cursor:pointer;');
+        edit_thread.addEventListener('click', editThread);
+    }
+}
+threadEvent();
+
+/* EDIT POST(S) */
+function postsEvent(){
+    edit_posts = document.getElementsByClassName('edit_post');
+
+    for(let i = 0; i < edit_posts.length; i++){
+        edit_posts[i].removeAttribute('href');
+        edit_posts[i].setAttribute('style', 'cursor:pointer;');
+        edit_posts[i].addEventListener('click', editPost);
+        edit_posts[i].index = edit_posts[i].getAttribute('data-num');
+        edit_posts[i].postid = edit_posts[i].getAttribute('data-postid');
+    }
+}
+postsEvent();
+
+function refreshThread(){
+    $.ajax({
+        type: "GET",
+        url: "thread.php",
+        data: {thread: threadId,
+                pages: pageId},
+        success: function(echo){
+            //console.log(echo);
+            document.getElementById('heart').innerHTML = echo;  //echo should go first ...
+            // re-set attributes and eventlisteners to new echo'd content
+            document.getElementById('post_f').setAttribute('action', "javascript:void(0);");
+            document.getElementById('post_b').setAttribute('onClick', "postAJAX();");
+
+            // (coll and content from general.js) re-Add event listeners
+            for(let i = 0;i < coll.length; i++){
+                coll[i].style.display = 'initial';
+                coll[i].classList.remove('active');
+                coll[i].addEventListener("click", toggleContent);
+            }
+
+            for (let i = 0; i < content.length; i++) {
+                content[i].style.display = 'none';
+            }
+
+            threadEvent();
+            postsEvent();
+            replyEvent();
+            likeEvent();
+        }
+    })
+}
+
 function postAJAX(){
     let ptitle = document.getElementById('post_title');
     let pmsg = document.getElementById('post_text');
@@ -87,47 +147,8 @@ function postAJAX(){
     ptitle.value = '';
     pmsg.value = '';
 
-    refreshThread();
+    setTimeout(function(){refreshThread();}, 250);
 }
-
-function refreshThread(){
-    $.ajax({
-        type: "GET",
-        url: "thread.php",
-        data: {thread: threadId,
-                pages: pageId},
-        success: function(echo){
-            document.getElementById('heart').innerHTML = echo;
-            // re-set attributes and eventlisteners to new echo'd content
-            document.getElementById('post_f').setAttribute('action', "javascript:void(0);");
-            document.getElementById('post_b').setAttribute('onClick', "postAJAX();");
-            // (coll and content from general.js) re-Add event listeners
-            for(let i = 0;i < coll.length; i++){
-                coll[i].style.display = 'initial';
-                coll[i].classList.remove('active');
-                content[i].style.display = 'none';
-                coll[i].addEventListener("click", toggleContent);
-            }
-
-            threadEvent();
-            postsEvent();
-
-            // syn effect doesnt work after refresh
-        }
-    });
-}
-/* EDIT THREAD */
-let edit_thread = document.getElementById('edit_thread');
-
-function threadEvent(){
-    edit_thread = document.getElementById('edit_thread');
-    if(edit_thread) {
-        edit_thread.removeAttribute('href');
-        edit_thread.setAttribute('style', 'cursor:pointer;');
-        edit_thread.addEventListener('click', editThread);
-    }
-}
-threadEvent();
 
 function removeThreadElements(){
     document.getElementById('edit_title').remove();
@@ -174,9 +195,9 @@ function editThread(){
                     edit_title: title.value,
                     edit_message: msg.value,
                     threadid: threadId},
-                url: "php/edited_thread_ajax.php",
+                url: "php/thread_edited_ajax.php",
                 success: function(echo){
-                    if(echo !== '0') console.log("edited_thread_ajax.php error: " + echo);
+                    if(echo !== '0') console.log("thread_edited_ajax.php error: " + echo);
                     else {
                         thread_title.innerHTML = title.value;
                         thread_msg.innerHTML = msg.value;
@@ -197,10 +218,10 @@ function editThread(){
         $.ajax({type: "POST",
                 data: {deleted: "Delete",
                         threadid: threadId},
-                url: "php/deleted_thread_ajax.php",
+                url: "php/thread_deleted_ajax.php",
                 success: function(echo){
                     if(echo !== '0'){
-                        console.log("edit_thread_ajax.php error: " + echo);
+                        console.log("thread_edit_ajax.php error: " + echo);
                     }
                     else document.getElementById('heart').innerHTML = 'Thread deleted. Redirecting to home page.';
                     waitdirect();   //from waitdirect.js, included in index_footer.php for thread.php
@@ -216,23 +237,6 @@ function editThread(){
     this.removeEventListener('click', editThread);
     this.addEventListener('click', uneditThread);
 }
-
-/* EDIT POST(S) */
-
-let edit_posts = document.getElementsByClassName('edit_post');
-
-function postsEvent(){
-    edit_posts = document.getElementsByClassName('edit_post');
-
-    for(let i = 0; i < edit_posts.length; i++){
-        edit_posts[i].removeAttribute('href');
-        edit_posts[i].setAttribute('style', 'cursor:pointer;');
-        edit_posts[i].addEventListener('click', editPost);
-        edit_posts[i].index = edit_posts[i].getAttribute('data-num');
-        edit_posts[i].postid = edit_posts[i].getAttribute('data-postid');
-    }
-}
-postsEvent();
 
 function editPost(){
     const postid = this.postid;
@@ -265,10 +269,10 @@ function editPost(){
                 edit_message: msg.value,
                 ori_title: post_title.innerHTML,
                 ori_message: post_msg.innerHTML},
-            url: "php/edited_ajax.php",
+            url: "php/post_edited_ajax.php",
             success: function(echo){
                 if(echo !== '0'){
-                    console.log("edited_ajax.php error: " + echo);
+                    console.log("post_edited_ajax.php error: " + echo);
                 }
                 else {
                     post_title.innerHTML = title.value;
@@ -293,10 +297,10 @@ function editPost(){
             type: "POST",
             data: {postid: postid,
                 delete: "Delete"},
-            url: "php/edited_ajax.php",
+            url: "php/post_edited_ajax.php",
             success: function(echo){
                 if(echo !== '0'){
-                    console.log("deleted_post_ajax.php error: " + echo);
+                    console.log("post_edited_ajax.php error: " + echo);
                 }
             }
         });
@@ -306,6 +310,12 @@ function editPost(){
         post_title.innerHTML = "";
         post_msg.style.display = 'initial';
         post_msg.innerHTML = '<span style="color:red;">Post deleted by author.</span>';
+        
+        //this should work without refreshThread();
+        setTimeout(function(){refreshThread();}, 250);
+        /*BUG: this hasnt been fixed, doesn't work without refreshThread();
+            when going from old to new on deleting posts, it removes the next posts edit button
+        */
     });
 
     post_msg.before(title);

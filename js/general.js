@@ -113,6 +113,26 @@ function setAttributes(el, attrs){
 }
 
 /*
+    Scrolling Title
+*/
+/*function scroll_title(title, wait){
+    //setTimeout(scroll_title, wait);
+    document.title.charAt(63) = document.title.charAt(0);
+    for(let i = 0;i<64;i++){
+        document.title.charAt(i) = document.title.charAt(i+1);
+    }
+}
+if(document.title.length < 64){
+    for(let i = document.title.length;i<64;i++){
+        document.title.charAt(i) = 'x';
+    }
+}
+scroll_title(document.title, 1);
+
+document.title[0] = 'x';
+*/
+
+/*
     Checkerbox (light <-> dark theme button)
 */
 let checkerbox = document.getElementById('checkerbox');
@@ -347,8 +367,11 @@ function toggleContent() {
 for (let i = 0; i < coll.length; i++) {
     coll[i].style.display = 'initial';
     coll[i].style.cursor = 'pointer';
-    content[i].style.display = 'none';
     coll[i].addEventListener("click", toggleContent);
+}
+
+for (let i = 0; i < content.length; i++) {
+    content[i].style.display = 'none';
 }
 
 /*

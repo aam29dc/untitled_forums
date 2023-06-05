@@ -38,7 +38,7 @@ s_user.addEventListener('blur', function(){
         $.ajax({
             type: "POST",
             data: {username: username},
-            url: "php/user_free.php",
+            url: "php/free_user.php",
             success: function(echo){
                 if(echo === '0'){
                     span.style.color = 'rgb(0,255,0)';
@@ -62,7 +62,7 @@ mail.addEventListener('blur', function(){
         $.ajax({
             type: "POST",
             data: {email: email},
-            url: "php/email_free.php",
+            url: "php/free_email.php",
             success: function(echo){
                 if(echo === '1'){
                     span.style.color = 'red';
