@@ -82,7 +82,7 @@ if(tableExists($pdo,'threads')){
         echo '<h5><a href="index.php?page=member&user='.$author.'">- '.$author.'</a><span style="float:right;">'.$row['date']."</span></h5>";
         echo "<hr>"."\n";
 
-        if(!isset($q['sort']) || $q['sort'] === '0') $order = "date ASC";
+        if(!isset($q['sort']) || $q['sort'] == 0) $order = "date ASC";
         else $order = "date DESC";
         //print POSTS from posts table
         $stmt = $pdo->prepare("SELECT postid, authorid, replyid, postnum, title, msg, date FROM posts WHERE threadid = :thread ORDER BY ".$order." LIMIT :pages, ".TMAX.";");
@@ -93,10 +93,10 @@ if(tableExists($pdo,'threads')){
         if($stmt->rowCount() > 0){
         //sort thread by date links
             echo '<div>Sort by: ';
-            if($q['sort'] === '1') echo '<a class="nsyn" href="?thread='.$q['thread'].'&pages='.$q['pages'].'&sort=0">Oldest</a>';
+            if($q['sort'] == 1) echo '<a class="nsyn" href="?thread='.$q['thread'].'&pages='.$q['pages'].'&sort=0">Oldest</a>';
             else echo 'Oldest';
             echo ' | '; 
-            if(!isset($q['sort']) || $q['sort'] === '0') echo '<a class="nsyn" href="?thread='.$q['thread'].'&pages='.$q['pages'].'&sort=1">Newest</a>';
+            if(!isset($q['sort']) || $q['sort'] == 0) echo '<a class="nsyn" href="?thread='.$q['thread'].'&pages='.$q['pages'].'&sort=1">Newest</a>';
             else echo 'Newest';
             echo '</div>';
 
