@@ -49,12 +49,12 @@
 ![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
 
 _______________________________________________________________________________________________
-(06/05/2023) __[**0.4**]__
+(06/05/2023) __[**0.4**]__ [Stable Release]
 _______________________________________________________________________________________________
 renamed and moved .php files around for a more intuitive design: layout elements, & different pages are in the root folder, and actions are in the php folder(with the exception of a few files),
 delay added before refreshing page after posting to a thread, to help alleviate a possible race-condition,
 long threads on home page are shortened with a [continued],
-polished code, & bug fixes.
+polished code, & many bug fixes.
 _______________________________________________________________________________________________
 
 _______________________________________________________________________________________________
