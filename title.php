@@ -4,7 +4,7 @@ require_once('php/_lib.php');
 $q = array();
 parse_str($_SERVER['QUERY_STRING'], $q);
 
-if(isset($q['page']) && $q['page'] === 'home' || (basename($_SERVER['PHP_SELF'], ".php") === "index" && !isset($_SERVER['QUERY_STRING'])))
+if(!isset($q['page']) || (isset($q['page']) && $q['page'] === 'home') || (basename($_SERVER['PHP_SELF'], ".php") === "index" && !isset($_SERVER['QUERY_STRING'])))
 	echo "Home";
 else if(basename($_SERVER['PHP_SELF']) === "index.php" && isset($q['page']) && is_numeric($q['page']))
 	echo "Threads | ".$q['page'];
