@@ -1,7 +1,7 @@
 # untitled_forums v0.4
 **Requires jQuery for AJAX** (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
-**How to INSTALL:** Put jquery-3.7.0.min.js in /js folder. Open \php\_create_tables.php in your browser (on localhost).
+**How to INSTALL:** Put jquery-3.7.0.min.js in /js folder. Open /php/_create_tables.php in your browser (on localhost).
 
 [ **PHP(PDO) & SQL(mysql):** ]
 
