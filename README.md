@@ -39,6 +39,7 @@
 
 --synesthesia font, scroll line color change as user scrolls down page, mouse pointer color change as user moves mouse.
 
+## Updates
 _______________________________________________________________________________________________
 (06/05/2023) __[**0.4**]__ [Stable Release]
 _______________________________________________________________________________________________
