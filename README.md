@@ -1,7 +1,7 @@
-# untitled_forums v0.3.8.2
+# untitled_forums v0.4
 **Requires jQuery for AJAX** (to update page without redirect/refresh). This site is also fully functional with JS disabled.
 
-**How to INSTALL:** Put jquery-3.6.0.min.js in /js folder. Open \_create_tables.php in your browser (on localhost).
+**How to INSTALL:** Put jquery-3.7.0.min.js in /js folder. Open \php\_create_tables.php in your browser (on localhost).
 
 [ **PHP(PDO) & SQL(mysql):** ]
 
@@ -45,6 +45,14 @@
 [**MOBILE Phone layout**]
 
 ![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
+
+_______________________________________________________________________________________________
+(06/05/2023) __[**0.4**]__
+renamed and moved .php files around for a more intuitive design: layout elements, & different pages are in the root folder, and actions are in the php folder(with the exception of a few files),
+delay added before refreshing page after posting to a thread, to help alleviate a possible race-condition,
+long threads on home page are shortened with a [continued],
+polished code, & bug fixes.
+_______________________________________________________________________________________________
 
 _______________________________________________________________________________________________
 (04/19/2023) __[**0.3.8.2**]__
