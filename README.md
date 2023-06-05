@@ -39,15 +39,6 @@
 
 --synesthesia font, scroll line color change as user scrolls down page, mouse pointer color change as user moves mouse.
 
-#  (screenshots slightly outdated)
-![userx_v3_1](https://user-images.githubusercontent.com/73267302/135941971-f125d8b6-1a74-4a7b-aeec-84caa96e1d01.png)
-
-![userx_v3_2](https://user-images.githubusercontent.com/73267302/135941955-0c1eae36-6cd2-4f14-8d90-e13291cd4a8e.png)
-
-[**MOBILE Phone layout**]
-
-![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
-
 _______________________________________________________________________________________________
 (06/05/2023) __[**0.4**]__ [Stable Release]
 _______________________________________________________________________________________________
@@ -100,6 +91,11 @@ ________________________________________________________________________________
 __[**1st RELEASE**]__
 _______________________________________________________________________________________________
 
-forum software with dynamic web pages
+#  (screenshots slightly outdated)
+![userx_v3_1](https://user-images.githubusercontent.com/73267302/135941971-f125d8b6-1a74-4a7b-aeec-84caa96e1d01.png)
 
-dynamic web pages (layout files: index_header.php, index_footer.php).
+![userx_v3_2](https://user-images.githubusercontent.com/73267302/135941955-0c1eae36-6cd2-4f14-8d90-e13291cd4a8e.png)
+
+[**MOBILE Phone layout**]
+
+![userx_v3_mobile](https://user-images.githubusercontent.com/73267302/135941978-f1689e28-daeb-4c22-a8a9-2ad7f867dce0.png)
