@@ -55,7 +55,6 @@ renamed and moved .php files around for a more intuitive design: layout elements
 delay added before refreshing page after posting to a thread, to help alleviate a possible race-condition,
 long threads on home page are shortened with a [continued],
 polished code, & many bug fixes.
-_______________________________________________________________________________________________
 
 _______________________________________________________________________________________________
 (04/19/2023) __[**0.3.8.2**]__
