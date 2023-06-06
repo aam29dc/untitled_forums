@@ -46,7 +46,7 @@ ________________________________________________________________________________
 renamed and moved .php files around for a more intuitive design: layout elements, & different pages are in the root folder, and actions are in the php folder(with the exception of a few files),
 delay added before refreshing page after posting to a thread, to help alleviate a possible race-condition,
 long threads on home page are shortened with a [continued],
-polished code, & many bug fixes.
+polished code, & many bug fixes. (0.4.0.1): more fixes.
 
 _______________________________________________________________________________________________
 (04/19/2023) __[**0.3.8.2**]__
