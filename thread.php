@@ -115,7 +115,7 @@ if(tableExists($pdo,'threads')){
                     $stmt2->execute();
                     echo $stmt2->fetchColumn()."</small></td><td><h4>#";
 
-                echo $row['postnum'];           //$i + ($q['pages']-1)*TMAX." ";  // number of post in thread
+                echo $row['postnum'].' ';           //$i + ($q['pages']-1)*TMAX." ";  // number of post in thread
 
                 //check if user is blocked
                 if(isset($_SESSION['loggedin'])){
@@ -221,17 +221,16 @@ if(tableExists($pdo,'threads')){
             <div id="post_content" class="content" style="float:left;clear:left;">
                 <form id="post_f" method="post" action="php/posted.php';
                 if(isset($_GET['replyid'])){ echo '?replyid='.$_GET['replyid'].'';}    //add reply id to string
-                echo '">';
+                echo '"><span id="reply">';
                     if(isset($_GET['replyid'])){ 
-                        echo '<span id="reply">';
                         echo '[Reply to #';
                         //get postnum from replyid
                         $stmt = $pdo->prepare("SELECT postnum FROM posts WHERE postid = :postid;");
                         $stmt->bindValue(":postid", $_GET['replyid']);
                         $stmt->execute();
                         echo $stmt->fetchColumn()."]";
-                        echo '</span>';
                     }
+                    echo '</span>';
                     echo '<label for="post_title"><span style="display:none;">title</span></label><input type="text" id="post_title" name="post_title" size="98" class="textfield" style="width:98%;margin-bottom:5px;"/><br>';
                     include_once('php/_msg_buttons.php');
                     drawMsgButtons('post_text');
