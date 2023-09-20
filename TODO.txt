@@ -1,5 +1,6 @@
 ____( indented with a * means its completed. Non-indented without a * means its not complete )____
 
+zooming in, at some point should remove the navigation frame
 change 'see' icon next to passwords to white when in dark mode
 CAPTCHA for posting on forums
 client side and server side input validation for every form
