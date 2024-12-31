@@ -12,6 +12,8 @@ $stmt = $pdo->prepare("SELECT lift FROM bans WHERE userid = ?;");
 $stmt->bindValue(1, $_SESSION['userid']);
 $stmt->execute();
 
+$unban = $stmt->fetchColumn();
+
 if(!((time() < strtotime($unban) + 14400) && isset($unban)) && $_SESSION['priviledge'] >= 2){
     $stmt = $pdo->prepare("SELECT userid, username, priviledge, email FROM users limit ?, ".UMAX.";");
     $stmt->bindValue(1, (int)($q['pages']-1)*UMAX, PDO::PARAM_INT);

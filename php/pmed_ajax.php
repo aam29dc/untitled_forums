@@ -3,6 +3,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     require_once('_conn.php');
     require_once('_lib.php');
 
+    session_start();
+
     $error = false;
     
     if(!isset($_POST['recipient'])){

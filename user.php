@@ -7,11 +7,11 @@ require_once('php/_lib.php');
 if(!isset($_SESSION['loggedin'])){
     if(isset($q['page']) && $q['page'] === 'signup')
         echo '<li class="hnav">Signup</li>'."\n";
-    else echo '<li class="hnav"><a href="'.abs_php_include($x).'index.php?page=signup">Signup</a></li>'."\n";
+    else echo '<li class="hnav"><a class="nsyn" href="'.abs_php_include($x).'index.php?page=signup">Signup</a></li>'."\n";
 
     if(isset($q['page']) && $q['page'] === 'login')
         echo '<li class="hnav">Login</li>'. "\n";
-    else echo '<li class="hnav"><a id="user_login" href="'.abs_php_include($x).'index.php?page=login">Login</a></li>'. "\n";
+    else echo '<li class="hnav"><a class="nsyn" id="user_login" href="'.abs_php_include($x).'index.php?page=login">Login</a></li>'. "\n";
 }
 else {
     //get count of non-read pms

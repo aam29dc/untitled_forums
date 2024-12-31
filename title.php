@@ -122,5 +122,5 @@ else if(contains("page=block", $_SERVER['QUERY_STRING']))
 	echo "Block user";
 else echo "Untitled";
 	
-echo " | ArrottaTech.com";
+echo " | ".$_SERVER['HTTP_HOST'];
 ?>

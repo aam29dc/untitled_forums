@@ -18,7 +18,7 @@
 </div>
 <button class="accordion">&copy; aam29dc</button>
 <div class="panel">
-<p>Created by: Michael Arrotta (aam29dc@gmail.com)<br>Software: Untitled Forums (version: 0.4.0.1)</p>
+<p>Created by: Michael Arrotta (aam29dc@gmail.com)<br>Software: Untitled Forums (version: 0.4.0.2)</p>
 </div>
 </div>
 <script src="<?php abs_include($x);?>js/general.js"></script>

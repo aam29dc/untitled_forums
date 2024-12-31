@@ -1,1 +1,1 @@
-﻿<div class="fixindent"><h1>About arrottatech.com</h1><hr><br><p>Our site is a deadly creation.</p></div>
+﻿<div class="fixindent"><h1>About <?php echo $_SERVER['HTTP_HOST'];?></h1><hr><br><p>Our site is a deadly creation.</p></div>

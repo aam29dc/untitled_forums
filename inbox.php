@@ -68,7 +68,7 @@ if(isset($_SESSION['loggedin'])){
             echo '<a class="nsyn" href="index.php?page=inbox&pages='.($q['pages']+1).'"> <button>Next &raquo;</button></a>';
         }
 
-    } else echo "<p>Inbox is !isset.</p>";
+    } else echo "<p>Inbox is empty.</p>";
     $pdo = null;
     $stmt = null;
     $stmt2 = null;

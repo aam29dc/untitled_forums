@@ -37,9 +37,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $stmt = $pdo->prepare("INSERT INTO posts (threadid, authorid, replyid, postnum, title, msg) VALUES (:threadid, :authorid, :replyid, :postnum, :title, :msg);");
         $stmt->bindValue(":threadid", $_SESSION['threadid']);
         $stmt->bindValue(":authorid", $_SESSION['userid']);
-        //if((empty($_POST['replyEventId']) && $_POST['replyEventId'] !== 0) || !isset($_POST['replyEventId'])) $stmt->bindValue(":replyid", NULL);   // error in php, but its the same file as posted.php which works(w/out js)
-        /*else*/ $stmt->bindValue(":replyid", $_POST['replyEventId']);                                                                                  // so the problem maybe thread_ajax.js, these two lines shouldn't need to be this long
+        /* CHECK HERE AGAIN */
+        if((empty($_POST['replyEventId']) && $_POST['replyEventId'] !== 0) || !isset($_POST['replyEventId'])) $stmt->bindValue(":replyid", NULL);   // error in php, but its the same file as posted.php which works(w/out js)
+        else $stmt->bindValue(":replyid", $_POST['replyEventId']);                                                                                  // so the problem maybe thread_ajax.js, these two lines shouldn't need to be this long
                                                                                                                                                     // quick fix is to disable replies, make it NULL everytime ...
+        /* */
         $stmt->bindValue(":postnum", $postNumber);
         $stmt->bindValue(":title", $title);
         $stmt->bindValue(":msg", $text);
