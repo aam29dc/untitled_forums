@@ -12,6 +12,10 @@ add hide/seen.png inv
 like a thread/poll
 minimize threads.php by showing titles only, not thread msgs
 
+[0.4.0.2]
+Haven't update the site in a while, due to not programming in PHP and JS, I'll have to relearn my code base which I've been working on past few days. But I might start with a new site primarily only JS for both ends.
+	*changed strings of arrottatech.com with $_SERVER['HTTP_HOST']
+
 [0.4]
 	*renamed and moved .php files around for a more intuitive design: layout elements, & different pages are in the root folder, and actions are in the php folder(with the exception of a few files).
 fullscreen / windowed button
